@@ -11,18 +11,16 @@ import { Skeleton } from '../shadcn/skeleton'
 import DiscordPresence from './DiscordPresence'
 import ExternalLink from './ExternalLink'
 import GithubCalendar from './GithubCalendar'
-import SilhouetteHover from './SilhouetteHover'
 import SpotifyPresence from './SpotifyPresence'
 
 const ResponsiveGridLayout = WidthProvider(Responsive, { measureBeforeMount: true })
 
 const BentoBox = ({ posts }) => {
     const lanyard = useLanyard({
-        userId: '747519888347627550',
+        userId: '199662959964848128',
     })
 
     const [rowHeight, setRowHeight] = useState(280)
-    const [introSilhouette, setIntroSilhouette] = useState(false)
 
     const [isDiscordLoaded, setDiscordLoaded] = useState(false)
     const [isSpotifyLoaded, setIsSpotifyLoaded] = useState(false)
@@ -51,7 +49,7 @@ const BentoBox = ({ posts }) => {
         }
 
         document.querySelectorAll('.react-grid-item').forEach((item) => {
-            ;(item as HTMLElement).style.zIndex = '1'
+            ; (item as HTMLElement).style.zIndex = '1'
         })
 
         element.style.zIndex = '10'
@@ -97,9 +95,7 @@ const BentoBox = ({ posts }) => {
                     src="/static/images/bento/bento-intro-silhouette.svg"
                     alt="Bento Intro Silhouette"
                     fill
-                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300 ${
-                        introSilhouette ? 'opacity-100' : 'opacity-0 delay-75'
-                    }`}
+                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300`}
                     skeletonClassName="rounded-3xl"
                     noRelative
                     unoptimized
@@ -109,9 +105,7 @@ const BentoBox = ({ posts }) => {
                     src="/static/images/bento/bento-intro.svg"
                     alt="Bento Intro"
                     fill
-                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300 ${
-                        introSilhouette ? 'opacity-0 delay-75' : 'opacity-100'
-                    }`}
+                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300`}
                     skeletonClassName="rounded-3xl"
                     noRelative
                     unoptimized
@@ -121,9 +115,7 @@ const BentoBox = ({ posts }) => {
                     src="/static/images/bento/bento-intro-square-silhouette.svg"
                     alt="Bento Intro Silhouette"
                     fill
-                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300 ${
-                        introSilhouette ? 'opacity-100' : 'opacity-0 delay-75'
-                    }`}
+                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300`}
                     skeletonClassName="rounded-3xl"
                     noRelative
                     unoptimized
@@ -133,31 +125,17 @@ const BentoBox = ({ posts }) => {
                     src="/static/images/bento/bento-intro-square.svg"
                     alt="Bento Intro"
                     fill
-                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300 ${
-                        introSilhouette ? 'opacity-0 delay-75' : 'opacity-100'
-                    }`}
+                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300`}
                     skeletonClassName="rounded-3xl"
                     noRelative
                     unoptimized
                     priority
                 />
             </div>
-            <div
-                key="github"
-                className="group"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
-            >
+            <div key="github" className="group">
                 <div className="relative flex h-full w-full items-center justify-center rounded-lg">
                     <FaGithub className="absolute z-[1] text-primary w-1/2 h-1/2 bento-md:w-24 bento-md:h-24" />
-                    <SilhouetteHover
-                        silhouetteSrc="/static/images/bento/bento-github-silhouette.svg"
-                        silhouetteAlt="Bento Github Silhouette"
-                        mainSrc="/static/images/bento/bento-github.svg"
-                        mainAlt="Bento Github"
-                        className="rounded-3xl object-cover"
-                    />
-                    <ExternalLink href="https://github.com/jktrn" />
+                    <ExternalLink href="https://github.com/ShaanCoding" />
                 </div>
             </div>
             <div key="image-1">
@@ -179,30 +157,17 @@ const BentoBox = ({ posts }) => {
                     <Skeleton className="w-full h-full rounded-3xl" />
                 )}
             </div>
-            <div
-                key="latest-post"
-                className="group"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
-            >
-                <SilhouetteHover
-                    silhouetteSrc="/static/images/bento/bento-latest-post-silhouette.svg"
-                    silhouetteAlt="Bento Latest Post Silhouette"
-                    mainSrc="/static/images/bento/bento-latest-post.svg"
-                    mainAlt="Bento Latest Post"
-                    className="rounded-3xl object-cover flex items-center bento-md:pl-1 bento-lg:pl-3"
-                >
-                    <Image
-                        src={posts[0].images[0]}
-                        alt={posts[0].title}
-                        width={0}
-                        height={0}
-                        className="m-2 w-[80%] rounded-2xl border border-border"
-                        skeletonClassName="rounded-3xl"
-                        noRelative
-                        unoptimized
-                    />
-                </SilhouetteHover>
+            <div key="latest-post" className="group">
+                <Image
+                    src={posts[0].images[0]}
+                    alt={posts[0].title}
+                    width={0}
+                    height={0}
+                    className="m-2 w-[80%] rounded-2xl border border-border"
+                    skeletonClassName="rounded-3xl"
+                    noRelative
+                    unoptimized
+                />
                 <ExternalLink href={posts[0].path} newTab={false} />
             </div>
             <div key="image-2">
@@ -219,42 +184,15 @@ const BentoBox = ({ posts }) => {
             </div>
             <div
                 key="about-ctfs"
-                className="group bg-[url('/static/images/bento/bento-about-ctfs-bg.svg')] bg-cover bg-center"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
-            >
-                <SilhouetteHover
-                    silhouetteSrc="/static/images/bento/bento-about-ctfs-silhouette.svg"
-                    silhouetteAlt="Bento About CTFs Silhouette"
-                    mainSrc="/static/images/bento/bento-about-ctfs.svg"
-                    mainAlt="Bento About CTFs"
-                    className="rounded-3xl object-cover"
-                />
+                className="group bg-[url('/static/images/bento/bento-about-ctfs-bg.svg')] bg-cover bg-center">
             </div>
-            <div
-                key="twitter"
-                className="group"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
-            >
+            <div key="twitter" className="group">
                 <div className="relative flex h-full w-full items-center justify-center rounded-lg">
                     <FaTwitter className="absolute z-[1] text-primary w-1/2 h-1/2 bento-md:w-24 bento-md:h-24" />
-                    <SilhouetteHover
-                        silhouetteSrc="/static/images/bento/bento-twitter-silhouette.svg"
-                        silhouetteAlt="Bento Twitter Silhouette"
-                        mainSrc="/static/images/bento/bento-twitter.svg"
-                        mainAlt="Bento Twitter"
-                        className="rounded-3xl object-cover"
-                    />
-                    <ExternalLink href="https://twitter.com/enscry" />
+                    <ExternalLink href="https://twitter.com/ShaanCoding" />
                 </div>
             </div>
-            <div
-                key="spotify"
-                className="group"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
-            >
+            <div key="spotify" className="group">
                 {lanyard.data && !lanyard.isValidating ? (
                     <SpotifyPresence
                         lanyard={lanyard.data}
@@ -263,20 +201,6 @@ const BentoBox = ({ posts }) => {
                 ) : (
                     <Skeleton className="w-full h-full rounded-3xl z-[1]" />
                 )}
-                <SilhouetteHover
-                    silhouetteSrc="/static/images/bento/bento-spotify-silhouette.svg"
-                    silhouetteAlt="Bento Spotify Silhouette"
-                    mainSrc="/static/images/bento/bento-spotify.svg"
-                    mainAlt="Bento Spotify"
-                    className="hidden bento-lg:block object-cover rounded-3xl ml-auto"
-                />
-                <SilhouetteHover
-                    silhouetteSrc="/static/images/bento/bento-spotify-silhouette-2x1.svg"
-                    silhouetteAlt="Bento Spotify Silhouette"
-                    mainSrc="/static/images/bento/bento-spotify-2x1.svg"
-                    mainAlt="Bento Spotify"
-                    className="block bento-lg:hidden object-cover rounded-3xl ml-auto"
-                />
             </div>
             <div key="tech">
                 <Image
@@ -292,25 +216,15 @@ const BentoBox = ({ posts }) => {
             <div
                 key="contributions"
                 className="group flex items-center justify-center"
-                onMouseEnter={() => setIntroSilhouette(true)}
-                onMouseLeave={() => setIntroSilhouette(false)}
             >
-                <SilhouetteHover
-                    silhouetteSrc="/static/images/bento/bento-contributions-silhouette.svg"
-                    silhouetteAlt="Bento GitHub Contributions Silhouette"
-                    mainSrc="/static/images/bento/bento-contributions.svg"
-                    mainAlt="Bento GitHub Contributions"
-                    className="rounded-3xl object-cover z-[2] flex items-center justify-center p-4"
-                >
-                    <GithubCalendar
-                        username="jktrn"
-                        hideColorLegend
-                        hideTotalCount
-                        blockMargin={6}
-                        blockSize={20}
-                        blockRadius={7}
-                    />
-                </SilhouetteHover>
+                <GithubCalendar
+                    username="shaancoding"
+                    hideColorLegend
+                    hideTotalCount
+                    blockMargin={6}
+                    blockSize={20}
+                    blockRadius={7}
+                />
             </div>
         </ResponsiveGridLayout>
     )

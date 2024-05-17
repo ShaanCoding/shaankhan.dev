@@ -10,7 +10,7 @@ const SpotifyPresence = ({ lanyard, onLoad }) => {
         try {
             await set({
                 apiKey: process.env.NEXT_PUBLIC_LANYARD_KV_KEY!,
-                userId: '747519888347627550',
+                userId: '199662959964848128',
                 key: 'spotify_last_played',
                 value: JSON.stringify(lanyard.data.spotify),
             })
