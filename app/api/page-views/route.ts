@@ -1,7 +1,7 @@
-import { Redis } from '@upstash/redis'
+// import { Redis } from '@upstash/redis'
 import { NextRequest, NextResponse } from 'next/server'
 
-const redis = Redis.fromEnv()
+// const redis = Redis.fromEnv()
 
 export async function GET(request: NextRequest) {
     const url = request.nextUrl
@@ -18,7 +18,8 @@ export async function GET(request: NextRequest) {
 
     try {
         const key = ['pageviews', 'projects', slug].join(':')
-        const pageViewCount = (await redis.get(key)) || 0
+        const pageViewCount = 0
+        //  (await redis.get(key))
 
         return new NextResponse(JSON.stringify({ slug, pageViewCount }), {
             status: 200,

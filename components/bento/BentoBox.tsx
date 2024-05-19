@@ -91,46 +91,11 @@ const BentoBox = ({ posts }) => {
             }
         >
             <div key="intro" className="aspect-square">
-                <Image
-                    src="/static/images/bento/bento-intro-silhouette.svg"
-                    alt="Bento Intro Silhouette"
-                    fill
-                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300`}
-                    skeletonClassName="rounded-3xl"
-                    noRelative
-                    unoptimized
-                    priority
-                />
-                <Image
-                    src="/static/images/bento/bento-intro.svg"
-                    alt="Bento Intro"
-                    fill
-                    className={`hidden bento-md:block rounded-3xl object-cover transition-opacity duration-300`}
-                    skeletonClassName="rounded-3xl"
-                    noRelative
-                    unoptimized
-                    priority
-                />
-                <Image
-                    src="/static/images/bento/bento-intro-square-silhouette.svg"
-                    alt="Bento Intro Silhouette"
-                    fill
-                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300`}
-                    skeletonClassName="rounded-3xl"
-                    noRelative
-                    unoptimized
-                    priority
-                />
-                <Image
-                    src="/static/images/bento/bento-intro-square.svg"
-                    alt="Bento Intro"
-                    fill
-                    className={`block bento-md:hidden rounded-3xl object-cover transition-opacity duration-300`}
-                    skeletonClassName="rounded-3xl"
-                    noRelative
-                    unoptimized
-                    priority
-                />
+                <div className='p-4'>
+                    <h2 className="text-md mb-2 line-clamp-3 font-bold leading-none">Hi I'm Shaan</h2>
+                    <p className="text-sm text-primary">I'm a Software Engineer II at <span className="text-secondary-foreground font-semibold">Nine Entertainment Co.</span> I like to build things and write about them.
+                    </p>
+                </div>
             </div>
             <div key="github" className="group">
                 <div className="relative flex h-full w-full items-center justify-center rounded-lg">
