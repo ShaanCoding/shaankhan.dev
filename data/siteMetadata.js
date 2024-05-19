@@ -1,19 +1,19 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-    title: 'enscribe.dev',
-    author: 'enscribe',
-    headerTitle: 'enscribe.dev',
-    description: 'Freelance frontend web development and cybersecurity shenanigans',
+    title: 'Shaan Khan',
+    author: 'shaancoding',
+    headerTitle: 'Shaan Khan',
+    description: 'A software engineer, with imposter syndrome and just enough time on their hands.',
     language: 'en-us',
     theme: 'dark', // system, dark or light
-    siteUrl: 'https://enscribe.dev',
-    siteRepo: 'https://github.com/jktrn/enscribe.dev',
+    siteUrl: 'https://shaankhan.dev',
+    siteRepo: 'https://github.com/ShaanCoding/shaankhan.dev',
     siteLogo: '/static/images/logo.png',
     socialBanner: '/static/images/twitter-card.png',
     // mastodon: 'https://mastodon.social/@mastodonuser',
-    email: 'jason@enscribe.dev',
-    github: 'https://github.com/jktrn',
-    twitter: 'https://twitter.com/enscry',
+    email: 'shaankhan101@gmail.com',
+    github: 'https://github.com/ShaanCoding',
+    twitter: 'https://twitter.com/ShaanCoding',
     // facebook: 'https://facebook.com',
     // youtube: 'https://youtube.com',
     // linkedin: 'https://www.linkedin.com',
@@ -26,9 +26,9 @@ const siteMetadata = {
         //     // We use an env variable for this site to avoid other users cloning our analytics ID
         //     umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
         // },
-        // plausibleAnalytics: {
-        //   plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
-        // },
+        plausibleAnalytics: {
+          plausibleDataDomain: 'shaankhan.dev', // e.g. tailwind-nextjs-starter-blog.vercel.app
+        },
         // simpleAnalytics: {},
         // posthogAnalytics: {
         //   posthogProjectApiKey: '', // e.g. 123e4567-e89b-12d3-a456-426614174000

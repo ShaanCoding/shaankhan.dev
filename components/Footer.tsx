@@ -38,17 +38,9 @@ export default function Footer() {
                         </a>
                     )}
                 </div>
-                {pathName == '/' && (
-                    <div className="mb-2 text-xs text-muted-foreground/50">
-                        Homepage assets by{' '}
-                        <Link
-                            href="https://freepik.com"
-                            className="underline text-muted-foreground/75"
-                        >
-                            Freepik
-                        </Link>
-                    </div>
-                )}
+                <div className="mb-2 text-xs text-muted-foreground/50">
+                    Face the Tech Debt, Build the Future.
+                </div>
                 <div className="mb-10 flex space-x-2 text-sm text-muted-foreground">
                     <div>{siteMetadata.author}</div>
                     <div>{` • `}</div>

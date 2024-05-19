@@ -13,7 +13,7 @@ export default function Projects() {
                         Projects
                     </h1>
                     <p className="text-muted-foreground">
-                        Stuff I've personally developed or contributed to!
+                        I've contributed / built over {projectsData.length} projects and counting.
                     </p>
                 </div>
                 <div className="py-12">
