@@ -1,0 +1,53 @@
+#!/bin/python3
+
+import os
+import sys
+import numpy as np;
+
+#
+# Complete the cookies function below.
+#
+
+def check(A, k):
+    for a in A:
+        if a < k: return False
+    return True
+
+def cookies(k, A):
+
+  A = np.array(A)
+
+  steps = 0
+  while not check(A, k):
+    
+
+  #let steps = 0
+  #while (!check()) {
+  #  A = A.sort((a, b) => a - b);
+  #  if (A.length <= 1) {
+  #    return -1;
+  #  }
+
+  #  const [first, second] = A.splice(0, 2);
+  #  A.push(first + 2 * second);
+  #  steps++;
+  #}
+
+  return steps
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+
+    n = int(nk[0])
+
+    k = int(nk[1])
+
+    A = list(map(int, input().rstrip().split()))
+
+    result = cookies(k, A)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()

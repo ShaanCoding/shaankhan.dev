@@ -1,0 +1,63 @@
+function processData(input) {
+  //Enter your code here
+  /*
+  Helicopter crash
+  Impact H, Width W, Third S, Final Steps T
+
+  Building is 7x5
+  
+  Starts iyt 199
+  gives 6 units surrounding it val 50
+  goes up to 7 units surround val 28 now
+
+  */
+
+  // let h, w, s, t = 0;
+  //Test case 0:
+  const [h, w, s, t] = input.split(' ').map(i => parseInt(i));
+  // h = 2;
+  // w = 2;
+  // s = 100;
+  // t = 3;
+
+  let arr = new Array(7).fill(0).map(() => new Array(5).fill(0));
+
+  arr[h][w] = s;
+
+  const isInside = (x, y) => {
+    if (x < 0 || y < 0) return false;
+    if (x >= 5 || y >= 7) return false;
+    return true;
+  }
+
+  for (var i = 0; i < t; i++) {
+    console.log("Time " + i);
+    console.log(arr.map(a => a.map(i => Math.floor(i)).join('\t')).join('\n'))
+
+    arr = new Array(7).fill(0).map((_, y) => new Array(5).fill(0).map((_, x) => {
+      if(x === 0 || y === 0 || x === 4 || y === 6) return 0;
+      sum = 0;
+      for (let xx = -1; xx <= 1; xx++) {
+        for (let yy = -1; yy <= 1; yy++) {
+          if(xx === 0 && yy === 0) continue;
+          if(isInside(xx + x, yy + y)){
+            sum += arr[yy + y][xx + x];
+          }
+        }
+      }
+      return (arr[y][x] + sum / 8) / 2;
+    }));
+  }
+
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+  _input += input;
+});
+
+process.stdin.on("end", function () {
+  processData(_input);
+});

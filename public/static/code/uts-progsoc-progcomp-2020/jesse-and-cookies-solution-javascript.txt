@@ -1,0 +1,87 @@
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+  inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+  inputString = inputString.trim().split('\n').map(str => str.trim());
+
+  main();
+});
+
+function readLine() {
+  return inputString[currentLine++];
+}
+
+/*
+ * Complete the cookies function below.
+ */
+function cookies(k, A) {
+  /*
+   * Write your code here.
+
+  Input:
+  [NumberOfCookiesArray, MinimumSweetness]
+  [ArrayOfCookies]
+
+  6 7
+  1 2 3 9 10 12
+
+  Output:
+  2
+
+  OrderArray
+  Get Least Two Sweetness
+
+   */
+
+  //   let op = 0;
+
+  const check = () => {
+    return A.reduce((c, n) => c && n >= k, A, true)
+  }
+
+
+  let steps = 0
+  while (!check()) {
+    A = A.sort((a, b) => a - b);
+    if (A.length <= 1) {
+      return -1;
+    }
+
+    const [first, second] = A.splice(0, 2);
+    A.push(first + 2 * second);
+    steps++;
+  }
+
+  return steps
+
+  // return (op === 0)? -1 : op;
+}
+
+function main() {
+  const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+  const nk = readLine().split(' ');
+
+  const n = parseInt(nk[0], 10);
+
+  const k = parseInt(nk[1], 10);
+
+  const A = readLine().split(' ').map(ATemp => parseInt(ATemp, 10));
+
+  let result = cookies(k, A);
+
+  ws.write(result + "\n");
+
+  ws.end();
+}

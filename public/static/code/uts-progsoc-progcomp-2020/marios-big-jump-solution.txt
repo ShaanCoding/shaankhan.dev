@@ -1,0 +1,42 @@
+// input: 
+function processData(input) {
+  let [forwardSpeed, jumpSpeed, target] = input;
+  let height = 0;
+  let pos = 0;
+  do {
+    pos += forwardSpeed;
+    height += jumpSpeed;
+    jumpSpeed -= 5;
+
+    console.log(pos, height);
+  }
+  while (height > 0)
+
+  if (Math.abs(pos - target) < 3) {
+    console.log('yes')
+  }
+  else {
+    console.log('no')
+  }
+}
+
+/* 
+
+loopies untill dist to target === 0
+input: [run speed, jump speed, disto target] INTS only
+
+output: print("dist height") after each second as number pair in new line
+*/
+
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+  _input += input;
+});
+
+process.stdin.on("end", function () {
+  let str = _input.replace(/\n/g, '');
+  processData(str.split(' ').map(i => parseInt(i, 10)));
+});

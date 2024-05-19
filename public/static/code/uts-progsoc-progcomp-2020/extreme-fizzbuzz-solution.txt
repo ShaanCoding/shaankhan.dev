@@ -1,0 +1,52 @@
+function processData(input) {
+  const lines = input.split('\n');
+  const [rc, start, end] = lines[0].split(' ').map(i => parseInt(i));
+  const rules = lines.slice(1)
+    .map(r => r.split(' '))
+    .map(r => ({
+      n: parseInt(r[0]),
+      txt: r[1]
+    }));
+//   console.log(start, end, rules);
+
+  // loop
+  for (let i = start; i <= end; i++) {
+    let str = rules.map(r => {
+      if (i % r.n === 0) {
+        return r.txt;
+      }
+      return ''
+    }).join('')
+    if (str === '') {
+      str = i.toString();
+    }
+    console.log(str);
+  }
+
+}
+
+/* 
+    input
+    [NumberOfRules, StartingIndex, EndIndex]
+
+    3 10 24
+    2 Even
+    3 Triple
+    4 Quad
+    
+    output
+    Even
+    11
+    EvenTripleQuad
+*/
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+  _input += input;
+});
+
+process.stdin.on("end", function () {
+  processData(_input);
+});

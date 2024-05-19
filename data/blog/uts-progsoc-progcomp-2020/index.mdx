@@ -1,0 +1,654 @@
+---
+title: 'ProgSocUTS 2020 Programming Competition'
+date: '2020-10-24'
+tags: ['Competitive Programming']
+summary: 'Reflecting on my experience participating in the ProgSocUTS 2020 Programming Competition and the challenges faced.'
+thumbnail: '/static/images/uts-progsoc-progcomp-2020/banner.jpg'
+images: ['/static/images/uts-progsoc-progcomp-2020/banner.jpg']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## ProgSocUTS 2020 Programming Competition Experience
+
+Today, I participated in the ProgSocUTS 2020 Programming Competition, placing 3rd!
+
+The programming competition, otherwise known as ProgComp was a 3-hour competitive programming event, open to all UTS students, alumni and the general public. This competition aimed to attempt to complete all of the programming competitions within the 3-hour time frame adhering to the questions requirements as well as time complexity requirements. Whilst we faced challenges, especially near the end, where we just managed to finish the last questions mere minutes before the deadline. It was an insightful event.
+
+Throughout this event, we attempted a total of 7 challenges, however only in the end getting 5 of them within the prescribed time slot. The flags we attempted include; "ASCII Squares", "Mario's Big Jump", "Mark and Toys", "Extreme FizzBuzz", "Jess and Cookies", "Largest Rectangle" as well as "Helicopter Crash". Whilst all these challenges were difficult, all ranged with varying degrees of difficulty and varying locations of where we struggled. Overall this competition made us jump around a lot in our analytical and programmatical thinking and has in turn further highlighted sections where myself and my time need to improve on in the future with.
+
+I'd like to thank my team "FAANG Or Bust", once again, for partaking with me, as without them I'd not be able to place anywhere as well without you guys.
+
+## ASCII Squares
+
+The first question of this competition was a simple one called "ASCII Squares" in ASCII squares as the name suggests, we had to make a program that given an integer input produced an ASCII square with the dimensions of the input as an output. This question wasn't too challenging and took us about 5 minutes to implement. Overall it was a fun but simple challenge that helped prime us into a more competitive mindset for the harder incoming questions.
+
+### ASCII Squares Question
+
+This simple task has therefore been offered to you as a sanity test: write a program that draws a square, using asterisks and SPACEs.
+
+**Input Format**
+
+A single integer, N, where 2 \<= N \<= 40. This will be the size of your square.
+
+**Constraints**
+
+N will be between 2 and 40
+
+**Output Format**
+
+There will be N horizontal lines in total.
+
+The first and Nth lines will have asterisks (*) occupying every odd-numbered position on the line from positions 1 to (2N - 1). All even-numbered positions will be filled with SPACEs.
+
+For all other lines (if any), only positions 1 and (2N - 1) will have asterisks. All other positions will be filled with SPACEs.
+
+There are no SPACEs nor TABs following the (2N - 1)th position on each line.
+
+**Sample Input 0**
+
+```
+5
+```
+
+**Sample Output 0**
+
+```
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+```
+
+**Sample Input 0**
+
+```
+5
+```
+
+**Sample Output 0**
+
+```
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+```
+
+### Solution
+
+<CodeBlock language="javascript" 
+fileName="ascii-squares-solution.js"
+src="uts-progsoc-progcomp-2020/ascii-squares-solution"
+/>
+
+## Mario's Big Jump
+
+This was the second challenge of the competition and wow! This was a lot more challenging. Whilst the first one was very trivial, boasting a 100% completion rate for all contestants, this one quickly shattered the idea that we could breeze through this competition in 30 or so minutes. In this challenge, which was shockingly similar to some HSC Physics questions I had to do last year, was to calculate how far Mario could jump given a running speed, jump speed and target distance. Whilst I may have been going with a more elegant approach initially, getting my pen and paper out and drafting up a general formula for it, my teammates went for a more "direct" approach, calculating the player's movement each "tick". Whilst I did draft up a formula for it in time, deriving it from some projectile motion equations:
+
+\\[v = u + at\\]
+
+\\[v^2 = u^2 + 2as\\]
+
+\\[s = ut + 1/2 at^2\\]
+
+By the time I derived the equation, my teammates had already solved the problem and moved on to the next challenge. During this challenge, I came to realize, whilst my way would lead to a nicer and albeit faster solution. In a time-based competition, this was not worth doing, and the cheap but dirty solution was the more ideal solution.
+
+### Mario's Big Jump Question
+
+In the Mushroom Kingdom, Mario is working out how far he can jump. The gravity in the kingdom will make him fall at 5 meters/second, and he will continue to move at a constant rate while he's in the air. For example,if Mario jumps up with a speed of 10 meters/second while running at 30 meters/second, the results are:
+
+|Time   | Distance  | Height   | Speed        |
+|-------|-----------|----------|------------- |
+|0 seconds | 0 meters | 0 meters | up 10 meters/sec |
+|1 second  | 30 meters | 10 meters | up 5 meters/sec |
+|2 seconds | 60 meters | 15 meters | up 0 meters/sec |
+|3 seconds | 90 meters | 15 meters | down 5 meters/sec |
+|4 seconds | 120 meters | 10 meters | down 10 meters/sec |
+|5 seconds | 150 meters | 0 meters | down 15 meters/sec |
+
+As a result, Mario will jump 150 meters and stay in the air for 5 seconds.
+
+For simplicity, we will calculate Marios's position at the end of every second, even though more accurate calculations are possible by if shorter intervals are used.
+
+**Input Format**
+
+The input consists of a list of three numbers representing a jump to a target:
+
+1. The speed Mario is running (in meters/second)
+2. The speed Mario jumps up into the air (in meters/second)
+3. The distance to the target (in meters)
+
+**Constraints**
+
+None
+
+**Output Format**
+
+Print the distance and height of Mario's jump after each second as a pair of numbers on a new line, starting at one second. Repeat each second until Mario lands (height reaches zero or below). Use integers for calculating results. For each target, output "yes" if Mario is within 3 meters of the target when he lands `(height <= zero)`, else print "no".
+
+**Sample Input 0**
+
+```
+30 10 150
+```
+
+**Sample Output 0**
+
+```
+30 10
+60 15
+90 15
+120 10
+150 0
+yes
+```
+
+### Solution
+
+<CodeBlock
+    language="javascript"
+    fileName="marios-big-jump-solution.js"
+    src="uts-progsoc-progcomp-2020/marios-big-jump-solution"/>
+
+## Mark and Toys
+
+Marks and Toys was another refreshing simple and quick question we completed in 10 to 15 minutes. In this one, we were given an array of items a mom and dad could buy for their first child and a specified budget. In this one, we just had to find the most items they could buy for a specified budget. This question was quite trivial and resulted in us more or less sorting the array list into an order and then iterating in a while loop checking how many items the couple could buy until the loop became less than 0.
+
+### Mark and Toys Question
+
+Mark and Jane are very happy after having their first child. Their son loves toys, so Mark wants to buy some. There are a number of different toys lying in front of him, tagged with their prices. Mark has only a certain amount to spend, and he wants to maximize the number of toys he buys with this money.
+
+Given a list of prices and an amount to spend, what is the maximum number of toys Mark can buy? For example, if \\(prices = [1,2,3,4]\\) and Mark has \\(k=7\\) to spend, he can buy items \\([1,2,3]\\) for \\(6\\), or \\([3,4]\\) for \\(7\\) units of currency. He would choose the first group of \\(3\\) items.
+
+**Function Description**
+
+Complete the function maximumToys in the editor below. It should return an integer representing the maximum number of toys Mark can purchase.
+
+maximumToys has the following parameter(s):
+
+* prices: an array of integers representing toy prices
+* k: an integer, Mark's budget
+
+**Input Format**
+
+The first line contains two integers, \\(n\\) and \\(k\\), the number of priced toys and the amount Mark has to spend.
+The next line contains \\(n\\) space-separated integers \\(prices[i]\\).
+
+**Constraints**
+
+\\[1 \leq n \leq 10^5\\]
+\\[1 \leq k \leq 10^9\\]
+\\[1 \leq prices[i] \leq 10^9\\]
+
+A toy can't be bought multiple times.
+
+**Output Format**
+
+An integer that denotes the maximum number of toys Mark can buy for his son.
+
+**Sample Input**
+
+```
+7 50
+1 12 5 111 200 1000 10
+```
+
+**Sample Output**
+
+```
+4
+```
+
+**Explanation**
+
+He can buy only \\(4\\) toys at most. These toys have the following prices: \\([1,12,5,10]\\).
+
+### Solution
+
+<CodeBlock
+    language="javascript"
+    fileName="mark-and-toys-solution.js"
+    src="uts-progsoc-progcomp-2020/mark-and-toys-solution"/>
+
+## Extreme FizzBuzz
+
+This one also, was too was not too challenging, whilst it did sound somewhat complicated on paper, the actual implementation was quite quick. Thankfully a week or so previously I had watched a Tom Scott video regarding a more expandable and "scalable" FizzBuzz implementation, if that ever was a thing, so this solution was churned out quite quickly as well. The logic with this question was, having a normal loop which iterated through all the numbers and then having a second inner loop which looped through all the conditional operators, if any of them were true it be added to the response string, if multiple were true they would also be appended onwards. Whilst this may have been a dirty solution, I still can't think of a "clean" solution to this question and even in a non-competitional environment, I'd probably implement it the same way.
+
+### Extreme FizzBuzz Question
+
+The traditional FizzBuzz challenge is read a list of numbers, and for multiples of 3 print Fizz, multiples of 5 print Buzz, and print FizzBuzz if both (i.e. a multiple of 15).
+
+We want a program where we can input a list of arbitrary rules that follow the same pattern for a range of numbers.
+
+**Input Format**
+
+The first line will have 3 numbers, the number of rules (rLen), the start of the range to print, and the end of the range to print.
+
+The remaining rLen lines will each have a number and a word
+
+**Constraints**
+
+There will be at most 10 rules, and the program range print up to 1000 numbers
+
+**Output Format**
+
+A list of numbers from the start to the end of the range (inclusive), that follow the rules of the game and swap out the correct numbers with words, and join words for numbers that match multiple rules.
+
+**Sample Input 0**
+
+```
+2 1 16
+3 Fizz
+5 Buzz
+```
+
+**Sample Output 0**
+
+```
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz
+16
+```
+
+**Sample Input 1**
+
+```
+3 10 24
+2 Even
+3 Triple
+4 Quad
+```
+
+**Sample Output 1**
+
+```
+11
+EvenTripleQuad
+13
+Even
+Triple
+EvenQuad
+17
+EvenTriple
+19
+EvenQuad
+Triple
+Even
+23
+EvenTripleQuad
+```
+
+### Solution
+
+<CodeBlock
+    language="javascript"
+    fileName="extreme-fizzbuzz-solution.js"
+    src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-solution"/>
+
+## Jesse and Cookies
+
+Now we get to the hard one, this question definitely made us toss and turn trying to get a solution and certainly made our heads bang at a couple of walls a handful of times. Whilst this question was easy to implement, we kept failing the hidden test cases, if not from random errors, from our programming from running too long. Initially, we thought we had a loop failing to terminate, but after reviewing the question we discovered that it had a time-complexity requirement of efficiency level requirement before passing, this one took us a good hour to solve as our team hasn't yet studied DSA and will most likely cover this content next year.
+
+We initially assumed it was due to JavaScript being an interpreted language and just, in general, being unoptimized, so we opted to use... python... another interpreted language. Whilst it was certainly faster, during our benchmarks the only issue we failed to account for was that NumPY was an imported library, and this competition wouldn't allow it.
+
+As a result, we had to jump to a third language at this point! After solving the question two times already we jumped to C#. Whilst this didn't immediately solve the problem, it did bring the time down dramatically, we were just a couple of hundred milliseconds away from passing now!
+
+In the end, we stumbled around in libraries and discovered the best way to implement this solution was swapping from LinkedLists and implementing a priority queue solution using the stack and heap. Through this method, instead of knowing the entire order of every element, we instead only needed to know the top two biggest or smallest elements, saving a dramatic amount of time.
+
+This question, whilst perhaps being trivial for someone strong in DSA was definitely a challenging and frustrating question for us. I can't wait to pick up DSA and see how our team goes next year with that additional knowledge, who knows maybe we'll become first next time!
+
+### Jesse and Cookies Question
+
+Jesse loves cookies. He wants the sweetness of all his cookies to be greater than value \\(K\\). To do this, Jesse repeatedly mixes two cookies with the least sweetness. He creates a special combined cookie with:
+
+\\(sweetness = (1 * Least sweet cookie + 2 * 2nd Least sweet cookie)\\).
+
+He repeats this procedure until all the cookies in his collection have a sweetness \\(\geq K\\).
+
+You are given Jesse's cookies. Print the number of operations required to give the cookies a sweetness \\(\geq K\\). Print \\(-1\\) if this isn't possible.
+
+**Input Format**
+
+The first line consists of integers \\(N\\), the number of cookies and \\(K\\), the minimum required sweetness, separated by a space.
+The next line contains \\(N\\) integers describing the array \\(A\\) where \\(A_i\\) is the sweetness of the `(i^{th})` cookie in Jesse's collection.
+
+**Constraints**
+
+\\[1 \leq N \leq 10^6\\]
+
+\\[0 \leq K \leq 10^9\\]
+
+\\[0 \leq A_i \leq 10^6\\]
+
+**Output Format**
+
+Output the number of operations that are needed to increase the cookie's sweetness \\(\geq K\\).
+Output \\(-1\\) if this isn't possible.
+
+**Sample Input**
+
+```
+6 7
+1 2 3 9 10 12
+```
+
+**Sample Output**
+
+```
+2
+```
+
+**Explanation**
+
+Combine the first two cookies to create a cookie with sweetness  = \\(1 * 1 + 2 * 2 = 5\\)
+After this operation, the cookies are \\([3,5,9,10,12]\\).
+Then, combine the cookies with sweetness \\(3\\) and sweetness \\(5\\), to create a cookie with resulting sweetness = \\(1 * 3 + 2 * 5 = 13\\)
+
+Now, the cookies are \\([9,10,12,13\\]).
+All the cookies have a sweetness \\(\geq 7\\).
+
+Thus, \\(2\\) operations are required to increase the sweetness.
+
+### Javascript Solution
+
+<CodeBlock
+    language="javascript"
+    fileName="jesse-and-cookies-solution.js"
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-javascript"/>
+
+The solution in python goes as follows
+
+### Python Solution
+
+<CodeBlock
+    language="python"
+    fileName="jesse-and-cookies-solution.py"
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-python"/>
+
+
+For our final, and more importingly **working** solution, we ended up using C#, with it finally passing this time. A key aspect we learnt though in this competition was the need of good data structures, whilst I don't have the original code we used for the solution on me as it was done by another team mate, our code followed something similar to this, but replaced with priority queues using stacks and heaps.
+
+### C# Solution (Finally Working)
+
+<CodeBlock
+    language="csharp"
+    fileName="jesse-and-cookies-solution.cs"
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-csharp"/>
+
+
+## Helicopter Crash
+
+Unlike the cookies question, this one thankfully wasn't DSA heavy in regards to it wanting an efficient solution, however, it was hard in its own terms with it requiring some complex critical and abstract thinking. With this question we finished down to the hair, finishing mere minutes before the deadline. With this question whilst our critical thinking was there, or close we struggled to get the right answer initially from the question being somewhat vague.
+
+Initially, we tried rounding, rounding up or rounding down for each value, however, through the 4th or 5th iteration of the loop we'd get discrepancies between the solution and the answer. This was the most frustrating part of the competition, next to the Cookies question. Every time we'd round up, round down or just in the general round, regardless of what we did, we'd be either 1 above or 1 below the intended answer.
+
+After thinking, and clarifying the requirements with the event organizers, we discovered the actual solution. Instead of rounding the actual integer value, we had to round the outputted result! A simple, straightforward but overall overlooked answer was the solution to the challenge. In our panic, we resulted in trying to brute-forcing the question, instead of standing back, looking clearly at the question and thinking "What needs to be rounded" we instead opted to panic.
+
+With this last flag solved, we concluded the competition, just in the nick of times, jumping up from 8th place way up to 3rd!
+
+### Helicopter Crash Question
+
+This was the last challenge we completed, also if not the most challenging question we faced. Whilst not DSA heavy on optimization like the Cookies question, it had its own fair share of issues and required some unique critical thinking skills that got me lost for a good portion of this question before **landing** the solution, unlike our poor old helicopter here :(
+
+### Helicopter Crash Question
+
+In the next scene, a helicopter will be crashing into the side of a building, and the studio has a few ideas of how to crash it. Given these potential impact points, they want to know what the explosion would look like. The parts of the building will stretch on impact, causing ripples that need to be accounted for.
+
+To model the surface of a building, you can use a two-dimensional array of doubles, with a height of 7 and width of 5. The value of each point in the array indicates how far that part of the building surface has been stretched. You then apply an iterative finite-difference technique to model the ripple effects of the crash as follows:
+
+1. Begin with all points at 0.0 (rest state) except the impact point, which is set to the impact value.
+2. Calculate the new position of a point in the surface as the average of 1) current location and 2) average of neighbors.
+3. Update all points at once.
+
+The outermost positions of the building are assumed to always remain at 0. For simplicity, you may assume your building has a height of 7 and a width of 5.
+
+Note that it is important to store changes to the array and apply them all at once at the end of the time step. Otherwise, algorithms utilize a mixture of old and new simulation data, which can yield undesirable results.
+
+**Input Format**
+
+The input will consist of four integer numbers. The first two numbers indicating the point of impact (height H, width W). The third number is the impact strength (S); The final number is how many time steps of the simulation should be displayed (T).
+
+**Constraints**
+
+H and W will fit within the buildings dimensions (7x5) S will be a value from 1-10000 T will be a value from 1-100
+
+**Output Format**
+
+For each time step of the simulation, the program should print "Time " (starting at time 0), then the state of the building at that timestep. The building state can be printed as a 7x5 array of numbers, with each floor of the building on a separate line. Even though the values are stored as doubles, for clarity the program should convert it and just print an integer values.
+
+**Sample Input 0**
+
+```
+2 2 100 3
+```
+
+**Sample Output 0**
+
+```
+Time 0
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    100  0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 1
+0    0    0    0    0    
+0    6    6    6    0    
+0    6    50   6    0    
+0    6    6    6    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 2
+0    0    0    0    0    
+0    7    7    7    0    
+0    7    28   7    0    
+0    7    7    7    0    
+0    0    1    0    0    
+0    0    0    0    0    
+0    0    0    0    0     
+```
+
+**Sample Input 1**
+
+```
+3 3 100 20
+```
+
+**Sample Output 1**
+
+```
+Time 0
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    100  0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 1
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    6    6    0    
+0    0    6    50   0    
+0    0    6    6    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 2
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    7    7    0    
+0    1    7    26   0    
+0    0    7    7    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 3
+0    0    0    0    0    
+0    0    1    1    0    
+0    1    6    6    0    
+0    2    7    15    0    
+0    1    6    6    0    
+0    0    1    1    0    
+0    0    0    0    0    
+Time 4
+0    0    0    0    0    
+0    0    1    1    0    
+0    1    5    5    0    
+0    2    6    9    0    
+0    1    5    5    0    
+0    0    1    1    0    
+0    0    0    0    0    
+Time 5
+0    0    0    0    0    
+0    1    1    1    0    
+0    2    4    4    0    
+0    2    5    6    0    
+0    2    4    4    0    
+0    1    1    1    0    
+0    0    0    0    0    
+Time 6
+0    0    0    0    0    
+0    1    1    1    0    
+0    1    3    3    0    
+0    2    4    4    0    
+0    1    3    3    0    
+0    1    1    1    0    
+0    0    0    0    0    
+Time 7
+0    0    0    0    0    
+0    0    1    1    0    
+0    1    3    2    0    
+0    2    3    3    0    
+0    1    3    2    0    
+0    0    1    1    0    
+0    0    0    0    0    
+Time 8
+0    0    0    0    0    
+0    0    1    1    0    
+0    1    2    2    0    
+0    2    3    2    0    
+0    1    2    2    0    
+0    0    1    1    0    
+0    0    0    0    0    
+Time 9
+0    0    0    0    0    
+0    0    1    0    0    
+0    1    2    1    0    
+0    1    2    2    0    
+0    1    2    1    0    
+0    0    1    0    0    
+0    0    0    0    0    
+Time 10
+0    0    0    0    0    
+0    0    1    0    0    
+0    1    2    1    0    
+0    1    2    1    0    
+0    1    2    1    0    
+0    0    1    0    0    
+0    0    0    0    0    
+Time 11
+0    0    0    0    0    
+0    0    0    0    0    
+0    1    1    1    0    
+0    1    1    1    0    
+0    1    1    1    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 12
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    1    1    0    
+0    1    1    1    0    
+0    0    1    1    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 13
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    1    0    0    
+0    0    1    1    0    
+0    0    1    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 14
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    1    0    0    
+0    0    1    0    0    
+0    0    1    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 15
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    1    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 16
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 17
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 18
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+Time 19
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+0    0    0    0    0    
+```
+
+### Solution
+
+<CodeBlock
+    language="javascript"
+    fileName="helicopter-crash-solution.js"
+    src="uts-progsoc-progcomp-2020/helicopter-crash-solution"/>
+
+## Conclusions
+
+Whilst this competition, was somewhat stressful, challenging and fun all around. I'd especially like to thank my teammates from "FAANG Or Bust" for helping me throughout this competition, whilst we didn't ultimately win, we did come third, which was something I was not expecting, especially as a first-year!
+
+With these competitions, whilst my honest reactions to them previously were boredom or just sheer frustration, I can finally see how fun they actually can end up being, with the right team and difficulty level behind you. Whilst this one was more opted for more hardcore university students, it was A LOT easier than the Google Kickstart competition, where I struggled to solve any questions within the given amount of time with even the ones I finished being a shallow victory, as they were just frustrating to complete.
+
+For those reading, even if competitive programming doesn't sound appealing to yourself, as you think you wouldn't do well or it just sounds boring. Please give it a try! Whilst I hated or didn't like the first few I've done, this one has definitely shown me another side to it and have further sparked my interest of competing in another one again shortly!
