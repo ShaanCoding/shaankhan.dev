@@ -1,0 +1,65 @@
+---
+title: 'Creating Identicons: A Journey in Procedural Image Generation'
+date: '2020-07-15'
+tags: ['Side Project', 'C#', 'Cryptography',]
+summary: 'Exploring the creation of Identicons through procedural image generation and cryptographic techniques.'
+thumbnail: '/static/images/identicon-generator/banner.png'
+images: ['/static/images/identicon-generator/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Introduction
+
+GitHub and many other services are moving to Identicons for their default avatars. Instead of a once bland and generic default, one size fits all avatar. More and more sites are transitioning to uniquely generated default profile pictures for their users; increasing engagement through personability as well as improving security.
+
+Over the past year, after seeing them almost everywhere and getting interested in the field of procedural image generation. I wanted to further explore in how these algorithms worked, and thus my journey of programming an Identicon generator started.
+
+In my search, I came across this blog post from GitHub describing their change from regular avatars to "Gravatars". In [this post](https://github.blog/2013-08-14-identicons/), they described the logic behind their algorithm. The algorithm generated these Gravatars by a very simple but effective algorithm. They firstly Hashed the usersID and then binarized the text, with each character of the hash representing a 1 or 0. With this array of binarized data, of a total length of 256 bits. We're able to split this up into a grid, and have 1s represent a colored bit and 0s represent air, from this a simple but effective Gravatar algorithm is born.
+
+---
+
+## Extending Onwards - How Cryptography Can Add Complexity
+
+Whilst GitHubs implementation was quite simple and effective for its use. Anyone trying to implement the same algorithm will end up with identical Identicons. Whilst this can be good for some, we can further modify this algorithm to have a wider range of customizability, whilst also visualizing data security techniques.
+
+By modifying the Hashing algorithm, such as choosing MD5 instead of SHA-256, we can modify the outcome of the algorithm and have different-looking Identicons.
+
+Furthermore, we can salt the text, by pretending to postpending and cycling text adding a layer of randomness (For a fun side note, this is what a lot of databases do to make it harder to crack password entries if a database is breached).
+
+Through these techniques, we can edit the end result of the algorithm and end up with unique or different-looking identicons.
+
+---
+
+## Programming Identicons - My Attempt At The Challenge
+
+![Identicon Generator User Interface](/static/images/identicon-generator/demo.gif)
+
+The code for this project was quite simple and straightforward, in fact, this entire project was made in only two C# Classes!
+
+### Features
+
+After deciding the scope of this project the features I wanted to be implemented included:
+
+- The ability to choose Identicon Size (Grid Dimensions)
+- The ability to do Salting (Optional)
+- The ability to do multiple rounds of Salting
+- The ability to add and modify the Username entry in live time
+- The ability to select and change the quality of the outputted Identicon
+- The ability to change the hashing algorithm between several popular hashing algorithms including (MD5, SHA-1, SHA-256, SHA-384, SHA-512)
+
+### Implementation Steps
+
+After deciding on this short scope, it became time to code this. After defining the appropriate variables or properties to store these user options and data we just had to follow the following steps:
+
+1. Input the Username String.
+2. If it is to be salted, add the salt.
+3. If it has multiple rounds of salting requested, we recursively call the Hashing function on it till it's done.
+4. Hash the function (excluding salting hash), based on user Hash Selection.
+5. Binarize the Hashed data.
+6. From the binarized hash data, convert this into a boolean matrix.
+7. Use a graphics library to convert this boolean matrix into pixel art or our Identicon.
+
+After which the finished product is completed and an Identicon generator is created. Whilst this was a relatively simple project, from this project I learned a lot about basic cryptography concepts as well as finding ways to better visualize them. Excluding being a pretty neat gimmick on your website, many sites have opted to use these to help minimize fraud, through impersonation attacks. As each address has a unique photo or Identicon associated with it.
+
+For those interested in viewing or even using this project for your own Identicon needs, feel free to check out the project here, available on GitHub: [here](https://github.com/ShaanCoding/Identicons).
