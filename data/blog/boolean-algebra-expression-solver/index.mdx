@@ -1,0 +1,62 @@
+---
+title: 'Automating Boolean Algebra Expression Solving'
+date: '2020-02-09'
+tags: ['Side Project', "C#"]
+summary: 'An exploration of building a Boolean algebra expression solver using C#, which simplified the task of solving Boolean expressions and provided valuable practice for students.'
+thumbnail: '/static/images/boolean-algebra-expression-solver/banner.png'
+images: ['/static/images/boolean-algebra-expression-solver/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Introduction
+
+In years 11 & 12, through my subject, Software Design & Development (SDD), we learned various hardware concepts, binary & hex conversions, logic gates, and other low-level concepts. While some concepts, like bidirectional shift registers, were confusing and needlessly complex, others were not as complicated but repetitive or boring. One of the most essential but also tedious tasks was calculating & simplifying Boolean algebra expressions. Like any mathematics, repetitive problem solving as well as practice & validation is the key to success. An issue we had, however, in SDD was finding questions!
+
+![Bidrectional Shift Register](/static/images/boolean-algebra-expression-solver/bidirectionalShiftRegister.png)
+
+While Software Design & Development is a great subject (assuming you have a good teacher, of course), the small number of students enrolled each year (around 400-500) meant that the available questions, especially at a public school, were minimal. Excluding the official HSC questions, my school had only a total of two official practice papers for our HSC. Sites like THSC provided many more questions than were typically available, but even then, there were only so many papers to use. As a result, we often had to create our own questions and answers.
+
+While creating questions using Boolean algebra was simple, validating and checking them was anything but. My classmates and I often got unique or different answers for a Boolean algebra question, with no one knowing which one was correct.
+
+Due to this inherent problem, I decided to do what I know best: automate the process. Thus began my journey of coding a Boolean algebra expression solver.
+
+## The Process
+
+Using what I knew best at the time, C# using WPF, I decided to work on this calculator. Like any other mathematics, Boolean algebra worked well with binary or Boolean expressions being true or false instead of having numbers from 1-10. However, a significant similarity it had was following the order of operations rule. To start, I first explored how scientific calculators themselves worked and, by extension, how to program them.
+
+### Calculating Equations Through Reverse Polish Notation
+
+After some research, I discovered that most scientific calculators worked through reverse Polish notation (RPN) or postfix notation. Early computers/calculators couldn't automatically abide by the order of operations rules. Instead, they evaluated expressions from left to right with the same priority. Scientists and mathematicians created a standard where operators precede their operands, eliminating the need for parentheses and priorities. By organizing an equation this way, early calculators could read left to right while maintaining the correct order of operations.
+
+An example of an equation converted from infix notation (normal) to reverse Polish notation (postfix) is shown below:
+\( (3 - 4) \times 5 \)
+becomes:
+\( 3 4 - 5 \times \) or \( 5 3 4 - \times \) respectively.
+
+Using the same logic of RPN in our Boolean expression solver, we could correctly follow the order of operations and allow parenthesis support. The only issue remaining was converting the infix notation to postfix notation.
+
+### Converting To Reverse Polish Notation Using the Shunting Yard Algorithm
+
+To resolve the last issue of converting our infix notation to postfix, we used an algorithm called the shunting yard algorithm. The method the shunting yard algorithm uses is as follows:
+
+1. Expressions are parsed left to right.
+2. Each time a number or operand is read, we push it back.
+3. Each time an operator comes up, we pop the required operands from the stack, perform the operation, and push the result back to the stack.
+4. We are finished when there are no tokens (numbers, operators, or any other mathematical symbol) to read. The final number on the stack is the result.
+
+Additionally, a pseudocode implementation of the algorithm is as follows:
+
+<CodeBlock src="boolean-algebra-expression-solver/algorithm" title="Shunting Yard Algorithm Pseudocode" language="markdown"/>
+
+By passing our Boolean algebra equation through the shunting yard algorithm to convert infix to postfix notation and then following standard implementations of postfix calculators, we created this Boolean expression solver. We had to make custom operations and implement features, replacing numbers with alphanumeric variable names. By then giving the Boolean expression solver a bunch of pseudo values through a truth table, we calculated each expression automatically with minimal effort.
+
+## Conclusion
+
+Overall, this project was a great success! This solution allowed me to personally save tens if not multiple dozens of hours validating solutions and let the rest of my classmates solve Boolean algebra equations quickly, providing us with a ton of practice questions for the HSC.
+
+For those interested in viewing or even using this project for your own Boolean algebra needs, feel free to check out the project here, available on GitHub: [here](https://github.com/ShaanCoding/Boolean-Expression-Solver).
+
+
+{/* 
+<CustomLink href="https://github.com/your-github-repo/boolean-algebra-solver">Boolean Algebra Solver on GitHub</CustomLink> */}
