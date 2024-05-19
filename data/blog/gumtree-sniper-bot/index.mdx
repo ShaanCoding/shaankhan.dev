@@ -1,0 +1,65 @@
+---
+title: 'Automation in Flipping: Exploring Opportunities with Gumtree'
+date: '2018-09-28'
+lastmod: '2018-09-28'
+tags: ['Side Project']
+summary: 'How I bought a car on a budget, using browser automation, web scraping, and a little bit of artificial intelligence.'
+thumbnail: '/static/images/gumtree-sniper-bot/banner.png'
+images: ['/static/images/gumtree-sniper-bot/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Introduction
+
+Some of the most successful flipping companies, whether eBay toys, collector edition baseball cards, or hype-beast clothing, rely on one specific thing: automation. Sure, while finding a good deal here and there can be profitable and somewhat viable, it is also very inconsistent and time-intensive. In a game where many people try to find the best deals available with only a select few good discounts to execute, time is critical. In addition to being time-critical, information is also vital. To perform a good deal, the data gathering & processing methods should be as effective as possible. You should quickly find valuable data and then process valid data into relevant information, allowing you to see or execute deals more rapidly.
+
+While this process used to be manual, with individuals or teams optimizing their information gathering processes, with the invention of the internet and the rising popularity of online sales platforms such as eBay and/or drop sites like Supreme, this once manual process has become automatic through web scraping and botting.
+
+## The Need for Automation
+
+While some sites like Supreme, Nike & many other flash sale sites have been automated to an excessive level of saturation, every item purchased can be flipped for a 1-2x guaranteed profit at a minimum. Sites like eBay or Gumtree, where listings are often inconsistent and random, are heavily underexplored. While botters have looked for guaranteed profits with fully autonomous features, sites like Gumtree has users reselling cars or other objects with unexpected prices. Good deals are somewhat typical; however, they quickly bought up, and mislistings are often shared. If we had a tool to semi-automate the process of searching for items on this site, it could introduce us to an untapped market.
+
+## Exploring Gumtree
+
+While sites like eBay and Craigslist already have extensive tools performing this function, a relatively small and unknown site for people outside of Australia & New Zealand, Gumtree has none. It's a heavily popular second-hand reselling site, similar to Craigslist, for Australian/NZ Residences with many categories and search features. While sites like eBay can potentially turn a profit for larger items like cars, the excess in shipping fees and the lack of buyer protection/inspection offers make it difficult. Through Gumtree being domestic with the vast share of listings being located in my country/state, the idea of an autonomous car flipping bot was born and made viable.
+
+## Car Flipping Concept
+
+While buying a car firsthand is excellent if you can afford it, they suffer from intense depreciation early on, especially for luxury vehicles, making them relatively cheap within a year or two. When a person decides to upgrade or swap cars, they have three main options; to keep it, exchange it at the dealership at a loss, or sell it on the second-hand marketplace. With cars with minor defects, while the vehicle may be fully functional or almost fully functional with a relatively cheap repair, dealerships may offer pennies on the dollar for exchange rates or flat out refuse to purchase it. With this being an issue, many people turn to the online marketplace, trying to sell it as quickly as possible or with no regard to how much it's sold for.
+
+On the other hand, having a car for many is almost an essential item. First-time car buyers often purchase their first car second-hand. While their money may be limited, their time is somewhat exhaustive. They, too, want to find the best car for their money and will not hesitate to spend dozens of hours searching for the best deal as well. If we manage to find a relatively cheap car, purchase and/or fix it up and then resell it to the second-hand market. As long as it's reliable with a strong history as well as it looking clean cosmetically, it's a goldmine. By finding improperly listed cars or cars with minor defects, we can flip them for a decent amount of profit by repairing or readvertising these vehicles.
+
+## Implementation Challenges
+
+While the idea, in theory, looks simple on paper, like all great ideas are. The implementation of this idea into code was a bit more nuanced and was honestly quite painful. The main selling point of Gumtree, its flexibility in our case, was our most significant hurdle to overcome. While some listings were highly detailed, having a tremendous amount of information being filled with them, being all accurate. Many other cars had incorrect entries or potentially malicious entries associated with them, trying to scam or misrepresent their cars and possible damage.
+
+Due to this, our relatively simple project of just web scraping posts and sorting them became a nightmare. Falling susceptible to the all too common scope creep phenomenon.
+
+## Technical Approach
+
+Initially, the project started using C# as its backend web scraping language with; HTMLAgilityPack to perform web scraping, GoogleMatrixAPI to determine distance from address, and MS SQL for our backend database. We eventually increased the scope to include asynchronous programming and multi-threading for the bot.
+
+The initial program went to the "Cars" section on Gumtree and grabbed each individual page; each listing on the page was then added to a queue for it to be all individually processed. After being added, they would be all individually viewed and have its relevant information passed, comparing data from the description, the selection as well as the image itself through a car identical neural network and then determining which was the most probable car based on this and then finally adding it onto the database.
+
+In addition to determining what car it was, we also collected the Sellers Information, Seller Type (Dealer or Individual), Make, Model, Variant, Body Type, Year, KM (If Available), Transmission Type, Drive Train, Fuel Type, Colour, If an Air Condition was present, Stock Number, Registration Status, Registration Number, Registration Expiry, VIN, ANCAP Rating, Green Star Rating and finally if it was P-Plate legal (being determined by another function checking it off the NSW Government Website).
+
+| Seller Type   | Make  | Model  | Variant  | Body Type  |
+| ------------- | ----- | ------ | -------- | ---------- |
+| Year          | KM    | Transmission | Drive Train | Fuel Type |
+| Colour        | Air Conditioner | Stock Number | Registration Status | Registration Number |
+| Registration Expiry | VIN   | ANCAP Rating  | Green Star Rating | P Plate Legal |
+
+## Backend Development
+
+Through this, we were able to make a backend process to collect and gather viable information. While some of this information was incorrect and still potentially useless, our software aimed to minimize these issues. This, paired with blacklisting / whitelisting words such as "Wrecked," "Totaled," "Spare Parts," "Rolling Shell," etc., allowed us to minimize the effects of undesirable listings and thus aided us in minimizing bad data to prevent GIGO (Garbage-in, Garbage-out).
+
+## Initial Results
+
+With the backend completed, we were able to start searching. While version 1 was not too user-friendly with the searching being only possible through SQL queries, I quickly searched for cars with more specific and, more importantly, accurate parameters, picking up mislistings much easier and discarding irrelevant listings automatically. To further assess this project's validity, we also used this software to search Gumtree for a specific car model a friend was looking to purchase. After a few weeks of searching, we managed to find a great car for him through this automated web scraper, $5,000 off the average second-hand asking price, with a great history that he still drives to this day.
+
+![Toyota Sportivo](/static/images/gumtree-sniper-bot/sportivo.jpg)
+
+## Future Prospects and Challenges
+
+While I've put this project on the back burner regarding implementing a front end, this project definitely still has excellent potential and is worth exploring further once my skills develop. However, issues that arose during this project are the inability to quickly gather images or phone numbers from gumtree through HTMLAgilityPack. To access this data, you are required to either run javascript or to be logged in. The solutions to this are to use an automated browser like Selenium or NightmareJS or to attempt to cache cookies. However, cookie caching is prevented on this site as it, unfortunately, has verification with unique tokens to prevent this method from working. As there is currently no other way, excluding using automated web browsers, this project has been left on the shelf until a viable solution is made available. As web scraping through a browser is too inefficient for our use case.

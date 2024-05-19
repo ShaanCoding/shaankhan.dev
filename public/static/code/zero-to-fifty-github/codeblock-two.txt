@@ -1,0 +1,46 @@
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+import time
+
+options = Options()
+options.headless = True
+
+print("[INFO]: Running")
+userName = "Enter Github Username Here!"
+password = "Enter Github Password Here!"
+
+driver = webdriver.Firefox(options=options)
+driver.get("http://github.com/login")
+
+usr = driver.find_element_by_id("login_field")
+passwd = driver.find_element_by_id("password")
+usr.send_keys(userName)
+passwd.send_keys(password)
+time.sleep(0.5)
+login_form = driver.find_element_by_xpath("//input[@value='Sign in']")
+login_form.click()
+time.sleep(1)
+
+loop = True
+driver.get("https://github.com/{}/following".format(userName))
+while(loop==True):
+    try:
+        next = driver.find_element_by_link_text('Next')
+        driver.get(next.get_attribute("href"))
+    except:
+        loop = False
+
+    time.sleep(0.5)
+
+    unfollow = driver.find_elements_by_xpath("//input[@aria-label='Unfollow this person']")
+
+    try:
+        for i in unfollow:
+            i.submit()
+            time.sleep(0.1)
+    except:
+        pass
+
+    time.sleep(2)
+
+driver.close()

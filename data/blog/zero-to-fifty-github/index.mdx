@@ -1,0 +1,64 @@
+---
+title: 'Automating GitHub Growth with Python and Selenium'
+date: '2019-02-23'
+tags: ['Side Project', 'Automation', 'Python']
+summary: 'Learn how to automate gaining GitHub followers using Python and Selenium, a beginner-friendly guide with practical outcomes.'
+thumbnail: '/static/images/zero-to-fifty-github/banner.png'
+images: ['/static/images/zero-to-fifty-github/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Intro
+
+GitHub, like all social media, is a numbers game. To get the most likes, hearts, snaps, upvotes, or in GitHub's case, followers and stars, you need a strategy. While a simple "like" on a YouTube video may mean nothing, stars and followers on GitHub are worth their weight in gold. Each one isn't the easiest to come by. Unlike other platforms, when a GitHub user stars your repository, they deem your project to be worthy of recognition and praise. They've either used or read the code you've developed and have decided to star or watch it to follow its progression for interest or gain. A star on GitHub is a sign of recognition and respect, and each one has a user proudly showing they've used your project.
+
+So, with GitHub followers and stars being hard to come by and the benefits being immense, how do we obtain them?
+
+---
+
+## Strategies to Gain Followers
+
+With GitHub stars, the answer is a bit nuanced, but it typically boils down to developing good open-source projects. However, for followers, the simplest solutions can lead to the best outcomes. You could spend time creating online content, including YouTube videos, blog posts, technical breakdowns, podcasts, and other social media content with the hope that they follow you from providing good content. Alternatively, you can simply follow users and hope they follow back.
+
+By extending an olive branch, giving users a follow, we approach them as friendly, open to chat, and likable. As a result, some users may feel obligated to follow back. By following hundreds, or if scalable, thousands of users, we can potentially gain hundreds of followers daily with minimal effort.
+
+---
+
+## Automating the Process
+
+Following users manually can be time-consuming and boring. Why grind hours to get virtual followers when you can automate the process, allowing you to focus on developing quality open-source projects?
+
+### Introducing Selenium - How to Automate the Boring Things with Python
+
+Selenium, combined with Python, can automate this task. While Python isn't my preferred programming language, its speed outweighs any inconvenience. Though not ideal for heavy web scraping or time-sensitive tasks, Selenium provides a lightweight and programmable browser automation tool.
+
+In under 50 lines of code, we can run a Mozilla Firefox browser headlessly, log into GitHub, access some of the most-followed users' pages, and follow their users back. By following many users who tend to follow people in return, we're able to quickly amass a significant following.
+
+<Box text="Warning: Automated following may result in account restrictions on GitHub. Use this method cautiously and at your own risk." type="warning" />
+
+### Example Code
+
+Here's an example of how you can automate the process using Selenium and Python.
+
+<CodeBlock language="python" 
+fileName="followBot.py"
+src="zero-to-fifty-github/codeblock-one"
+/>
+
+Whilst this script works effectively for following users from some of GitHub's most followed and influential developers, it does have a limitation. It can make our profile look a bit suspicious to potential followers when they see that we're following a large number of users but have fewer followers. To counteract this, we can unfollow everyone we've followed after a day or two. This way, we can follow users in bulk, gain followers, and then unfollow everyone to maintain a clean profile. Just make sure to keep a list of users you genuinely want to continue following so they don't get unfollowed.
+
+<CodeBlock language="python"
+fileName="unfollowBot.py"
+src="zero-to-fifty-github/codeblock-two"
+/>
+
+### Results and Observations
+
+After testing both scripts for two hours, I followed 326 people. After a day, 53 users followed me back. After unfollowing everyone, I had 46 followers. This method, when repeated on a larger scale, could net a considerable number of followers with minimal effort. However, be cautious as GitHub may restrict or ban your account for using such methods.
+
+## Conclusion
+
+Automating the process of gaining followers can be a valuable strategy if used wisely. While there's a risk of account restrictions, this method can significantly boost your follower count. Always use automation tools responsibly and in compliance with platform guidelines.
+
+To view the source code or to use it yourself, it is available on GitHub [here](https://github.com/ShaanCoding/githubFollowBot).

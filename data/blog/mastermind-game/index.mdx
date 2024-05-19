@@ -1,0 +1,45 @@
+---
+title: 'My First Programming Assignment: Creating MasterMind'
+date: '2019-01-30'
+tags: ['Side Project', 'C#']
+summary: 'A deep dive into my first programming assignment where I created the game MasterMind in C# and the valuable lessons I learned from it.'
+thumbnail: '/static/images/mastermind-game/banner.png'
+images: ['/static/images/mastermind-game/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Introduction
+
+In semester 1 2019, I had to complete my first programming assignment. The task was to create the game MasterMind in any language of choice. MasterMind is a simplistic yet popular code-breaking game traditionally played by two players.
+
+In this game, the following components are used:
+- **Decoding board** with a shield at one end covering a row of four large holes, and twelve (or ten, or eight, or six) additional rows containing four large holes next to a set of four small holes.
+- **Code pegs** of six different colors (or more), which will be placed in the large holes on the board.
+- **Key pegs**, some colored black and some white, which are smaller than the code pegs and will be placed in the small holes on the board.
+
+Two players take separate roles: one becomes the code-maker, the other the codebreaker. The code-maker develops a code consisting of four distinctively different colored pegs, and the codebreaker attempts to determine it. The codebreaker has a limited amount of turns (usually 8-10) and is given several hints per turn indicated by the key pegs - white indicating a correct color in the wrong position and black indicating an incorrect color.
+
+Whilst for most developers this "assessment task" may seem trivial, at the time of development, I was new to programming. I had just learned for & while loops and conditional logic weeks before in an antiquated niche language with poor documentation and little community support, known as SmallBasic. As a result, after consistently struggling to perform even basic tasks such as reversing a string and taking hours in this language, being tasked to create a video game felt like a near-impossible task. Therefore, I knew I needed to do something different.
+
+## C# & The Discovery That Programming Can Be Fun
+
+Now, whilst any seasoned developer may say "Languages don't matter; if you're competent, you should be able to make an application in any language without needing to pick a new one up," at the time and even now, I felt switching languages was necessary. Whilst the rapid shift from reversing strings to building a game in a week may seem extreme, switching to a language emphasizing object-oriented programming with features like polymorphic overloading, interfaces, inheritance, and more was also quite a leap. Giving this challenge to a complete beginner is arguably one of the worst ways to teach programming.
+
+But as it was necessary and had to be done, it was done. Over the week, I spent every spare waking moment developing and refining my application. Despite making a few mistakes here and skimming over some tutorials which led to issues later on, I managed to finish my first real application and "game."
+
+![MasterMind App](/static/images/mastermind-game/demo.png)
+
+Whilst I made numerous mistakes and skimmed over sections I shouldn't have, at the end of the week, I was able to finish a "working" game. Though in hindsight, there are several things I would've done differently:
+
+1. **Start with the Yellow Book**: Instead of spending hours studying YouTube tutorials of varying quality, I would start with the Yellow Book. The Yellow Book is a free & open-source book detailing the C# programming language in intense detail while keeping the information engaging and understandable from beginner to expert levels.
+2. **Use WPF instead of WinForms**: During my research, there were conflicting opinions on whether WPF or WinForms was the superior framework. While WinForms is the older of the two and has better existing documentation, it is unfit for modern software development practices. WPF, emphasizing design patterns like MVVM, is a better graphical framework for modern development.
+3. **Learn C# sooner**: The time spent learning SmallBasic could have been better spent on C#. SmallBasic stripped out so many fundamental programming concepts that it counter-intuitively made learning and creating things harder. It's akin to telling a beginner to learn assembly because it has a limited set of instructions, overlooking the practical difficulties involved.
+
+## Conclusion
+
+This experience was incredibly painful and stressful. However, situations like these often bring out our best and make the seemingly impossible possible. Although I wish my high-school teachers had taught me more thoroughly instead of leaving me to learn independently, I appreciate the skills I've gained. These challenges made me self-driven in my journey of learning new languages and technologies, making me mostly language-agnostic.
+
+While I wish I had better instruction, I learned more through self-study. This experience has profoundly shaped my growth as a software developer.
+
+To view the source code of this project or to use it yourself, it is available on GitHub [here](https://github.com/ShaanCoding/MasterMind-Application).
