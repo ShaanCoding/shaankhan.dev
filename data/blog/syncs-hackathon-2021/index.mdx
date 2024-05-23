@@ -1,0 +1,90 @@
+---
+title: 'SYNCS Hackathon 2021 - Summarized'
+date: '2021-08-30'
+tags: ['Hackathon']
+summary: 'A journey through SYNCS Hackathon 2021, skip through your lectures guilt-free!'
+thumbnail: '/static/images/syncs-hackathon-2021/banner.jpg'
+images: ['/static/images/syncs-hackathon-2021/banner.jpg']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Demonstration
+
+<YouTube youTubeId="tinqI6FyiPQ"/>
+
+## Inspiration
+
+Tired of spending hours in zoom calls when you could be getting something done? Miss a lecture because of work? Just need a mental health break? Summarized is our attempt to solve these problems. We want to make your life a little easier by summarizing your video recordings and providing you with summarised notes, ANKI-style flashcards, and keyword lists. All of this can be exported to your favorite flashcard app to help you learn faster!
+
+## What it does
+
+Summarized turns your lecture recordings into summarized notes and flashcards! Simply download your lecture video and upload it to our webpage Wait for the AI to process your video (it takes roughly half the time of the video) Download your summary notes and flashcards to get your study on!
+
+## How we built it
+
+### Front End
+
+The frontend was developed in React using Typescript. We first developed the UI as a user flow diagram, then developed wireframes in Figma. Once we were happy with the rough layout of these, we started development on the front end of the website. While we mainly aimed to use vanilla CSS without much processing, we did end up using several frameworks and/or libraries, including but not limited to:
+
+- React
+- React Router
+- Axios
+- MaterialUI
+- JsonServer
+
+React and React Router, while self-explanatory, was the framework used for our project. This had the compelling benefit of us creating components, which allowed us to more efficiently structure & reuse code; both internal and external, with libraries.
+
+Axios & JsonServer were used in tandem to receive and generate REST API calls. Axios obtained and sent good REST API calls, while JsonServer hosted a mock REST API with hardcoded values for testing.
+
+MaterialUI was used for stylizing & utilizing components that we did not have the time to create or style ourselves. In our last hackathon, we attempted this with bootstrap. However, we have later found that MaterialUI is more flexible and easier to use in this regard.
+
+### Back End
+
+Unlike our frontend, which was developed pretty much issue-free, our backend suffered many setbacks, hurdles, and compatibility issues between teammates.
+
+In terms of technologies, our backend consisted of Python, several dozen data analytics-related Python libraries, and Django. Our backend was entirely consistent with Python. While this caused several issues at points, this was ultimately a good choice as most of our data analytics and artificial intelligence-based models would not be able to run without it. This, as a result, heavily impacted our architectural design for our backend, and a detailed description of our backend is as follows:
+
+![Projects Architecture](/static/images/syncs-hackathon-2021/architecture.png)
+
+1. The video file is firstly uploaded from our frontend into our backend
+2. We then split up the file, extracting the audio in FFMPEG
+3. After the audio is finally extracted, we then upload the audio file to the google cloud platform in the form of a bucket
+4. Once finally uploaded, we then execute a python script running Google speech-to-text AI model transcribing the content of the lecture
+5. Once we have gotten the transcription, we then pass this returned data into the SassBook API, returning summarized texts
+6. We return the SassBook response as an output
+7. We additionally parse the SassBook response through a question generation natural-language processing model, generating corresponding questions and answers We then pass this via JSON to our ANKI FlashDeck generator, which converts these Questions + Answers into related flashcards as an ANKI deck for spaced repetition practice
+8. We then additionally run a word frequency counter on the google speech-to-text transcription
+9. We first pre-process the clip removing filler words such as "and," "our," "uh," and "uhms."
+10. We then run a word frequency calculator determining the most relevant words/phrases and adding this to a tag list
+11. This is submitted to the frontend with a REST API
+
+## Challenges we ran into
+
+As expected, one of our significant challenges was managing to complete our project on time. Our first hurdle was designing an efficient architectural model and various pipelines to allow all functionalities to work correctly.
+
+Our project required using a lot of APIs and AI models to summarise the text, create questions and answers, etc. The AI models required a lot of time as we were all relatively new to them, and evaluating their accuracy posed a challenge. We decided to dedicate APIs to different team members. Although this was efficient, we later encountered the hurdle of stringing together these APIs and creating backend pipelines to implement the complete functionality.
+
+We all used Python to create our sections of the backend. While this typically wouldn't be an issue, we had multiple setbacks or errors running pre-existing artificial intelligence or data analytics models locally or at points running our own teammates models locally due to conflicting python versions, installation, or environment variables. Due to this, we suffered many hardships; paired with one of our critical APIs, which is the backbone of our application, going down for maintenance temporarily caused a lot of heartache throughout the development process.
+
+However, after a few modifications and iterations, we developed a successful architecture design that succeeded in supporting our required architectural constraints.
+
+## Accomplishments that we're proud of
+
+Our ability to overcome the challenges mentioned was something we were all proud of. What seemed like an impossible project for a 39 hour time frame became more feasible as time went on, and our teamwork allowed this to be possible. We had great team chemistry, even though we were mainly new to each other. Managing to pull together, so many skills and resources to accomplish a complex project in a short time was excellent.
+
+## What we learned
+
+There were a few critical points to the success of our project. The successful implementation of generating a transcript from the video, using speech to text, and developing questions and answers. And to achieve these successes, it took extensive hours of research and learning to implement them in our project, which created the product you see today. We all learned the full-stack architecture of a project during our cooperation, from the front to the back end. We used management software to split the project into parts to individually learn our own tasks and utilize that. And that was an essential lesson for problem solving and cooperation with each other. Nevertheless, involving in these activities really helped build characteristics suited for teams, which will undoubtedly be beneficial in the future.
+
+## What's next for Summarized
+
+Many features Summarized intends to incorporate in the future. We aim to:
+
+- Design an FFMPEG function to extract the timestamps from the important sections of the uploaded video to create a summarized video of all the essential parts.
+- Evaluate and improve the AI models we use to ensure the summary and question/answer functionalities are as accurate as possible, as this is the foundation of the project's usability.
+- Increase overall accuracy for more technically complex lectures using a lot of scientific or mathematical jargon.
+
+## Project Link
+
+[Summarized](https://github.com/ShaanCoding/Summarized)
