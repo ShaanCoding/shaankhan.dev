@@ -1,0 +1,26 @@
+FROM node:12-alpine as frontend-stage
+
+# CREATE an app directory
+RUN mkdir -p /app
+
+# This is the directory that should act as the main app directory
+WORKDIR /app
+
+# Copy lock files
+COPY /package*.json ./
+# COPY youtube-album-splitter/package-lock.json ./
+
+# Install node packages
+RUN npm install
+
+# Copy the rest of the project
+COPY . .
+
+# Build the app
+RUN npm run build
+
+# Expose a port
+# EXPOSE $PORT
+
+# Start app
+CMD ["npm", "run", "host"]

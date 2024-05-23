@@ -1,0 +1,113 @@
+---
+title: 'Deploying Youtube Album Splitter'
+date: '2022-07-03'
+tags: ['Side Project']
+summary: "A quick write-up of my most recent personal project, YoutubeAlbumSplitter, with a recount of what I've learned and discovered attempting to commercially deploy my first real web project."
+thumbnail: '/static/images/deploying-youtube-album-splitter-2022/banner.jpg'
+images: ['/static/images/deploying-youtube-album-splitter-2022/banner.jpg']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+<Box
+    text="For Youtube Album Splitter, I've temporarily taken this site offline due to it breaking Youtube Terms of Service, and will be working on a generic MP3 splitter that is decoupled from YouTube as a general utility tool."
+    type="info"
+/>
+## Introduction
+
+Recently I built and deployed [YTS (YoutubeAlbumSplitter)](https://youtubealbumsplitter.com/), a website I've built to take in Youtube mixtapes/music compilations and automatically tag and split the video into individual music tracks. This application works by primarily using [YTDL-Core](https://github.com/fent/node-ytdl-core) & [FFMPEG.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm) with the MERN stack (MongoDB, Express, React, & NodeJS).
+
+## The Problem
+
+This application was built from the problem of me finding niche artists/music categories and was unable to either download the individual track or search for the individual track on other platforms such as Spotify. Because of this, when I wanted to play the songs on alternative platforms other than YouTube, I would have to manually download the video, extract the specific song I wanted, and then tag it before adding it to my Spotify custom songs list. 
+
+This process was very tedious and whilst a lot of playlists/compilations labeled their songs, the newly implemented timestamp feature on YouTube even said what song was playing whilst it was playing. There was no easy-to-use tool that would automatically download the song & split it up on demand, as a result, this application was made.
+
+## The Design Process
+
+To start out, I believed this project solved a real problem in the market. I wanted this project to be; clean, elegant, efficient, and most importantly scalable. 
+
+Whilst I've built and temporarily deployed many MERN stack projects, such as [Summarized](https://blog.shaankhan.dev/syncshack2021/). These have usually been local deployments or one-time deployments where the code is manually set up and left there temporarily for 24-48 hours until a demonstration is run. From which the instance would be closed. These projects, whilst fun and demonstrating a great proof of concept are not scalable and indicative of a potentially successful/successful project in the real world. Whilst an application may function well for 1-2 users, when scaled at mass to thousands to hundreds of thousands of users, efficiency and scalability is key. As a result, the planning process for this project took significantly longer than most projects I take on.
+
+The first and most important issue was trying to understand how this would work functionally. Thankfully I was already acquainted with Youtube-DL and FFMPEG. FFMPEG is a very complex, highly efficient, and flexible video/audio processing tool that many applications and companies use globally to render / process video & audio on demand. Likewise, YTDL-Core is a globally recognized library designed to download Youtube videos in a lightweight, efficient and failsafe manner. By combining these two libraries initially I was able to figure out how to split a video into multiple parts based on timestamps.
+
+The second issue was more technical. I had to learn how to parse user-inputted data into a format that would be recognized by both my code and the libraries. This was made more difficult by the fact that there are a variety of ways to input timestamps (ex. 1:30:00, 1h30m, 90m, 5400s, etc). I solved this by coding my own universal timestamp parser for about (90% of use-cases) with the remaining 10% being flagged as incomplete or incorrect values in my validation stages.
+
+The third and final issue was designing the user interface. I wanted something that would be very simple and straightforward to use. I also wanted the application to be usable without the need for an installation. This meant that the user interface had to be web-based. I decided to use the ReactJS and TailWindCSS libraries to design my user interface. ReactJS is a fantastic library that allows for the creation of complex user interfaces while still keeping the codebase very clean and organized. TailWindCSS is a utility-first CSS library that allowed me to quickly create a responsive and modern-looking user interface.
+
+With a plan of attack ready, I begun coding and quickly spun up a command line proof of concept, using REST APIs to communicate with the YouTube Data and Content APIs. I also used the ffmpeg tool to split the video files. This allowed me to quickly verify that my approach would work and that the necessary APIs were available.
+
+## Solution
+
+With the proof of concept ready, I moved on to creating the web-based user interface. This was my first time using ReactJS and TailWindCSS, so it took me a little bit of time to get everything setup and working correctly. However, once I got the hang of things, I was able to quickly put together a functional user interface.
+
+The next step was to take my proof of concept code and turn it into a production ready application. This involved adding support for authentication, error handling, and a few other things. I also had to make some changes to how the application interacted with the YouTube APIs. The YouTube Data API has a quota that limits the number of requests that can be made in a day. To work around this, I added a fake user login to bypass this via Cookies, allowing unlimited downloads with the Youtube Data API.
+
+Finally, I had to figure out a way to deploy the application. Whilst my application ran well locally, as it used FFMPEG for some of its processing, it would not scale well on my DigitalOcean droplet cheapily as it was a resource intensive task.
+
+I found a workaround to this by using FFMPEG.wasm, an FFMPEG implementation in pure WebAssembly, which would enable me to move the resource intensive task to the client-side. This would also enable me to keep my application stateless, as I would not have to store any user data or videos on my server, and could therefore scale my application infinitely.
+
+Finally after building the application and ensuring it's scalability, came the finishing touches. To do this I outsourced the UI design to a friend as I am not a designer, and integrated Google Analytics to help me understand how people were using the application and what features they were using the most. I also added some basic error handling, such as displaying an error message if a user tried to split a video that was too short, or if they tried to split a video that had already been split.
+
+## Deploying
+
+After finalizing the code of my Youtube Album Splitter tool, I decided to deploy it using DigitalOcean's App Platform so that it could be used by anyone, anytime, anywhere. I chose to use Docker on Linux and Nginx as my web server and reverse proxy. I also wanted to add SSL to my site so I decided to use LetsEncrypt + CertBot for that.
+
+Here's a step-by-step guide on how I did it:
+
+1. I created a new droplet on DigitalOcean and chose the App Platform product.
+2. I connected to my droplet using SSH and created a new directory for my project.
+3. I then clone my Youtube Album Splitter code into that directory.
+4. I created a new file called Dockerfile and added the following code to it:
+
+<CodeBlock
+    language="dockerfile"
+    fileName="Dockerfile"
+    src="deploying-youtube-album-splitter-2022/docker-file-one"
+/>
+
+<CodeBlock
+    language="dockerfile"
+    fileName="Dockerfile"
+    src="deploying-youtube-album-splitter-2022/docker-file-two"
+/>
+
+5. I then created a new file called nginx.conf and added the following code to it:
+
+<CodeBlock
+    language="nginx"
+    fileName="nginx.conf"
+    src="deploying-youtube-album-splitter-2022/nginx-conf"/>
+
+6. I then created a new file called .env and added the following code to it:
+
+```
+COOKIE = "YOUTUBE SESSION COOKIE"
+```
+
+This helps me export secret keys & sensitive data outside of the codebase avoiding accidental leaks of API keys as well as ease of customization
+
+7. I then ran the following command to build my Docker image:
+
+```
+docker compose build
+docker compose build -d
+```
+
+This created a new Docker image for both the frontend and backend, each running on separate instances.
+
+8. I then installed SSL by using LetsEncrypt + CertBot.
+
+9. I enabled automatic renewals for my SSL certificate by setting up a cron job.
+
+From this I was able to successfully deploy and run my droplet with minimal downtime. Deploying was honestly the hardest part of this project. I had to learn about setting up a server with DigitalOcean (which I'd never done before), configuring DNS settings, and then actually setting up the server to run the code. It was definitely a lot harder than most of my personal projects, but the amount I learned from this project was invaluable.
+
+## Conclusion
+
+Whilst this project took a little longer than anticipated to complete, it was worth it in the end. Not only did we get a chance to improve our skills with React and Node.js, but we also ended up with a tool that is actually useful!
+
+Since we first released Youtube Album Splitter, we have had great feedback from the community and have even seen a few people use it in creative ways that we never thought of.
+
+It just goes to show that with a little bit of effort, you can create something that can make a real difference to people's lives. So, if you have an idea for a project, don't be afraid to give it a go - you never know where it might lead.
+
+For those wanting to try the application, please do! The site is accessible [here](https://youtubealbumsplitter.com/)
