@@ -1,0 +1,138 @@
+---
+
+title: 'Trunk-based Development Vs. Git Flow'
+date: '2020-11-09'
+tags: ['Educational']
+summary: 'An in-depth comparison between Trunk-based Development and Git Flow, exploring their pros, cons, and scenarios where each approach excels.'
+thumbnail: '/static/images/trunk-based-development-vs-gitflow/banner.jpg'
+images: ['/static/images/trunk-based-development-vs-gitflow/banner.jpg']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Introduction
+
+
+
+Today I took a step back and had a look at how I approach my projects and in extension to that my git commits. Over the past year, I've done programming courses in university, some team, some individual, and none of them have required git.
+
+Git is one of these technologies that the industry expects for everyone to know but is sparingly mentioned and always assumed. It is one of the unseen technologies you are supposed to know. It is your missing semester.
+
+Whilst myself, I've taken git for granted for a long while now, and have strongly ingrained it into my software development process, I was surprised to hear that after suggesting students use git in the future for products and assignments, I was left with many faces of confusion with many people asking "What's git?", "Why should I use git?" and "Is git really that important?".
+
+## What is Git?
+
+Version control systems (VSCs) are an important tool in the arsenal of any software developer, VSCs are tools to track changes to source code, or any file or folder for that matter.
+
+As the name implies, it helps log a history of changes in addition to tracking the changes of folders and their related content. Git, through a series of snapshots, allows you to track, change and revert projects. This is ideal as compared to making a thousand copies of a project and naming them `project_1`, `project_1_real`, `project_1_finalized_now_real`. We instead can just opt to have one folder with every single version of the project we've made in an incredibly small size, saving potentially gigabytes of space per project.
+
+Additionally, git is useful as it allows you to better pace out your projects, allowing you to track your progress as well as parallelly work on features jumping between versions and merging them at the end instead of being forced to finish a feature there and now rather than being able to work on multiple features concurrently.
+
+This in addition to allowing teammates to work concurrently on your project and allowing you to push changes and manage conflicts in a way where your code supports collaboration without having teammates directly affecting your work, such as Google Docs, makes it ideal for small to large software development projects, ranging from 1 to 100 members in a repository.
+
+Additionally, through git it allows you to track and monitor changes. Git through its detailed version control and history management system allows you to know; who wrote this model, when it was edited and by whom did the editing occur. Through git we’re able to extensively track changes of the program to a level where over thousands of iterations we can pinpoint where a specific feature or unit test broke and who or what broke it.
+
+## Trunk-based Development (TBD) Vs. Git Flow
+
+Now whilst using git on its own can be tremendously useful for its inherent organizational skills and file management abilities, in teams it can greatly excel and hasten the development process or cripple you if used incorrectly. As such there are two main ways of software development through git: Git Flow and Trunk-based Development (TBD).
+
+### Git Flow
+
+![Git Flow](/static/images/trunk-based-development-vs-gitflow/gitFlow.png)
+
+With Git Flow your software development approach is a little less agile and stricter, usually having one main branch to develop on, called `develop`. A master branch for stable versions called `master`, and a release branch with published releases called `release`.
+
+In this workflow, developers often create a `feature` branch from `develop`, work on implementing that feature and once complete create a pull-request merging it back into `develop`.
+
+Once a PR is sent it is often reviewed, typically through unit-tests and once accepted merged into `develop`.
+
+Whilst this may be slow compared to trunk-based development, where we ignore peer reviews and merge our code instantaneously into the `master` branch, this method helps the team communicate regarding the code, validate the code is correct as well as allow senior developers to easily monitor and give advice to junior developers.
+
+### Git Flow Pros and Cons
+
+Whilst Git Flow can be strong in teams, it is not the only git-oriented development approach. Whilst ideal for large enterprise projects, in small or individual projects this process can be slow, unideal or not needed. This paired with many senior developers not needing their code to be manually reviewed can lead to redundant bottlenecks in the software development processes. The pros and cons of Git Flow include:
+
+#### Pros
+
+* The strict control of Git Flow; through restricting how users can interact with branches creates a place of strict and absolute control, allowing senior developers to ensure only quality code comes in.
+* Through the strict control, it improves overall code quality and as a result through peer-review aids in reducing bugs leaking into production.
+* This approach of software development is ideal if you have a lot of junior developers. Junior developers are generally new or inexperienced in the industry and as such it is ideal to monitor their work closely. Through this development approach for junior developers you can:
+  * Monitor their work closely to prevent the deterioration of the codebase’s quality over time as more and more junior developers commit and the code expands.
+  * Minimize their impact and lower the chances of simple bugs or unoptimized code leaking into production.
+  * Give them hints on how to do things effectively and aid them in improving their skills through PR.
+* Whilst running an open-source project this approach can be beneficial as:
+  * Everyone can contribute. As you have strict control of whose code gets accepted and rejected, you're able to maintain an open-source code base where everyone can commit without sacrificing quality.
+  * This is specifically important on open source projects as you can't trust people on the quality of their commits and if it's valid code or not.
+  * Whilst Git Flow compared to TBD lead to slower development times, as it's open-source speed typically isn't of concern.
+* If you already have an established product:
+  * This style is also successful if you have an already established product. This is due to established products typically focusing on maintaining and improving on current performances and capabilities rather than complete redesigns or rapid development.
+  * At this stage of development optimization typically requires precise changes and isn't as time constrictive as a new product.
+  * This is ideal for larger applications, typically those of enterprise scales as time isn't as much of a concern as they generally prefer to protect their current codebase rather than have rushed instable code.
+
+#### Cons
+
+Especially with small teams of experienced developers, Git Flow can be a huge disadvantage:
+
+* Through the structured approach of requiring code to be reviewed before being accepted slows down development time as it requires time to be allocated on pull-request reviews and merging.
+* Some feature branches, especially if developed over a long-time span, can have issues of the code constantly changing without other developers acknowledging the branch's impact. If left for long enough this can create issues of features being hard to merge later throughout the project.
+* As pull-requests focus code review solely on new code, instead of all the code as a whole, this can often lead to premature optimization, where the developer spends time optimizing a small function used inoptimally in the bigger picture of the code.
+* Moreover, through the nature of pull-requests and code reviews, this may lead to bad cases of micromanagement:
+  * This is specifically bad as lead developers may spend their time managing and reviewing over every line of code in the project rather than developing their own code.
+  * If you have a team of senior-developers and trust their skills using Git Flow still is okay, though bear in mind you may be wasting their time and skills which could be of better use elsewhere.
+
+### When NOT To Use Git Flow
+
+Like all programming design patterns, when used correctly they can be incredibly efficient saving hundreds of man-hours for development. Though for small projects or projects that need to be rapidly developed, occasionally design patterns whilst being the "right" thing to do book-wise, may not specifically be the fastest or most efficient way to approach it. Times NOT to use Git Flow include:
+
+* If you're new to git and are just starting to use it. Git Flow may not be ideal as it may lead to overall confusion and cargo-culting using it for the sake of using it rather than knowing why or how to use it effectively.
+* If you're in a hackathon or working on a project where you need to create an MVP as soon as possible without caring about scalability or neatness. Git Flow in this case as well isn't ideal as it'll consume precious development time.
+* Doing pull requests, especially with senior development teams, aren't ideal as it can just slow the team down without providing any tangible benefits.
+* If you're on a limited time frame. Whilst Git Flow focuses on structure, it takes time and as a result, it's not possible to rapidly develop applications through this method.
+
+### Trunk-based Development Workflow
+
+![Trunk-based Development](/static/images/trunk-based-development-vs-gitflow/trunkBasedDevelopment.png)
+
+Unlike Git Flow, where the repository consists of several branches, all being used heavily in unison where it is orderly pushed from a feature branch into dev, then master and finally release, in trunk-based development, this is not the case. Trunk-based development (TBD) instead focuses on all developers working on a single branch with unrestricted access to it where they all pull and push their respective code to.
+
+This development process can be ideal as it ensures that development is continuous and prevents the chances of merge conflicts occurring with conflicts being resolved earlier in the development process. Additionally, through the lack of rigorous pull requests and code reviews, software development can be accelerated. This process is ideal for smaller projects and/or senior development teams who can be trusted to create quality code independently.
+
+Senior development teams further benefit from TBD as it allows developers to quickly introduce and improve on new features whilst maintaining speed, in addition to removing the bureaucracy tied with Git Flows. Through TBD this bureaucracy is eliminated as it removes the micro-managing aspect of pull-requests, dissuading office politics and allowing developers to work autonomously. This shows trust to the individual developer as well as decreasing the overall development time.
+
+### Pros and Cons of Trunk-based Development (TBD)
+
+As the same with Git Flow, no system is perfect for all scenarios. Depending on the application TBD may be beneficial or a hindrance to you, here are the pros and cons of Trunk-based development:
+
+#### Pros
+
+* When you're starting up:
+  * If you're working on an MVP product this style is ideal.
+  * Through TBD you are unrestricted from the bureaucracy of pull-requests slowing you down and as such you can develop a lot quicker, adding new functionalities or features.
+  * This is especially good as most MVPs don't have to be perfect in their first iteration and generally aren't focused on scalability. Most are made for proof of concept sakes to be expanded upon later, where moving to Git Flow may be ideal.
+* When you need to iterate quickly:
+  * When working on a relatively new project with clients changing their minds consistently, Git Flow may be unideal as it can result in out of date branches that can't be correctly merged as the specifications rapidly change.
+* When working with senior developers:
+  * Senior developers *usually* know what they're doing and tend to not make the mistakes Git Flow tends to resolve.
+  * For senior developers it may be more cost-effective and time-efficient to remove Git Flow and allow them to utilize trunk-based development for increased productivity.
+
+#### Cons
+
+* When running an open-source project:
+  * If you're running an open-source project, Git Flow is more ideal. In projects like this, you need very strict control on the codebase as you can't trust online contributors, as such Git Flow is ideal for this as TBD cannot provide the rigorous structure needed.
+* When you have lots of junior developers:
+  * If your development team consists of many junior developers, without pull-requests / code reviews your code base will deteriorate, whilst possible with TBD, Git Flow in this case is more ideal.
+* When you're working on an enterprise application or manage large teams:
+  * When working with especially large products, or large teams, TBD may be ineffective.
+  * This is due to as the code-base expands, the probability of bugs occurring as well as the fragility of the code increase. This paired with it getting harder to track developers' changes may make Git Flow more ideal.
+
+### Choosing The Right Tool For You
+
+As cliche as it sounds, there's no right tool for every job, depending on the client specifications and your team, Git Flow or Trunk-Based Development may be ideal though it is very scenario heavy.
+
+Git Flow manages all changes through pull-requests and focuses on multiple branches and order. Through a process of strict access for each branch, with code being constantly reviewed. It is ideal for large enterprise projects or open-source endeavors where there is a varying range of developers from beginner to senior. You're able to easily and quickly check what is being implemented where and when and it allows greater control on individuals impacts to projects. On the other hand, through this strict micromanagement, it fails in terms of speed as well as being susceptible to micromanagement and office politics.
+
+Trunk-based development alternatively removes the restrictions placed by Git Flow and allows developers full autonomy in development, *trusting* their code and judgment. It increases development speed, ignores office politics, is impervious to micromanagement and allows developers to quickly implement ideas and reiterate in a quick and controlled manner. It, however, can be unideal for large projects as errors can easily find their ways in as well as being unideal for teams containing junior developers as it is harder to review their code as the code-review aspect is eliminated.
+
+TLDR; Git Flow is great for working on big projects or projects containing junior developers, whilst Trunk-based development is ideal for smaller projects or projects consisting mainly with senior developers.
+
+Ultimately the choice is up to you, and in the end, neither system is perfect, at times one may be better than the other and vice versa. Though through the utilization of both development approaches your projects will be better organized and less error-prone. 
