@@ -1,0 +1,22 @@
+def Q_rsqrt(number):
+    threehalfs = 1.5
+    
+    x2 = number * 0.5
+    y = np.float32(number)
+    i = np.int32(0x5f3759df) - np.int32(i >> 1)
+    y = i.view(np.float32)
+    y = y * (threehalfs - (x2 * y * y))
+    return float(y)
+    
+def true_value(number):
+    return number**(-1/2)
+    
+table = []
+
+for i in range(1,6):
+    x = random.random()
+    test_results = [x, Q_rsqrt(x), true_value(x), true_value(x)-Q_rsqrt(x)]
+    table.append(test_results)
+    
+df = pd.DataFrame(data=table)
+print(tabulate(df, headers=['Value Input', 'Quake Estimate', 'True Value', 'Difference/Errors']))
