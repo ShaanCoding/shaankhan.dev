@@ -1,0 +1,89 @@
+---
+title: 'Paper 1 - A Survey of Programmatic Procedural Content Generation Using Wave Collapse Functions for Game Development'
+date: '2021-03-21'
+tags: ['Side Project',]
+summary: "In this paper, we will survey the Wave Collapse Function (WFC) Algorithm for Procedural Content Generation (PCG) and its historical uses. Through this paper, we will track multiple methods of PCG in the indie & professional game development community as well as depict the evolution of such methods over time."
+thumbnail: '/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png'
+images: ['/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png']
+authors: ['shaancoding']
+layout: PostSimple
+---
+
+## Abstract 
+
+In this paper, we will survey the Wave Collapse Function (WFC) Algorithm for Procedural Content Generation (PCG) and its historical uses. Through this paper, we will track multiple methods of PCG in the indie & professional game development community as well as depict the evolution of such methods over time.
+
+## Introduction
+
+With the emergence of Artificial Intelligence (Ai) & Finite State Machines (FSM) in video games. Games have become more and more immersive over time. In addition to this, with the expectation of publishers to be constantly improving the quality of their games, these games have also been increasing in both complexities as well as immersion & length. Better graphics, as well as overall better games, have not just become an expectation, they have become a necessity.
+
+As a result, many developers have opted to create or utilize tools that can speed up development, or automate it entirely. Here lies the world of procedural content generation. Procedural World Generation whilst not a new field, existing for decades has had issues of it being very demanding in both time & space complexity. This requirement of requiring high-end commercial hardware to run in real-time or optimization constraints has prevented PWG from being used as frequently in the past. PCGs however exist in different forms and iterations and have evolved over time. In basis a PCG just converts an input with given constraints into an output, typically up-scaled in some sort. The outputs / inputs, however, can vary, historically PCG has been used for; Poem generation, image generation, audio/sound generation & finally game map generation as well as asset generation.
+
+## History Of Wave Form Collapse In Procedural Content Generation
+
+In 2016 Maxim Gunmin's Wave Function Collapse (WFC) Algorithm gathered the attention of multiple indie & professional game developers alike online. Gunmins WFC algorithm allowed developers to procedurally generate both images as well as maps in a realistic, humanized way, being unique and different to the algorithms preceding it. Gunmin's WFC algorithm whilst highly effective in terms of resultant images did not sacrifice in speed either, being faster than many algorithms comparative algorithms utilizing back-tracking instead. Gumins WFC also further deviates from this by using a greedy-search method that avoids blending of textures to create a similar result, popularized by PCG through Texture Synthesis.
+
+WaveFunctionCollapse (WFC) like many other PCG algorithms are based on the foundations of several other algorithms and are improved/tweaked to better suit it's specified use-case. In the case of WFC it is inspired off three distinctive but functionally similar algorithms& concepts; Texture Synthesis (Specifically Discrete Synthesis), Markov Chains & Quantum Mechanics. WFC was also additionally inspired by convolution neural network style transfer (CNN Style Transfer), obtaining strong similarities however this differs from the previous three as whilst Gumin's intent was to capture the rules of how source images was made, neural networks did not solve this use case acting more of a "black box" of inputs & outputs.
+
+Through the implementation of these three algorithms WFC has managed to create a highly flexible & versatile algorithm able to work in all aspects of media generation, whether it be; Audio, media, or text. This versatility as well as a methodological human-like approach to content generation & incrementation through generation has led to even Gumin himself writing:
+
+> I noticed that when humans draw somethingthey often follow the minimal entropy heuristic themselves. That’swhy the algorithm is so enjoyable to watch - Maxim Gumin
+
+WFC at release however wasn't instantly popular. Wave Form Collapse at release was limited in scope, functionality & accessibility. Whilst it was an incredibly innovative piece of software disrupting the PCG scene as a whole in practical implementations with popular game engines such as unity it was lacking & complicated to implement. WFC however through the open source movement has now thrived and has been used in a wide range of games, being used in both indie & commercial games alike. A notable mention of WFC being used in a commercial game is in the game, "Caves of Qud". Caves of Qud uses a modified version of the WFC function, utilizing multiple layers of the WFC successively to combine and merge multiple layers together with a greater variation.
+
+WFC in recent times has also been improved to work independent of a grid system, now being flexible enough to work on graph based systems. Whilst Maxim Gumin's original WFC system was based on a grid-based system, this through community-based updates and forks has been expanded to work on graphs, the super-type of grids. The implementation of this, this has allowed a greater range of flexibility of WFC algorithms and has allowed greater flexibility and utilization in the game-development community as a whole, specifically for 3D development. A popular example of WFC being used in a 3D game, and arguably one of the first implementations of WFC in 3D is in the game ProcSkater, created by Joseph Parker.
+
+<figure>
+    <img
+        className="w-full lg:w-2/3"
+        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-1/figure1.png"
+        alt="First case of level generation using WFC in a game, Proc Skater 2016"
+    />
+    <figcaption className="text-center text-muted-foreground">
+        Figure 1: First case of level generation using WFC in a game, Proc Skater 2016
+    </figcaption>
+</figure>
+
+## Wave Function Collapse Algorithm Explained
+
+The WFC function released by Maxim Gumin is a grid-based PCG function. It works by taking inputs or "tiles" and then breaking them up into small chunks which are then rearranged to create new images, art or levels. Images generated through WFC consists of overlapped or non-overlapped chunks which are transformed being either flipped or rotated based on the constraints given.
+
+This algorithm, unlike similar PCG algorithms does not require back-tracking which greatly improves speed without sacrificing accuracy or quality. WFC algorithm instead mimics concepts of quantum mechanics, specifically entropy to develop its tile sets, starting from a "master tile" and expanding outwards.
+
+In WFC, similar to a Sudoku game, each tile is based on a set of rules. In Sudoku the goal is to fill each grid with a number between 1 to 9 where each distinct row and column can only have each number between 1 to 9 displayed once. Additionally, in every 3x3 grid the numbers 1 to 9 this restriction of the number being displayed only once still applies. When initially generating a Sudoku map if a blank map is given, there is an undetermined number of solutions where each box can simultaneously contain all 9 possible values simultaneously, as a result there is no distinctive solution solving this question.  However, once we keep adding more preset values or tiles to the Sudoku map, the number of available solutions decrease so and so until enough constraints are added that there is only 1 distinctive unique solution to the question.
+
+Similarly to Sudoku, in WFC we start from a starting node and add more and more constraints until there is one distinctive answer or possible generated image. In WFC each tile-map or node has its own set of associated adjacency rules.
+
+<figure>
+    <img
+        className="w-full lg:w-2/3"
+        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-1/figure2.png"
+        alt="Proposed Algorithm for WFC"
+    />
+    <figcaption className="text-center text-muted-foreground">
+        Figure 2: Proposed Algorithm for WFC
+    </figcaption>
+</figure>
+
+For example, as seen in the image above. A tile may only accept a specific set of tiles above it, below it, to the left & to the right of it.
+
+In WFC we start with a cell with the lowest entropy (or biggest restraints), target it, and continue adding restraints until the possible total tiles for that node collapses into a single tile. We then go on a process of repeating this to all the neighbors of the tile, evaluating the possible combinatorics for available for each node and repeating this step until all possible options are exhausted. We then repeat this until all tiles are invalidated by the collapse and the initial cell is removed from the list. We will then repeat the loop finding the next tile with the lowest entropy and repeat the same steps above traversing to all neighbor nodes until they collapse once more.
+
+Constraints in WFC have then been defined through either two approaches; a heuristic approach where an example map is drawn up and the algorithm analyses which tile-sets are valid & which ones aren't. (This works well for tile map inputs). Alternatively, another way is via sockets.The more common, and arguably more flexible approach of sockets is a system where each side (Top, Bottom, Left & Right) are defined explicitly with metadata containing lists of each object allowed to be placed adjacent to it. This is also further extended and refined by adding variance for symmetrical and asymmetrical objects, having different restrictions based if the object can be reflected or not.
+
+<figure>
+    <img
+        className="w-full lg:w-2/3"
+        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-1/figure3.png"
+        alt="Depiction Of Constraints Implemented in WFC for PCG"
+    />
+    <figcaption className="text-center text-muted-foreground">
+        Figure 3: Depiction Of Constraints Implemented in WFC for PCG
+    </figcaption>
+</figure>
+
+## Conclusion & Future Work
+
+In this paper, we have presented a summary of the Wave Function Collapse Algorithm as well as the history, the progression & modifications of the function as well as finally the explanation of the algorithm itself and its related use cases. WFC is a highly flexible and modifiable function capable of media generation in a humanistic form in multiple different mediums. Through Wave Collapse Functions procedural content generation for games can be vastly accelerated, simplifying the game development process or even automating it, allowing a unique and different experience through each play-through or alternatively an infinite and constantly new experience as you play on.
+
+For future work, we intend to modify the heuristics and implementation of the WFC algorithm as a whole, optimizing the processing speed, emphasizing multi-threading & parallelization as well as modifying and implementing a more complex constraint algorithm for adjacent neighbors based on WFC. Through a more heuristic-based approach, we intend to better procedurally generate outputs via WFC in 3 dimensions emphasizing realism. We are hopeful from a more realistic and optimized WFC function designed for 3-dimensional applications WFC can be expanded upon from rogue-like games to the entire game genre as a whole, leading to a more immersive & unique gaming experience for users.
