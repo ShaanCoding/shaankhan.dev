@@ -79,7 +79,6 @@ module.exports = () => {
         experimental: {
             appDir: true,
         },
-        output: "standalone",
         async headers() {
             return [
                 {
