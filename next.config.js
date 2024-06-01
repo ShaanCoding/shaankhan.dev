@@ -90,11 +90,11 @@ module.exports = () => {
         async redirects() {
             // TODO clean up
             return [
-                {
-                    source: '/ctfs/pico22/beginners-compilation',
-                    destination: '/blog/picoctf-2022/beginners-compilation',
-                    permanent: true,
-                },
+                // {
+                //     source: '/ctfs/pico22/beginners-compilation',
+                //     destination: '/blog/picoctf-2022/beginners-compilation',
+                //     permanent: true,
+                // },
             ]
         },
         webpack: (config, options) => {
