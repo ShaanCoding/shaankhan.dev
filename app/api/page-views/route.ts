@@ -1,7 +1,5 @@
-// import { Redis } from '@upstash/redis'
+import Redis from 'ioredis'
 import { NextRequest, NextResponse } from 'next/server'
-
-// const redis = Redis.fromEnv()
 
 export async function GET(request: NextRequest) {
     const url = request.nextUrl
@@ -17,9 +15,14 @@ export async function GET(request: NextRequest) {
     }
 
     try {
+        const redis = new Redis(process.env.REDIS_URL!, {
+            lazyConnect: true,
+        })
+
+        redis.connect()
+
         const key = ['pageviews', 'projects', slug].join(':')
-        const pageViewCount = 0
-        //  (await redis.get(key))
+        const pageViewCount = await redis.get(key) ?? 0
 
         return new NextResponse(JSON.stringify({ slug, pageViewCount }), {
             status: 200,
