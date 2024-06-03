@@ -82,13 +82,13 @@ export const generateStaticParams = async () => {
 }
 
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
-    const pagePaths = allPages.map((page) => ({
-        params: { slug: page._id.replace('pages/', '').replace('.mdx', '').split('/') },
-    }));
+// export const getStaticPaths: GetStaticPaths<Params> = async () => {
+//     const pagePaths = allPages.map((page) => ({
+//         params: { slug: page._id.replace('pages/', '').replace('.mdx', '').split('/') },
+//     }));
 
-    return { paths: [...pagePaths], fallback: true };
-};
+//     return { paths: [...pagePaths], fallback: true };
+// };
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
     const slug = decodeURI(params.slug.join('/'))
