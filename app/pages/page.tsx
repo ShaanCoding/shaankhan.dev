@@ -21,12 +21,10 @@ export default function BlogPage() {
 
     return (
         <ListLayout
-            posts={posts as any
-                // @ts-ignore
-            }
-            initialDisplayPosts={initialDisplayPosts as any
-                // @ts-ignore
-            }
+            // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+            posts={posts as any}
+            // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+            initialDisplayPosts={initialDisplayPosts as any}
             pagination={pagination}
             title="All Posts"
         />
