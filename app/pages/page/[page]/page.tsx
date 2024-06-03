@@ -25,8 +25,12 @@ export default function Page({ params }: { params: { page: string } }) {
 
     return (
         <ListLayout
-            posts={posts as any}
-            initialDisplayPosts={initialDisplayPosts as any}
+            posts={posts as any
+                // @ts-ignore
+            }
+            initialDisplayPosts={initialDisplayPosts as any
+                // @ts-ignore
+            }
             pagination={pagination}
             title="All Posts"
         />
