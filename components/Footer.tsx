@@ -46,7 +46,13 @@ export default function Footer() {
                     <div>{` • `}</div>
                     <div>{`© ${new Date().getFullYear()}`}</div>
                     <div>{` • `}</div>
-                    <Link href="/">{siteMetadata.title}</Link>
+                    <Link className="text-primary font-bold hover:underline" href="/">{siteMetadata.title}</Link>
+                </div>
+
+                <div className="mb-10 flex space-x-2 text-sm text-muted-foreground">
+                    <div>Site Theme Powered by <Link className="text-primary font-bold hover:underline" href="https://enscribe.dev/">Enscribe.dev</Link></div>
+                    <div>{` • `}</div>
+                    <div>{`© ${new Date().getFullYear()}`}</div>
                 </div>
             </div>
         </footer>
