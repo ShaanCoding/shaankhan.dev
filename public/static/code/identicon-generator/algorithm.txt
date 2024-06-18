@@ -1,0 +1,7 @@
+Input the Username String.
+If it is to be salted, add the salt.
+If it has multiple rounds of salting requested, we recursively call the Hashing function on it till it's done.
+Hash the function (excluding salting hash), based on user Hash Selection.
+Binarize the Hashed data.
+From the binarized hash data, convert this into a boolean matrix.
+Use a graphics library to convert this boolean matrix into pixel art or our Identicon.

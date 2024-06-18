@@ -30,9 +30,7 @@ Using what I knew best at the time, C# using WPF, I decided to work on this calc
 After some research, I discovered that most scientific calculators worked through reverse Polish notation (RPN) or postfix notation. Early computers/calculators couldn't automatically abide by the order of operations rules. Instead, they evaluated expressions from left to right with the same priority. Scientists and mathematicians created a standard where operators precede their operands, eliminating the need for parentheses and priorities. By organizing an equation this way, early calculators could read left to right while maintaining the correct order of operations.
 
 An example of an equation converted from infix notation (normal) to reverse Polish notation (postfix) is shown below:
-\( (3 - 4) \times 5 \)
-becomes:
-\( 3 4 - 5 \times \) or \( 5 3 4 - \times \) respectively.
+$$( (3 - 4) \times 5 )$$ becomes: $$(3\ 4 - 5 \times)$$ or $$( 5\ 3\ 4 - \times )$$ respectively.
 
 Using the same logic of RPN in our Boolean expression solver, we could correctly follow the order of operations and allow parenthesis support. The only issue remaining was converting the infix notation to postfix notation.
 
@@ -56,7 +54,3 @@ By passing our Boolean algebra equation through the shunting yard algorithm to c
 Overall, this project was a great success! This solution allowed me to personally save tens if not multiple dozens of hours validating solutions and let the rest of my classmates solve Boolean algebra equations quickly, providing us with a ton of practice questions for the HSC.
 
 For those interested in viewing or even using this project for your own Boolean algebra needs, feel free to check out the project here, available on GitHub: [here](https://github.com/ShaanCoding/Boolean-Expression-Solver).
-
-
-{/* 
-<CustomLink href="https://github.com/your-github-repo/boolean-algebra-solver">Boolean Algebra Solver on GitHub</CustomLink> */}
