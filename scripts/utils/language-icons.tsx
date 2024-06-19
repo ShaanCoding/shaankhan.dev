@@ -12,6 +12,7 @@ import {
     SiPython,
     SiTypescript,
     SiYaml,
+    SiRust,
 } from 'react-icons/si'
 
 export const languageIcons: { [key: string]: IconType } = {
@@ -27,6 +28,8 @@ export const languageIcons: { [key: string]: IconType } = {
     mdx: SiMdx,
     json: SiJson,
     yaml: SiYaml,
+    rust: SiRust,
+    text: SiMarkdown,
 }
 
 export const getLanguageIcon = (language: string): JSX.Element | null => {

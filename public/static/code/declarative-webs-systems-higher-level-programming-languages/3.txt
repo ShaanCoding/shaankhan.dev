@@ -1,0 +1,33 @@
+mixin EmailAuthentication {
+    email: String;
+    password: Password;
+
+    model Session;
+
+    extend Session {
+        user: Self;
+    }
+
+    static fn findUserByEmailPassword(email: String, password: String): Self? {
+        let item = find Self where email = email;
+        if item and item.password.check(password) {
+            return item;
+        } else {
+            return nothing;
+        }
+    }
+
+    static fn authenticate(email: String, password: String, session: cookie Session?) {
+        let user = findUserByEmailPassword(email, password);
+        if user {
+            let new_session = create Session with {
+                self = self,
+            };
+            session = new_session;
+        }
+    }
+
+    static fn logout(session: cookie Session?) {
+        session = nothing;
+    }
+}

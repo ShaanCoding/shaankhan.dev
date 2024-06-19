@@ -15,15 +15,15 @@ In this paper, we will introduce a standard for a declarative programming langua
 
 ## Introduction
 
-Most modern web systems in business are transaction processing systems, involving millions of millions of data transactions every day Bernstein et al. (2006). Their primary goal is to recieve requests (transactions), and process the transaction based on the type and data it contains. In web systems, there are often 2 broad types of transactions: queries and mutations. Queries request information without modifying any state, while mutations request a change in information and then often return the modified state. In virtually all transactions, many layers of data mapping would often occur. For example, if a user requests their own data, the transaction request should erase private data such as password and admin related fields. When the user edits their personal details, those details must be mapped into the existing data. When another user views the current user’s profile, they might receive a different model too, with more fields stripped. All this data mapping and abstraction often adds a lot of development complexity, resulting in simple user stories becoming hundreds of lines of code. Eventually this builds up to millions of lines of code that all needs to be managed and maintained - and this happens across thousands of businesses worldwide. To combat this, we are proposing a solution to unify all of these abstraction levels into a single system that is not only easy to work with, but also applicable to all systems of this nature.
+Most modern web systems in business are transaction processing systems, involving millions of millions of data transactions every day. Their primary goal is to recieve requests (transactions), and process the transaction based on the type and data it contains. In web systems, there are often 2 broad types of transactions: queries and mutations. Queries request information without modifying any state, while mutations request a change in information and then often return the modified state. In virtually all transactions, many layers of data mapping would often occur. For example, if a user requests their own data, the transaction request should erase private data such as password and admin related fields. When the user edits their personal details, those details must be mapped into the existing data. When another user views the current user’s profile, they might receive a different model too, with more fields stripped. All this data mapping and abstraction often adds a lot of development complexity, resulting in simple user stories becoming hundreds of lines of code. Eventually this builds up to millions of lines of code that all needs to be managed and maintained - and this happens across thousands of businesses worldwide. To combat this, we are proposing a solution to unify all of these abstraction levels into a single system that is not only easy to work with, but also applicable to all systems of this nature.
 
 ### Existing Solutions
 
-Currently, there are no existing solutions that unify all the abstraction levels of a system - however there do exist solutions that work across some of the layers. An example of one of these solutions would be the Prisma (Prisma 2022) library for Javascript, which provides unification across all database management functions into a single, simple to use library. Another example would be tRPC (tRPC 2022), another Javascript library which provides end-to-end type correction across backend function calls without needing an implementation of a REST interface. What’s common among these solutions as well is that they are already abstracted into separate libraries. Due to the nature of them being libraries, they are still required to be implemented for the system - which generally involves writing thousands of lines of similar code across the thousands of implementations of itself.
+Currently, there are no existing solutions that unify all the abstraction levels of a system - however there do exist solutions that work across some of the layers. An example of one of these solutions would be the Prisma library for Javascript, which provides unification across all database management functions into a single, simple to use library. Another example would be tRPC, another Javascript library which provides end-to-end type correction across backend function calls without needing an implementation of a REST interface. What’s common among these solutions as well is that they are already abstracted into separate libraries. Due to the nature of them being libraries, they are still required to be implemented for the system - which generally involves writing thousands of lines of similar code across the thousands of implementations of itself.
 
 ### Proposed Solution
 
-Our proposed solution to this problem is by creating a generalized web focused domain specific language that allows you to modularize a web system into components. By doing this we hope to assist in speeding up both website design & deployment, in addition to refactoring & maintainability (Luoma et al. 2004). Through this declarative language simple functionality such as email authentication can be abstracted into a module. This module then be applied to existing models, which would automatically add the relevant fields and functions onto the models. Via this form of encapsulation, we can easily abstract features and functionality into their own modules. Also, we propose field level encapsulation in order to abstract several fields inside a database model into a single virtual field. For instance a password field may have a password hash and password salt linked to it as an underlying logical field. This as a extension can allow only relevant data to be automatically mapped / visible when defining APIs. And lastly, easy data mapping and type inference is necessary for greatly reducing web system boilerplate code, which we solve by creating custom syntax or mapping data and using a type inference system to automatically generate the necessary code.
+Our proposed solution to this problem is by creating a generalized web focused domain specific language that allows you to modularize a web system into components. By doing this we hope to assist in speeding up both website design & deployment, in addition to refactoring & maintainability. Through this declarative language simple functionality such as email authentication can be abstracted into a module. This module then be applied to existing models, which would automatically add the relevant fields and functions onto the models. Via this form of encapsulation, we can easily abstract features and functionality into their own modules. Also, we propose field level encapsulation in order to abstract several fields inside a database model into a single virtual field. For instance a password field may have a password hash and password salt linked to it as an underlying logical field. This as a extension can allow only relevant data to be automatically mapped / visible when defining APIs. And lastly, easy data mapping and type inference is necessary for greatly reducing web system boilerplate code, which we solve by creating custom syntax or mapping data and using a type inference system to automatically generate the necessary code.
 
 This in addition can provide future support for multiple languages / implementations and theoretically allows the language to be transpiled into another language of choice, specifically one capable of building a web system.
 
@@ -39,54 +39,29 @@ In compiled languages like C# or Java, creating a mapped type requires defining 
 
 In our language, creating a mapped type is a simple as doing:
 
-```
-fn getSelf(): infer SelfPublicData {
-    return this excluding password, isAdmin;
-}
-```
+<CodeBlock 
+    language="rust"
+    title="Creating A Mapped Type"
+    src="declarative-webs-systems-higher-level-programming-languages/1"
+/>
 
-In this example, the function getSelf is defined inside the type User, so "this" just becomes the user data (similar to C# or Java). The "excluding" keyword takes the value before it (must be an object type, rather than a primitive), and a comma separated list of field names after it, and generates a new anonymous type with the fields removed from the object.
+In this example, the function `getSelf` is defined inside the type `User`, so `this` just becomes the user data (similar to C# or Java). The `excluding` keyword takes the value before it (must be an object type, rather than a primitive), and a comma separated list of field names after it, and generates a new anonymous type with the fields removed from the object.
 
-Afterwards, the anonymous type may be given a public name using the "infer" keyword in the function arguments or return type. In this example, the newly created anonymous type is given the name "PublicSelfData" which can then be referenced in other places in the code.
+Afterwards, the anonymous type may be given a public name using the `infer` keyword in the function arguments or return type. In this example, the newly created anonymous type is given the name `PublicSelfData` which can then be referenced in other places in the code.
 
 ### Data Encapsulation
 
-One major aspect of abstraction in any programming language is data and logic encapsulation. Although logic encapsulation is still often possible in web systems using abstraction, data encapsultion at the database level is impossible. For example, if you have a "password" field in your user, it would require both a password hash and password salt fields to be present in the database. This means that both fields must be manually defined in the database models, as well as manually considered when doing data mapping, among other things.
+One major aspect of abstraction in any programming language is data and logic encapsulation. Although logic encapsulation is still often possible in web systems using abstraction, data encapsultion at the database level is impossible. For example, if you have a password field in your user, it would require both a password hash and password salt fields to be present in the database. This means that both fields must be manually defined in the database models, as well as manually considered when doing data mapping, among other things.
 
 In our language, we took inspiration from how some programmable CMSs (content management systems) approach this problem, by allowing encapsulation of fields. An example would be the password field shown below:
 
-```
-field Password {
-    hash: String;
-    salt: String;
+<CodeBlock 
+    language="rust"
+    title="Field Encapsulation Example"
+    src="declarative-webs-systems-higher-level-programming-languages/2"
+/>
 
-    new(password: String) {
-        this.hash = randomString(16);
-        this.salt = sha256(password + salt);
-    }
-
-    update(password: String) {
-        this.hash = randomString(16);
-        this.salt = sha256(password + salt);
-    }
-
-    read() {
-        # Nothing this is the alternative to null / undefined, and acts similar to JS's undefined
-        return nothing;
-    }
-
-    delete() {
-        # This function is optional
-    }
-
-    fn check(password: String) {
-        let hash = sha256(password + this.salt);
-        return hash == this.hash;
-    }
-}
-```
-
-A "field" is like a struct, except it can be used on a database model. It contains child fields inside, which then get flattened out in the database. So for example, if a database model contains "password: Password", then when transpiled, it becomes "password_hash: String" and "password_salt: String".
+A `field` is like a struct, except it can be used on a database model. It contains child fields inside, which then get flattened out in the database. So for example, if a database model contains `password: Password`, then when transpiled, it becomes `password_hash: String` and `password_salt: String`.
 
 Just like classes in other languages such as C++ and C# have lifecycle functions (constructor and deconstructor), a field in this language has 4 lifecycle functions (new, update, read, and delete). New and delete are effectively the constructor and deconstructor respectively, however update and read allow for mapping the inner data to the outside, allowing for easy encapsulation. Each lifecycle function has a default implementation unless specified manually.
 
@@ -96,95 +71,45 @@ While in other languages, something as complex as user authentication would requ
 
 We start with the following shared mixin:
 
-```
-mixin EmailAuthentication {
-    email: String;
-    password: Password;
+<CodeBlock 
+    language="rust"
+    title="Email Authentication Mixin Example"
+    src="declarative-webs-systems-higher-level-programming-languages/3"
+/>
 
-    model Session;
-
-    extend Session {
-        user: Self;
-    }
-
-    static fn findUserByEmailPassword(email: String, password: String): Self? {
-        let item = find Self where email = email;
-        if item and item.password.check(password) {
-            return item;
-        } else {
-            return nothing;
-        }
-    }
-
-    static fn authenticate(email: String, password: String, session: cookie Session?) {
-        let user = findUserByEmailPassword(email, password);
-        if user {
-            let new_session = create Session with {
-                self = self,
-            };
-            session = new_session;
-        }
-    }
-
-    static fn logout(session: cookie Session?) {
-        session = nothing;
-    }
-}
-```
-
-A mixin in this language is similar to a trait in Rust, except it allows injecting custom fields onto the type as well. You can implement a mixin onto a database model, and it will add all the fields and functions onto that model. If the mixin requires a type argument (in this case "Session"), then the model will either be created or passed in when implementing the mixin.
+A `mixin` in this language is similar to a `trait` in Rust, except it allows injecting custom fields onto the type as well. You can implement a mixin onto a database model, and it will add all the fields and functions onto that model. If the mixin requires a type argument (in this case `Session`), then the model will either be created or passed in when implementing the mixin.
 
 Then, the implementation may look like the following:
 
-```
-model User {
-    firstName: String;
-    lastName: String;
-    isAdmin: Boolean;
+<CodeBlock 
+    language="rust"
+    title="Email Authentication Implementation Example"
+    src="declarative-webs-systems-higher-level-programming-languages/4"
+/>
 
-    fn getSelf(): infer SelfPublicData {
-        return this excluding password, isAdmin;
-    }
-}
+Models called `User` and `UserSession` are created, and then `User` is extended with `EmailAuthentication` (the mixin shown above), `UserSession` is passed in as the `Session` argument for the mixin, which extends `UserSession` with the relevant fields. If `UserSession` wasn’t passed in, then a private type would be automatically created instead. However, in this case it’s useful to have `UserSession` be accessible as it’s necessary later on.
 
-model UserSession;
-
-extend User with EmailAuthentication {
-    model Session = UserSession;
-}
-```
-
-Models called User and UserSession are created, and then User is extended with EmailAuthentication (the mixin shown above), UserSession is passed in as the Session argument for the mixin, which extends UserSession with the relevant fields. If UserSession wasn’t passed in, then a private type would be automatically created instead. However, in this case it’s useful to have UserSession be accessible as it’s necessary later on.
-
-The most important part of this is that something like EmailAuthentication can be implemented with only a few lines of code, and it automatically propagates all the new fields through the inferred types. This means that architecture modules like this can be included in either the standard library or third party libraries, and easily added to your current web system.
+The most important part of this is that something like `EmailAuthentication` can be implemented with only a few lines of code, and it automatically propagates all the new fields through the inferred types. This means that architecture modules like this can be included in either the standard library or third party libraries, and easily added to your current web system.
 
 Lastly, the api side of the language:
 
-```
-api MyApi {
-    global cookie session: UserSession?;
-    global user = session?.user;
-    global admin = user and user.isAdmin ? user : nothing;
+<CodeBlock 
+    language="rust"
+    title="API Example"
+    src="declarative-webs-systems-higher-level-programming-languages/5"
+/>
 
-    mutation User::authenticate(input, input, session) as authenticate;
-
-    when user {
-        query user.getSelf()
-    }
-}
-```
-
-The "api" keyword lets the programmer decleratively specify the external api to the web system. Everything inside "api" is nonlinear (the line order doesn’t matter). Api can declare variables that are then used when accessing api functions, e.g. "global cookie session: UserSession?;" declares a cookie of type UserSession that can be passed in or skipped, "global user = session?.user;" declares a variable called "user" that has a value based on the session, and so on. "mutation" and "query" specify mutations and queries for the external RPC (Remote Procedure Call) api, like with any other RPC api. The "when" keyword specifies conditions for when mutatios and queries inside should be available. When transpiled down, all the "when" conditions become if statements placed individually inside the relevant procedures, throwing an error if they don’t succeed.
+The `api` keyword lets the programmer decleratively specify the external api to the web system. Everything inside `api` is nonlinear (the line order doesn’t matter). Api can declare variables that are then used when accessing api functions, e.g. `global cookie session: UserSession?;` declares a cookie of type `UserSession` that can be passed in or skipped, `global user = session?.user;` declares a variable called `user` that has a value based on the session, and so on. `mutation` and `query` specify mutations and queries for the external RPC (Remote Procedure Call) api, like with any other RPC api. The `when` keyword specifies conditions for when mutations and queries inside should be available. When transpiled down, all the `when` conditions become if statements placed individually inside the relevant procedures, throwing an error if they don’t succeed.
 
 ## Further Discussion
 
 To summarise our research, we were able to effectively reduce both the complexity and line count of written code compared to existing systems - while continuing to provide the same functional outcome. Due to time limitations however, we weren’t able to actively implement a compiler or interpreter - thus our results have been purely based upon speculative systems, without actually running the code. This has caused difficulties in gathering feedback and results from other parties, as there is only so much that unrunnable code can provide besides syntax and documentation of said syntax. We also saw this as an active oversight while developing the research questions and objectives, and have thus solely focused on proofing that the solution would work regardless of being run/written or not. Due to the prototype nature of the topic, these were within acceptable boundaries, and would be resolved in further re-iterations as we finalise more of the complex inner functionality.
 
-In terms of comparable results, we were able to qualitatively compare the difference in line count between our proposed system and existing systems. This was especially apparent in sections of code that are generally reused and re-implemented for most current systems, which allowed those components to be completely isolated into separate modules that would either be included in the standard library or third party packages. Also, due to the amount of inference that the syntax allows, writing code in this language is significantly less verbose and therefore easier to read by other people. However, we did face some shortfalls with how declarative we could make it compared to what we’d initially hoped. While it does offer a significant advantage over other languages by using mix-ins, it is still fairly imperative (Fahland et al. 2009). This can also be seen in the feedback we received regarding complexity, as some reviews stated that the current version of the language - while it offers declarative features to a degree, still does not meet a purely declarative state, compared to other languages such as Terraform (Howard 2022). 
+In terms of comparable results, we were able to qualitatively compare the difference in line count between our proposed system and existing systems. This was especially apparent in sections of code that are generally reused and re-implemented for most current systems, which allowed those components to be completely isolated into separate modules that would either be included in the standard library or third party packages. Also, due to the amount of inference that the syntax allows, writing code in this language is significantly less verbose and therefore easier to read by other people. However, we did face some shortfalls with how declarative we could make it compared to what we’d initially hoped. While it does offer a significant advantage over other languages by using mixins, it is still fairly imperative. This can also be seen in the feedback we received regarding complexity, as some reviews stated that the current version of the language - while it offers declarative features to a degree, still does not meet a purely declarative state, compared to other languages such as Terraform. 
 
 ### Criticisms
 
-There are also quite a few issues that have been highlighted both through both feedback and our initial testing. We found that the current language is fairly specific with what it supports - for example, there isn’t a method to abstract cookies away and choose to use sessions or local storage headers instead, the language forces cookies instead, or using something other than an RPC style API. The lanuguage also currently wouldn’t allow for the implementation of various decentralized architecture types and related features such as micro-services, database sharding only allowing monolythic applications (Gos & Zabierowski 2020). As stated previously it is also not as declarative as initially hoped, with some syntax and features still following an imperative-based scheme. Following on from that, the only truly declarative part of the language was the API system, showing that all other systems lacked full declarative support. Another factor was that we didn’t focus more on the elimination of functions and data mapping, rather simplifying it instead.
+There are also quite a few issues that have been highlighted both through both feedback and our initial testing. We found that the current language is fairly specific with what it supports - for example, there isn’t a method to abstract cookies away and choose to use sessions or local storage headers instead, the language forces cookies instead, or using something other than an RPC style API. The lanuguage also currently wouldn’t allow for the implementation of various decentralized architecture types and related features such as micro-services, database sharding only allowing monolithic applications. As stated previously it is also not as declarative as initially hoped, with some syntax and features still following an imperative-based scheme. Following on from that, the only truly declarative part of the language was the API system, showing that all other systems lacked full declarative support. Another factor was that we didn’t focus more on the elimination of functions and data mapping, rather simplifying it instead.
 
 ## Conclusion
 

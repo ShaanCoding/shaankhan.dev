@@ -1,0 +1,3 @@
+fn getSelf(): infer SelfPublicData {
+    return this excluding password, isAdmin;
+}

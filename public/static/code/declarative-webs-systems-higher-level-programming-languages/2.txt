@@ -1,0 +1,28 @@
+field Password {
+    hash: String;
+    salt: String;
+
+    new(password: String) {
+        this.hash = randomString(16);
+        this.salt = sha256(password + salt);
+    }
+
+    update(password: String) {
+        this.hash = randomString(16);
+        this.salt = sha256(password + salt);
+    }
+
+    read() {
+        # Nothing this is the alternative to null / undefined, and acts similar to JS's undefined
+        return nothing;
+    }
+
+    delete() {
+        # This function is optional
+    }
+
+    fn check(password: String) {
+        let hash = sha256(password + this.salt);
+        return hash == this.hash;
+    }
+}

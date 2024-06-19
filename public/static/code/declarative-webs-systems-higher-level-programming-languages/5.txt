@@ -1,0 +1,11 @@
+api MyApi {
+    global cookie session: UserSession?;
+    global user = session?.user;
+    global admin = user and user.isAdmin ? user : nothing;
+
+    mutation User::authenticate(input, input, session) as authenticate;
+
+    when user {
+        query user.getSelf()
+    }
+}

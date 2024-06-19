@@ -1,0 +1,15 @@
+model User {
+    firstName: String;
+    lastName: String;
+    isAdmin: Boolean;
+
+    fn getSelf(): infer SelfPublicData {
+        return this excluding password, isAdmin;
+    }
+}
+
+model UserSession;
+
+extend User with EmailAuthentication {
+    model Session = UserSession;
+}
