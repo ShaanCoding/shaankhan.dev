@@ -1,0 +1,20 @@
+START
+    Select a polygon P from the list
+    Make a node N in the BSP tree, and add P to the list of polygons at that node.
+
+    For each other polygon in the list:
+        If that polygon is wholly in front of the plane containing P:
+            Move that polygon to the list of nodes in front of P.
+        If that polygon is wholly behind the plane containing P:
+            Move that polygon to the list of nodes behind P.
+        If that polygon is intersected by the plane containing P:
+            Split it into two polygons and move them to the respective lists of polygons behind and in front of P.
+        If that polygon lies in the plane containing P:
+            Add it to the list of polygons at node N.
+
+    Apply this algorithm to the list of polygons in front of P.
+    Apply this algorithm to the list of polygons behind P.
+
+    For each polygon P from list:
+        Initiate Wave Function Collapse
+END
