@@ -34,25 +34,33 @@ The history of how the magic number `0x5f3759df`, which is used in the Fast Inve
 
 ## How Does The Code Work?
 
-The FastInvSqrt was created to tackle a reappearing problem in computer graphics, needing to compute a normalized vector. If you have a vector, to normalize it, you compute: `$\frac{1}{\sqrt{x^2+y^2+z^2}}$`. For the initial good guess, we want to know what `$\frac{1}{\sqrt{x}}$` or `$x^{-\frac{1}{2}}$` is equal to. We begin by dividing our input floating-point number by two and storing it in the variable “`xhalf`”. 
+The FastInvSqrt algorithm was developed to address a common problem in computer graphics: the need to compute the normalized vector of a given vector $$(x, y, z)$$. Normalizing involves calculating $$\frac{1}{\sqrt{x^2 + y^2 + z^2}}$$.
 
-The line of code `i = 0x5f3759df - (i>>1)` computes this initial guess $y_0$, roughly by multiplying the exponent for $x$ by $-\frac{1}{2}$, and then picking bits to minimize error. `i>>1` is the shift right operator in the programming language C, which shifts the bits of an integer right in one place, dropping the least significant bit, effectively dividing by $2$. This divides the number in half, but also has the unintended consequence of adding a random bit onto the "left" of the exponent that should have been part of the other half. 
+To begin, the algorithm starts with an initial approximation for $$x^{-\frac{1}{2}}$$. It achieves this by halving the input floating-point number and storing it as `xhalf`.
 
-`0x5f3759df` is a hexadecimal number, just a constant. In decimal form, it is `1,597,463,007`.  When we take our new $y_0$ value and subtract it from the hexadecimal constant above `(0x5f3759df - y0)`, the bits line up in such a way that the exponent half of $y$ goes from positive to negative. The "extra bit" that was pushed into the exponent gets put back into the other half, and the other half pushes over to make room for it. 
+The line of code `i = 0x5f3759df - (i>>1)` computes an initial guess $$y_0$$ by manipulating the exponent bits of $$x$$ to approximately equal $$-\frac{1}{2}$$. The shift operation `(i>>1)` divides the integer $$i$$ by 2 in a bitwise manner, inadvertently modifying the exponent bits of the floating-point representation.
 
-We take the “$x$” variable and re-interpret that integer as a floating point number. Now it is finally time to compute one iteration of Newton's method of approximation to make our initial guess even better. Newton's root finding method can be shown as:
+The hexadecimal constant `0x5f3759df` (equivalent to 1,597,463,007 in decimal) is a predefined constant used in this calculation. Subtracting our initial guess $$y_0$$ from this constant adjusts the bits to align the exponent correctly for the inverse square root calculation.
 
-`$y_{n+1} = y_n - \frac{f(y_n)}{f'(y_n)}$. For the $f(y)$ given this can be simplified to:`
+Next, the algorithm reinterprets the integer $$x$$ as a floating-point number. This sets the stage for applying one iteration of Newton's method to refine the initial guess. Newton's method iteratively improves an estimate $$y_n$$ using the formula:
 
-$y_{n+1} = \frac{1}{2}y_n(3-xy^2_n)$. Which corresponds to our line:
+$$[ y_{n+1} = y_n - \frac{f(y_n)}{f'(y_n)} ]$$
 
-\[x = x * (1.5f - xhalf*x*x)\]\. Where x is the initial guess. End result is a number really close to the real answer, we get a rough approximation for `$ x^{-\frac{1}{2}} $` - the inverse square root.
+For the specific function $$f(y) = y^{-\frac{1}{2}} - x$$, the iteration simplifies to:
+
+$$[ y_{n+1} = \frac{1}{2} y_n \left( 3 - x \cdot y_n^2 \right) ]$$
+
+This is implemented in the line:
+
+$$[ x = x \cdot (1.5f - xhalf \cdot x \cdot x) ]$$
+
+After iterations, this algorithm yields an approximation very close to $$x^{-\frac{1}{2}}$$, providing an efficient computation of the inverse square root.
 
 ## Testing Quake's Fast Inverse Square Root
 
 ![Graph of Newton's Method](/static/images/exploring-quake-3s-fast-inverse-square-root/newtonsMethod.png)
 
-Most of the lines of code in the function are assignments/arithmetic which cannot be graphed aside from the final line as mentioned in the section *‘How does the code work’*. The image above displays the generated graph for the final line of the function, one iteration of Newton’s method where ‘$y$’ symbolizes the first estimate and ‘$f(y)$’ symbolizes the final returned estimate.
+Most of the lines of code in the function are assignments/arithmetic which cannot be graphed aside from the final line as mentioned in the section *‘How does the code work’*. The image above displays the generated graph for the final line of the function, one iteration of Newton’s method where ‘$$y$$’ symbolizes the first estimate and ‘$$f(y)$$’ symbolizes the final returned estimate.
 
 ### Testing Quake's Fast Inverse Square Root
 
@@ -68,7 +76,7 @@ To test the accuracy of Quake’s fast inverse square root, the code was first t
 | 3 | 0.258141     | 1.96166        | 1.96821    | 0.00204742       |
 | 4 | 0.111483     | 2.99124        | 2.99499    | 0.00375186       |
 
-As you can see, the Quake estimate and the true value for the five random numbers have a difference of less than $1e-2 (0.01)$, making Quake's function accurate to 2dp. 
+As you can see, the Quake estimate and the true value for the five random numbers have a difference of less than $$1e-2 (0.01)$$, making Quake's function accurate to 2 decimal points. 
 
 ## Conclusion
 
