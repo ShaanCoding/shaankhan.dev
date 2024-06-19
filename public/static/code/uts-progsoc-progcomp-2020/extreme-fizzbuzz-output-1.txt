@@ -1,0 +1,14 @@
+11
+EvenTripleQuad
+13
+Even
+Triple
+EvenQuad
+17
+EvenTriple
+19
+EvenQuad
+Triple
+Even
+23
+EvenTripleQuad

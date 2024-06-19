@@ -15,6 +15,7 @@ import {
     SiRust,
     SiDocker,
     SiNginx,
+    SiGnubash,
 } from 'react-icons/si'
 
 export const languageIcons: { [key: string]: IconType } = {
@@ -34,6 +35,7 @@ export const languageIcons: { [key: string]: IconType } = {
     text: SiMarkdown,
     dockerfile: SiDocker,
     nginx: SiNginx,
+    bash: SiGnubash
 }
 
 export const getLanguageIcon = (language: string): JSX.Element | null => {

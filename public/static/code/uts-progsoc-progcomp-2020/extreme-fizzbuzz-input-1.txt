@@ -1,0 +1,4 @@
+3 10 24
+2 Even
+3 Triple
+4 Quad
