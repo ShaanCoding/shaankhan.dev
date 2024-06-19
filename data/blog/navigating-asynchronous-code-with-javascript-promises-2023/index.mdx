@@ -17,7 +17,10 @@ JavaScript is a powerful and versatile programming language, but it can also be 
 
 JavaScript code is executed in a single thread, meaning that it can only do one thing at a time. This can be a problem when dealing with long-running tasks or operations that need to happen in parallel. Callbacks were one of the first solutions for handling asynchronous code in JavaScript, but they can quickly lead to what's known as "callback hell" - a situation where code becomes hard to read, understand and maintain.
 
-![An example of callback hell, where multiple asynchronous operations lead to hard to read code](/static/images/navigating-asynchronous-code-with-javascript-promises-2023/callbackHell.png)
+<CodeBlock language="javascript"
+fileName="callback-hell-example.js"
+src="navigating-asynchronous-code-with-javascript-promises-2023/callback-hell"
+/>
 
 Promises were introduced as a way to make dealing with asynchronous code in JavaScript more manageable. A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation, and its resulting value. They provide a way to handle asynchronous code in a more structured, readable and maintainable way.
 

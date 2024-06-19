@@ -1,0 +1,35 @@
+function fetchUser(userId, callback) {
+  setTimeout(() => {
+    callback({ id: userId, name: "John Doe" });
+  }, 2000);
+}
+
+function fetchPosts(user, callback) {
+  setTimeout(() => {
+    callback([
+      { id: 1, title: "Post 1", userId: user.id },
+      { id: 2, title: "Post 2", userId: user.id },
+      { id: 3, title: "Post 3", userId: user.id }
+    ]);
+  }, 2000);
+}
+
+function fetchComments(post, callback) {
+  setTimeout(() => {
+    callback([
+      { id: 1, text: "Comment 1", postId: post.id },
+      { id: 2, text: "Comment 2", postId: post.id },
+      { id: 3, text: "Comment 3", postId: post.id }
+    ]);
+  }, 2000);
+}
+
+fetchUser(1, user => {
+  fetchPosts(user, posts => {
+    posts.forEach(post => {
+      fetchComments(post, comments => {
+        console.log(comments);
+      });
+    });
+  });
+});
