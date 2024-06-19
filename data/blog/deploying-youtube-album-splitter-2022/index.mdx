@@ -55,10 +55,11 @@ After finalizing the code of my Youtube Album Splitter tool, I decided to deploy
 
 Here's a step-by-step guide on how I did it:
 
-1. I created a new droplet on DigitalOcean and chose the App Platform product.
-2. I connected to my droplet using SSH and created a new directory for my project.
-3. I then clone my Youtube Album Splitter code into that directory.
-4. I created a new file called Dockerfile and added the following code to it:
+<CodeBlock 
+    src="deploying-youtube-album-splitter-2022/deployment-steps" 
+    title="Deployment Steps"
+    language="markdown"
+/>
 
 <CodeBlock
     language="dockerfile"
@@ -81,18 +82,23 @@ Here's a step-by-step guide on how I did it:
 
 6. I then created a new file called .env and added the following code to it:
 
-```
-COOKIE = "YOUTUBE SESSION COOKIE"
-```
+<CodeBlock 
+    src="deploying-youtube-album-splitter-2022/env"
+    language="text"
+    showLineNumbers={false}
+    terminal
+/>
 
 This helps me export secret keys & sensitive data outside of the codebase avoiding accidental leaks of API keys as well as ease of customization
 
 7. I then ran the following command to build my Docker image:
 
-```
-docker compose build
-docker compose build -d
-```
+<CodeBlock 
+    src="deploying-youtube-album-splitter-2022/docker-compose-commands"
+    language="text"
+    showLineNumbers={false}
+    terminal
+/>
 
 This created a new Docker image for both the frontend and backend, each running on separate instances.
 

@@ -1,0 +1,4 @@
+I created a new droplet on DigitalOcean and chose the App Platform product.
+I connected to my droplet using SSH and created a new directory for my project.
+I then clone my Youtube Album Splitter code into that directory.
+I created a new file called Dockerfile and added the following code to it:
