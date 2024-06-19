@@ -29,7 +29,7 @@ This simple task has therefore been offered to you as a sanity test: write a pro
 
 **Input Format**
 
-A single integer, N, where 2 \<= N \<= 40. This will be the size of your square.
+A single integer, N, where $$2 \leq N \leq 40$$. This will be the size of your square.
 
 **Constraints**
 
@@ -41,9 +41,9 @@ There will be N horizontal lines in total.
 
 The first and Nth lines will have asterisks (*) occupying every odd-numbered position on the line from positions 1 to (2N - 1). All even-numbered positions will be filled with SPACEs.
 
-For all other lines (if any), only positions 1 and (2N - 1) will have asterisks. All other positions will be filled with SPACEs.
+For all other lines (if any), only positions $$1$$ and $$2N - 1$$ will have asterisks. All other positions will be filled with SPACEs.
 
-There are no SPACEs nor TABs following the (2N - 1)th position on each line.
+There are no SPACEs nor TABs following the $$(2N - 1)th$$ position on each line.
 
 **Sample Input 0**
 
@@ -88,11 +88,9 @@ src="uts-progsoc-progcomp-2020/ascii-squares-solution"
 
 This was the second challenge of the competition and wow! This was a lot more challenging. Whilst the first one was very trivial, boasting a 100% completion rate for all contestants, this one quickly shattered the idea that we could breeze through this competition in 30 or so minutes. In this challenge, which was shockingly similar to some HSC Physics questions I had to do last year, was to calculate how far Mario could jump given a running speed, jump speed and target distance. Whilst I may have been going with a more elegant approach initially, getting my pen and paper out and drafting up a general formula for it, my teammates went for a more "direct" approach, calculating the player's movement each "tick". Whilst I did draft up a formula for it in time, deriving it from some projectile motion equations:
 
-\\[v = u + at\\]
-
-\\[v^2 = u^2 + 2as\\]
-
-\\[s = ut + 1/2 at^2\\]
+- $$v = u + at$$
+- $$v^2 = u^2 + 2as$$
+- $$s = ut + 1/2 at^2$$
 
 By the time I derived the equation, my teammates had already solved the problem and moved on to the next challenge. During this challenge, I came to realize, whilst my way would lead to a nicer and albeit faster solution. In a time-based competition, this was not worth doing, and the cheap but dirty solution was the more ideal solution.
 
@@ -127,7 +125,7 @@ None
 
 **Output Format**
 
-Print the distance and height of Mario's jump after each second as a pair of numbers on a new line, starting at one second. Repeat each second until Mario lands (height reaches zero or below). Use integers for calculating results. For each target, output "yes" if Mario is within 3 meters of the target when he lands `(height <= zero)`, else print "no".
+Print the distance and height of Mario's jump after each second as a pair of numbers on a new line, starting at one second. Repeat each second until Mario lands (height reaches zero or below). Use integers for calculating results. For each target, output "yes" if Mario is within 3 meters of the target when he lands $$height \leq zero$$, else print "no".
 
 **Sample Input 0**
 
@@ -161,7 +159,7 @@ Marks and Toys was another refreshing simple and quick question we completed in 
 
 Mark and Jane are very happy after having their first child. Their son loves toys, so Mark wants to buy some. There are a number of different toys lying in front of him, tagged with their prices. Mark has only a certain amount to spend, and he wants to maximize the number of toys he buys with this money.
 
-Given a list of prices and an amount to spend, what is the maximum number of toys Mark can buy? For example, if \\(prices = [1,2,3,4]\\) and Mark has \\(k=7\\) to spend, he can buy items \\([1,2,3]\\) for \\(6\\), or \\([3,4]\\) for \\(7\\) units of currency. He would choose the first group of \\(3\\) items.
+Given a list of prices and an amount to spend, what is the maximum number of toys Mark can buy? For example, if $$prices = [1,2,3,4]$$ and Mark has $$k=7$$ to spend, he can buy items $$[1,2,3]$$ for $$6$$, or $$[3,4]$$ for $$7$$ units of currency. He would choose the first group of $$3$$ items.
 
 **Function Description**
 
@@ -174,16 +172,15 @@ maximumToys has the following parameter(s):
 
 **Input Format**
 
-The first line contains two integers, \\(n\\) and \\(k\\), the number of priced toys and the amount Mark has to spend.
-The next line contains \\(n\\) space-separated integers \\(prices[i]\\).
+The first line contains two integers, $$n$$ and $$k$$, the number of priced toys and the amount Mark has to spend.
+The next line contains $$n$$ space-separated integers $$prices[i]$$.
 
 **Constraints**
 
-\\[1 \leq n \leq 10^5\\]
-\\[1 \leq k \leq 10^9\\]
-\\[1 \leq prices[i] \leq 10^9\\]
-
-A toy can't be bought multiple times.
+- $$1 \leq n \leq 10^5$$
+- $$1 \leq k \leq 10^9$$
+- $$1 \leq prices[i] \leq 10^9$$
+- A toy can't be bought multiple times.
 
 **Output Format**
 
@@ -204,7 +201,7 @@ An integer that denotes the maximum number of toys Mark can buy for his son.
 
 **Explanation**
 
-He can buy only \\(4\\) toys at most. These toys have the following prices: \\([1,12,5,10]\\).
+He can buy only $$4$$ toys at most. These toys have the following prices: $$[1,12,5,10]$$.
 
 ### Solution
 
@@ -315,31 +312,29 @@ This question, whilst perhaps being trivial for someone strong in DSA was defini
 
 ### Jesse and Cookies Question
 
-Jesse loves cookies. He wants the sweetness of all his cookies to be greater than value \\(K\\). To do this, Jesse repeatedly mixes two cookies with the least sweetness. He creates a special combined cookie with:
+Jesse loves cookies. He wants the sweetness of all his cookies to be greater than value $$K$$. To do this, Jesse repeatedly mixes two cookies with the least sweetness. He creates a special combined cookie with:
 
-\\(sweetness = (1 * Least sweet cookie + 2 * 2nd Least sweet cookie)\\).
+$$sweetness = (1 \times Least\ sweet\ cookie + 2 \times 2nd\ Least\ sweet\ cookie)$$.
 
-He repeats this procedure until all the cookies in his collection have a sweetness \\(\geq K\\).
+He repeats this procedure until all the cookies in his collection have a sweetness $$\geq K$$.
 
-You are given Jesse's cookies. Print the number of operations required to give the cookies a sweetness \\(\geq K\\). Print \\(-1\\) if this isn't possible.
+You are given Jesse's cookies. Print the number of operations required to give the cookies a sweetness $$\geq K$$. Print $$-1$$ if this isn't possible.
 
 **Input Format**
 
-The first line consists of integers \\(N\\), the number of cookies and \\(K\\), the minimum required sweetness, separated by a space.
-The next line contains \\(N\\) integers describing the array \\(A\\) where \\(A_i\\) is the sweetness of the `(i^{th})` cookie in Jesse's collection.
+The first line consists of integers $$N$$, the number of cookies and $$K$$, the minimum required sweetness, separated by a space.
+The next line contains $$N$$ integers describing the array $$A$$ where $$A_i$$ is the sweetness of the $$i_{th}$$ cookie in Jesse's collection.
 
 **Constraints**
 
-\\[1 \leq N \leq 10^6\\]
-
-\\[0 \leq K \leq 10^9\\]
-
-\\[0 \leq A_i \leq 10^6\\]
+- $$1 \leq N \leq 10^6$$
+- $$0 \leq K \leq 10^9$$
+- $$0 \leq A_i \leq 10^6$$
 
 **Output Format**
 
-Output the number of operations that are needed to increase the cookie's sweetness \\(\geq K\\).
-Output \\(-1\\) if this isn't possible.
+Output the number of operations that are needed to increase the cookie's sweetness $$\geq K$$.
+Output $$-1$$ if this isn't possible.
 
 **Sample Input**
 
