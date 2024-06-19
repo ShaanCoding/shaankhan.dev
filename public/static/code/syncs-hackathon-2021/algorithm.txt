@@ -1,0 +1,11 @@
+The video file is firstly uploaded from our frontend into our backend
+We then split up the file, extracting the audio in FFMPEG
+After the audio is finally extracted, we then upload the audio file to the google cloud platform in the form of a bucket
+Once finally uploaded, we then execute a python script running Google speech-to-text AI model transcribing the content of the lecture
+Once we have gotten the transcription, we then pass this returned data into the SassBook API, returning summarized texts
+We return the SassBook response as an output
+We additionally parse the SassBook response through a question generation natural-language processing model, generating corresponding questions and answers We then pass this via JSON to our ANKI FlashDeck generator, which converts these Questions + Answers into related flashcards as an ANKI deck for spaced repetition practice
+We then additionally run a word frequency counter on the google speech-to-text transcription
+We first pre-process the clip removing filler words such as "and," "our," "uh," and "uhms."
+We then run a word frequency calculator determining the most relevant words/phrases and adding this to a tag list
+This is submitted to the frontend with a REST API
