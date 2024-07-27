@@ -94,10 +94,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ThemeProviders>
                     <Analytics />
                     <SectionContainer>
-                        <div className="flex h-full flex-col justify-between font-sans">
+                        <div className="flex flex-col min-h-screen font-sans">
                             <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                                 <Header />
-                                <main className="mb-auto">{children}</main>
+                                <main className="flex-grow">{children}</main>
                             </SearchProvider>
                             <Footer />
                         </div>
