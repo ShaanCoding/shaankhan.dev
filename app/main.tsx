@@ -46,7 +46,7 @@ export default function Home({ posts }) {
                         >
                             tracksplitter.com
                         </Link>
-                        <span> - 🚧 Under Construction</span>
+                        <span> - 🔋 Live</span>
                     </div>
                     <div>
                         <Link
