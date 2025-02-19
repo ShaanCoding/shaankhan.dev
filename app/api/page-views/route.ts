@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
         redis.connect()
 
         const key = ['pageviews', 'projects', slug].join(':')
-        const pageViewCount = await redis.get(key) ?? 0
+        const pageViewCount = (await redis.get(key)) ?? 0
 
         return new NextResponse(JSON.stringify({ slug, pageViewCount }), {
             status: 200,

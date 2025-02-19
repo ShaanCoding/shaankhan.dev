@@ -9,11 +9,11 @@ import { allAuthors, allPages } from 'contentlayer/generated'
 import 'css/prism.css'
 import 'katex/dist/katex.css'
 import { GetStaticPaths, Metadata } from 'next'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { allCoreContent, coreContent, sortPosts } from 'pliny/utils/contentlayer'
 
 import { ReportView } from './view'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -80,7 +80,6 @@ export const generateStaticParams = async () => {
 
     return paths
 }
-
 
 // export const getStaticPaths: GetStaticPaths<Params> = async () => {
 //     const pagePaths = allPages.map((page) => ({

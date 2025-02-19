@@ -1,7 +1,7 @@
 ---
 title: 'Creating Identicons: A Journey in Procedural Image Generation'
 date: '2020-07-15'
-tags: ['Side Project', 'C#', 'Cryptography',]
+tags: ['Side Project', 'C#', 'Cryptography']
 summary: 'Exploring the creation of Identicons through procedural image generation and cryptographic techniques.'
 thumbnail: '/static/images/identicon-generator/banner.png'
 images: ['/static/images/identicon-generator/banner.png']
@@ -37,18 +37,22 @@ The code for this project was quite simple and straightforward, in fact, this en
 
 After deciding the scope of this project the features I wanted to be implemented included:
 
-- The ability to choose Identicon Size (Grid Dimensions)
-- The ability to do Salting (Optional)
-- The ability to do multiple rounds of Salting
-- The ability to add and modify the Username entry in live time
-- The ability to select and change the quality of the outputted Identicon
-- The ability to change the hashing algorithm between several popular hashing algorithms including (MD5, SHA-1, SHA-256, SHA-384, SHA-512)
+-   The ability to choose Identicon Size (Grid Dimensions)
+-   The ability to do Salting (Optional)
+-   The ability to do multiple rounds of Salting
+-   The ability to add and modify the Username entry in live time
+-   The ability to select and change the quality of the outputted Identicon
+-   The ability to change the hashing algorithm between several popular hashing algorithms including (MD5, SHA-1, SHA-256, SHA-384, SHA-512)
 
 ### Implementation Steps
 
 After deciding on this short scope, it became time to code this. After defining the appropriate variables or properties to store these user options and data we just had to follow the following steps:
 
-<CodeBlock src="identicon-generator/algorithm" title="Identicon Algorithm Pseudocode" language="markdown"/>
+<CodeBlock
+    src="identicon-generator/algorithm"
+    title="Identicon Algorithm Pseudocode"
+    language="markdown"
+/>
 
 After which the finished product is completed and an Identicon generator is created. Whilst this was a relatively simple project, from this project I learned a lot about basic cryptography concepts as well as finding ways to better visualize them. Excluding being a pretty neat gimmick on your website, many sites have opted to use these to help minimize fraud, through impersonation attacks. As each address has a unique photo or Identicon associated with it.
 

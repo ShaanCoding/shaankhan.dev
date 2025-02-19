@@ -15,10 +15,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         const slug = body.slug
         const ip = req.ip ?? '127.0.0.1'
 
-        
         const hash = await generateHash(ip)
         const dedupKey = `deduplicate:${hash}:${slug}`
-        
+
         const redis = new Redis(process.env.REDIS_URL!, {
             lazyConnect: true,
         })

@@ -9,12 +9,15 @@ authors: ['shaancoding']
 layout: PostSimple
 ---
 
-
 ## Introduction
 
 The following code, which may have been written by John Carmack, was found when the Quake 3 source code was open-sourced:
 
-<CodeBlock src="exploring-quake-3s-fast-inverse-square-root/fast-inverse-square-root" title="Fast Inverse Square Root Function" language="c"/>
+<CodeBlock
+    src="exploring-quake-3s-fast-inverse-square-root/fast-inverse-square-root"
+    title="Fast Inverse Square Root Function"
+    language="c"
+/>
 
 Whilst most code looks complicated, this one even baffled most but the best software developers, whilst this wasn't originally created by John Carmack and was shown as early as in the late 80s, developers around the world struggled to understand how this piece of code functioned and more importantly why it was used.
 
@@ -60,23 +63,27 @@ After iterations, this algorithm yields an approximation very close to $$x^{-\fr
 
 ![Graph of Newton's Method](/static/images/exploring-quake-3s-fast-inverse-square-root/newtonsMethod.png)
 
-Most of the lines of code in the function are assignments/arithmetic which cannot be graphed aside from the final line as mentioned in the section *‘How does the code work’*. The image above displays the generated graph for the final line of the function, one iteration of Newton’s method where ‘$$y$$’ symbolizes the first estimate and ‘$$f(y)$$’ symbolizes the final returned estimate.
+Most of the lines of code in the function are assignments/arithmetic which cannot be graphed aside from the final line as mentioned in the section _‘How does the code work’_. The image above displays the generated graph for the final line of the function, one iteration of Newton’s method where ‘$$y$$’ symbolizes the first estimate and ‘$$f(y)$$’ symbolizes the final returned estimate.
 
 ### Testing Quake's Fast Inverse Square Root
 
 To test the accuracy of Quake’s fast inverse square root, the code was first translated into Python using NumPy. Then a new function, called true value, was coded to calculate the true inverse square root value. A random float number was generated and its inverse square root was computed using both the Quake function and the true value function. Both values as well as the difference between the two was stored in an array. This was done inside a loop to generate results for five random float numbers.
 
-<CodeBlock src="exploring-quake-3s-fast-inverse-square-root/python-benchmarks" title="Python Benchmarks" language="python"/>
+<CodeBlock
+    src="exploring-quake-3s-fast-inverse-square-root/python-benchmarks"
+    title="Python Benchmarks"
+    language="python"
+/>
 
-|   | Value Input | Quake Estimate | True Value | Difference/Error |
-|---|--------------|----------------|------------|------------------|
-| 0 | 0.996612     | 1.00001        | 1.0017     | 0.00169044       |
-| 1 | 0.441886     | 1.50236        | 1.50434    | 0.00197802       |
-| 2 | 0.131756     | 2.75325        | 2.75496    | 0.00171016       |
-| 3 | 0.258141     | 1.96166        | 1.96821    | 0.00204742       |
-| 4 | 0.111483     | 2.99124        | 2.99499    | 0.00375186       |
+|     | Value Input | Quake Estimate | True Value | Difference/Error |
+| --- | ----------- | -------------- | ---------- | ---------------- |
+| 0   | 0.996612    | 1.00001        | 1.0017     | 0.00169044       |
+| 1   | 0.441886    | 1.50236        | 1.50434    | 0.00197802       |
+| 2   | 0.131756    | 2.75325        | 2.75496    | 0.00171016       |
+| 3   | 0.258141    | 1.96166        | 1.96821    | 0.00204742       |
+| 4   | 0.111483    | 2.99124        | 2.99499    | 0.00375186       |
 
-As you can see, the Quake estimate and the true value for the five random numbers have a difference of less than $$1e-2 (0.01)$$, making Quake's function accurate to 2 decimal points. 
+As you can see, the Quake estimate and the true value for the five random numbers have a difference of less than $$1e-2 (0.01)$$, making Quake's function accurate to 2 decimal points.
 
 ## Conclusion
 

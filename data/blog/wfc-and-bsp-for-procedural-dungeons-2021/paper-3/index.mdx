@@ -1,8 +1,8 @@
 ---
 title: 'Paper 3 - Implementing Procedural Dungeon Generation In Top-Down Games Using Wave Function Collapse (WFC) & Binary Space Partitioning (BSP)'
 date: '2021-03-21'
-tags: ['Side Project',]
-summary: "In this paper, we will introduce & explore a solution to creating humanized realistic dungeons or maps in the 2D top-down rogue-like genre. This paper will explore a proposed solution, combining both the strengths of Binary Space Partitioning and Wave Function Collapse to create a highly flexible yet robust algorithm capable of autonomous procedural world generation with minimal errors."
+tags: ['Side Project']
+summary: 'In this paper, we will introduce & explore a solution to creating humanized realistic dungeons or maps in the 2D top-down rogue-like genre. This paper will explore a proposed solution, combining both the strengths of Binary Space Partitioning and Wave Function Collapse to create a highly flexible yet robust algorithm capable of autonomous procedural world generation with minimal errors.'
 thumbnail: '/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png'
 images: ['/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png']
 authors: ['shaancoding']
@@ -27,12 +27,12 @@ Multiple procedural world-generation techniques have been used over the decades,
 
 <figure>
 
-| Technique          | Pros                                                                                                      | Cons                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|--------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Markov Chains      | Fast, aesthetically pleasing & varied, output statistically resembles similar things to its given components, reliant on clearly defined statistical properties (not a black box) | Reliant on statistical properties on a small scale, this fails to see long term dependency of the entire map and occasionally causes unsolvable maps, needs active repair function (such as backtracking) to fix unsolvable sections                                                                                                                          |
-| Cellular Automata  | Fast, simple, low cost, creates 'natural' looking cave environments                                       | Unstructured, chaotic, lacks overarching control or long term understanding, cannot create dungeons, can create unsolvable levels & requires an active repair function                                                                                                                                                                                                                             |
-| Machine Learning   | High variety, capable of capturing statistical patterns of real levels, can recognize overarching level design patterns, requires minimal coding, can be reused for many applications with minimal editing  | Requires an active repair function, is highly performance intensive in both CPU, Memory & RAM, often fails to capture underlying rules of a level, is a "black box" where the predicted output has no way of debugging or future understanding - i.e., an input comes in and an input goes out, requires huge data sets & clean training data to set up |
-| BSP Trees          | Good, highly effective, creates iconic cube dungeons, very easy to program, space aware, requires minimal fixing (back-tracking to add to pathways), is simplistic in concepts & very easy to debug & modify   | Variation is limited, cannot create 'real' procedural maps (it is still pre-defined), levels are typically required to be rectangular / non-continuous                                                                                                                                                                                                                         |
+| Technique         | Pros                                                                                                                                                                                                         | Cons                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Markov Chains     | Fast, aesthetically pleasing & varied, output statistically resembles similar things to its given components, reliant on clearly defined statistical properties (not a black box)                            | Reliant on statistical properties on a small scale, this fails to see long term dependency of the entire map and occasionally causes unsolvable maps, needs active repair function (such as backtracking) to fix unsolvable sections                                                                                                                    |
+| Cellular Automata | Fast, simple, low cost, creates 'natural' looking cave environments                                                                                                                                          | Unstructured, chaotic, lacks overarching control or long term understanding, cannot create dungeons, can create unsolvable levels & requires an active repair function                                                                                                                                                                                  |
+| Machine Learning  | High variety, capable of capturing statistical patterns of real levels, can recognize overarching level design patterns, requires minimal coding, can be reused for many applications with minimal editing   | Requires an active repair function, is highly performance intensive in both CPU, Memory & RAM, often fails to capture underlying rules of a level, is a "black box" where the predicted output has no way of debugging or future understanding - i.e., an input comes in and an input goes out, requires huge data sets & clean training data to set up |
+| BSP Trees         | Good, highly effective, creates iconic cube dungeons, very easy to program, space aware, requires minimal fixing (back-tracking to add to pathways), is simplistic in concepts & very easy to debug & modify | Variation is limited, cannot create 'real' procedural maps (it is still pre-defined), levels are typically required to be rectangular / non-continuous                                                                                                                                                                                                  |
 
 <figcaption className="text-center text-muted-foreground">Figure 1: Table with comparisons between algorithms</figcaption>
 </figure>
@@ -45,10 +45,10 @@ This research paper aims to explore & attempt to solve the issue of creating aes
 
 The tools required for this experiment are minimal. For this application to run we require:
 
-- Minecraft (Version 1.6.4) Installed
-- .NET Framework
-- Visual Studio 2019 Community / Enterprise Edition
-- Benchmarking Software (E.g. A Timer & Visual Studio)
+-   Minecraft (Version 1.6.4) Installed
+-   .NET Framework
+-   Visual Studio 2019 Community / Enterprise Edition
+-   Benchmarking Software (E.g. A Timer & Visual Studio)
 
 ### Proposed Solution
 
@@ -68,20 +68,28 @@ This, paired with the customizability, with outputs being dependent on the condi
 
 The proposed implementation of the algorithm is a hybrid design, implementing both Wave Function Collapse (WFC) and Binary Search Trees (BSP). The map is uniquely sectioned into several areas or rooms through a quick run of the BSP algorithm on map initialization. These rooms are then traversed through and generated through Wave Function Collapse. The flowchart for the proposed algorithm is given below.
 
-<figure>    
+<figure>
     <img
         className="w-full lg:w-2/3"
         src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure2.png"
         alt="Proposed Diagram Flowchart"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 2: Proposed Diagram Flowchart</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 2: Proposed Diagram Flowchart
+    </figcaption>
 </figure>
 
 Alternatively, the pseudocode implementation of the algorithm is also provided, available below:
 
 <figure>
-    <CodeBlock src="wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure3" title="Wave Function Collapse Algorithm" language="text"/>
-    <figcaption className="text-center text-muted-foreground">Figure 3: Proposed Diagram Pseudocode</figcaption>
+    <CodeBlock
+        src="wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure3"
+        title="Wave Function Collapse Algorithm"
+        language="text"
+    />
+    <figcaption className="text-center text-muted-foreground">
+        Figure 3: Proposed Diagram Pseudocode
+    </figcaption>
 </figure>
 
 After this pseudocode was designed, the code was then implemented in Minecraft using C#. This platform was chosen as it is straightforward to use, debug & quickly prototype and edit input values for the WFC algorithm with minimal effort. It, in addition, is also a platform the scientists in this paper are deeply familiar with.
@@ -96,7 +104,9 @@ The figure below shows the input given to the Wave Function Collapse section of 
         src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure4.png"
         alt="Wave Function Collapse + BSP Input"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 4: Wave Function Collapse + BSP Input</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 4: Wave Function Collapse + BSP Input
+    </figcaption>
 </figure>
 
 The algorithm then takes the given Wave Function Collapse input and the given output size, in this case, 50x50, and firstly partitions the map into several binary space partitions, signified in green, in figure 4. Once these binary space partitions are initialized, each one is then propagated and initialized through the input given by the wave function collapse algorithm in the figure shown above, figure 3.
@@ -109,7 +119,9 @@ In the figure shown below, figure 4, we can see the output of the resultant algo
         src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure5.png"
         alt="Wave Function Collapse + BSP Output"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 5: Wave Function Collapse + BSP Output</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 5: Wave Function Collapse + BSP Output
+    </figcaption>
 </figure>
 
 ## Discussion
@@ -128,17 +140,19 @@ An additional implementation/modification of the back-tracking algorithm for add
         src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-3/figure6.png"
         alt="Wave Function Collapse + BSP Error"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 6: Wave Function Collapse + BSP Error</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 6: Wave Function Collapse + BSP Error
+    </figcaption>
 </figure>
 
 ## The Future
 
 Whilst this solution did have it's pitfalls, specifically with speed, due to the lack of optimization. This solution is definitely sound and has the opportunity to scale into a highly successful and robust algorithm in the future. Further proposed work in this algorithm in the future include:
 
-- Parallelization, allows the algorithm to perform significantly faster and asynchronously from each other, allowing each binary space partition to wave function collapse simultaneously instead of contiguously
-- Further data structure & time-complexity optimization, utilizing divide & conquer algorithms and optimizing the overall time complexity
-- Hardware multi-threading utilizing CUDA Cores or FPGAs as dedicated hardware
-- The addition of a convolutional neural network model to evaluate the size & difficulty of maps for the unsupervised creation of maps with consistent playability for users
+-   Parallelization, allows the algorithm to perform significantly faster and asynchronously from each other, allowing each binary space partition to wave function collapse simultaneously instead of contiguously
+-   Further data structure & time-complexity optimization, utilizing divide & conquer algorithms and optimizing the overall time complexity
+-   Hardware multi-threading utilizing CUDA Cores or FPGAs as dedicated hardware
+-   The addition of a convolutional neural network model to evaluate the size & difficulty of maps for the unsupervised creation of maps with consistent playability for users
 
 ## Conclusion
 

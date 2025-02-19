@@ -1,15 +1,15 @@
 ---
 title: 'Paper 1 - A Survey of Programmatic Procedural Content Generation Using Wave Collapse Functions for Game Development'
 date: '2021-03-21'
-tags: ['Side Project',]
-summary: "In this paper, we will survey the Wave Collapse Function (WFC) Algorithm for Procedural Content Generation (PCG) and its historical uses. Through this paper, we will track multiple methods of PCG in the indie & professional game development community as well as depict the evolution of such methods over time."
+tags: ['Side Project']
+summary: 'In this paper, we will survey the Wave Collapse Function (WFC) Algorithm for Procedural Content Generation (PCG) and its historical uses. Through this paper, we will track multiple methods of PCG in the indie & professional game development community as well as depict the evolution of such methods over time.'
 thumbnail: '/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png'
 images: ['/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png']
 authors: ['shaancoding']
 layout: PostSimple
 ---
 
-## Abstract 
+## Abstract
 
 In this paper, we will survey the Wave Collapse Function (WFC) Algorithm for Procedural Content Generation (PCG) and its historical uses. Through this paper, we will track multiple methods of PCG in the indie & professional game development community as well as depict the evolution of such methods over time.
 
@@ -50,7 +50,7 @@ The WFC function released by Maxim Gumin is a grid-based PCG function. It works 
 
 This algorithm, unlike similar PCG algorithms does not require back-tracking which greatly improves speed without sacrificing accuracy or quality. WFC algorithm instead mimics concepts of quantum mechanics, specifically entropy to develop its tile sets, starting from a "master tile" and expanding outwards.
 
-In WFC, similar to a Sudoku game, each tile is based on a set of rules. In Sudoku the goal is to fill each grid with a number between 1 to 9 where each distinct row and column can only have each number between 1 to 9 displayed once. Additionally, in every 3x3 grid the numbers 1 to 9 this restriction of the number being displayed only once still applies. When initially generating a Sudoku map if a blank map is given, there is an undetermined number of solutions where each box can simultaneously contain all 9 possible values simultaneously, as a result there is no distinctive solution solving this question.  However, once we keep adding more preset values or tiles to the Sudoku map, the number of available solutions decrease so and so until enough constraints are added that there is only 1 distinctive unique solution to the question.
+In WFC, similar to a Sudoku game, each tile is based on a set of rules. In Sudoku the goal is to fill each grid with a number between 1 to 9 where each distinct row and column can only have each number between 1 to 9 displayed once. Additionally, in every 3x3 grid the numbers 1 to 9 this restriction of the number being displayed only once still applies. When initially generating a Sudoku map if a blank map is given, there is an undetermined number of solutions where each box can simultaneously contain all 9 possible values simultaneously, as a result there is no distinctive solution solving this question. However, once we keep adding more preset values or tiles to the Sudoku map, the number of available solutions decrease so and so until enough constraints are added that there is only 1 distinctive unique solution to the question.
 
 Similarly to Sudoku, in WFC we start from a starting node and add more and more constraints until there is one distinctive answer or possible generated image. In WFC each tile-map or node has its own set of associated adjacency rules.
 

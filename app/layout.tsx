@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { Analytics } from '@vercel/analytics/react'
 import 'css/tailwind.css'
 import { Metadata } from 'next'
+import PlausibleProvider from 'next-plausible'
 import { JetBrains_Mono } from 'next/font/google'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import 'pliny/search/algolia.css'
@@ -90,6 +91,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <meta name="theme-color" media="(prefers-color-scheme: light)" content="#E9D3B6" />
             <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#E9D3B6" />
             <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+
+            <head>
+                <PlausibleProvider domain="shaankhan.dev" />
+            </head>
+
             <body className="bg-background text-black antialiased dark:text-white">
                 <ThemeProviders>
                     <Analytics />

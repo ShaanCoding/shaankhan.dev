@@ -1,7 +1,7 @@
 ---
 title: 'Automating Boolean Algebra Expression Solving'
 date: '2020-02-09'
-tags: ['Side Project', "C#"]
+tags: ['Side Project', 'C#']
 summary: 'An exploration of building a Boolean algebra expression solver using C#, which simplified the task of solving Boolean expressions and provided valuable practice for students.'
 thumbnail: '/static/images/boolean-algebra-expression-solver/banner.png'
 images: ['/static/images/boolean-algebra-expression-solver/banner.png']
@@ -45,7 +45,11 @@ To resolve the last issue of converting our infix notation to postfix, we used a
 
 Additionally, a pseudocode implementation of the algorithm is as follows:
 
-<CodeBlock src="boolean-algebra-expression-solver/algorithm" title="Shunting Yard Algorithm Pseudocode" language="markdown"/>
+<CodeBlock
+    src="boolean-algebra-expression-solver/algorithm"
+    title="Shunting Yard Algorithm Pseudocode"
+    language="markdown"
+/>
 
 By passing our Boolean algebra equation through the shunting yard algorithm to convert infix to postfix notation and then following standard implementations of postfix calculators, we created this Boolean expression solver. We had to make custom operations and implement features, replacing numbers with alphanumeric variable names. By then giving the Boolean expression solver a bunch of pseudo values through a truth table, we calculated each expression automatically with minimal effort.
 

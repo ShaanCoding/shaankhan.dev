@@ -132,7 +132,6 @@ export const Authors = defineDocumentType(() => ({
     computedFields,
 }))
 
-
 export const Pages = defineDocumentType(() => ({
     name: 'Pages',
     filePathPattern: 'pages/**/*.mdx',

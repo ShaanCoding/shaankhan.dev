@@ -9,7 +9,7 @@ authors: ['shaancoding']
 layout: PostSimple
 ---
 
-## Abstract 
+## Abstract
 
 In this paper, we will introduce a standard for a declarative programming language that aims to automate & consolidate web systems & associated architectures into one language. Our project aims to make a new language that solves the problem of converting business requirements into code by designing a declarative syntax that allows a modular architecture approach to programming thus greatly reducing the amount of programming required for new systems.
 
@@ -29,7 +29,7 @@ This in addition can provide future support for multiple languages / implementat
 
 ## Comparison
 
-Due to the nature of this project, it’s difficult to represent a comparison using quantitative metrics. Instead, we will qualitatively explain the difference between this language and others languages. Although this language is still a normal turing complete programming language that is similar to other languages like Rust or Typescript, this language allows domain specific functionality that unifies web system aspects together, allowing much faster system development and easier modularity at all stages.  
+Due to the nature of this project, it’s difficult to represent a comparison using quantitative metrics. Instead, we will qualitatively explain the difference between this language and others languages. Although this language is still a normal turing complete programming language that is similar to other languages like Rust or Typescript, this language allows domain specific functionality that unifies web system aspects together, allowing much faster system development and easier modularity at all stages.
 
 Although the best way to explain a language is through both detailed examples and syntax documentation, there isnt enough room in a paper for syntax documentation, so we’re including some syntax examples of common web system functionality, and how the language reduces common web system boilerplate and simplifies the implementation of commonly used patterns.
 
@@ -39,7 +39,7 @@ In compiled languages like C# or Java, creating a mapped type requires defining 
 
 In our language, creating a mapped type is a simple as doing:
 
-<CodeBlock 
+<CodeBlock
     language="rust"
     title="Creating A Mapped Type"
     src="declarative-webs-systems-higher-level-programming-languages/1"
@@ -55,7 +55,7 @@ One major aspect of abstraction in any programming language is data and logic en
 
 In our language, we took inspiration from how some programmable CMSs (content management systems) approach this problem, by allowing encapsulation of fields. An example would be the password field shown below:
 
-<CodeBlock 
+<CodeBlock
     language="rust"
     title="Field Encapsulation Example"
     src="declarative-webs-systems-higher-level-programming-languages/2"
@@ -71,7 +71,7 @@ While in other languages, something as complex as user authentication would requ
 
 We start with the following shared mixin:
 
-<CodeBlock 
+<CodeBlock
     language="rust"
     title="Email Authentication Mixin Example"
     src="declarative-webs-systems-higher-level-programming-languages/3"
@@ -81,7 +81,7 @@ A `mixin` in this language is similar to a `trait` in Rust, except it allows inj
 
 Then, the implementation may look like the following:
 
-<CodeBlock 
+<CodeBlock
     language="rust"
     title="Email Authentication Implementation Example"
     src="declarative-webs-systems-higher-level-programming-languages/4"
@@ -93,7 +93,7 @@ The most important part of this is that something like `EmailAuthentication` can
 
 Lastly, the api side of the language:
 
-<CodeBlock 
+<CodeBlock
     language="rust"
     title="API Example"
     src="declarative-webs-systems-higher-level-programming-languages/5"
@@ -105,7 +105,7 @@ The `api` keyword lets the programmer decleratively specify the external api to 
 
 To summarise our research, we were able to effectively reduce both the complexity and line count of written code compared to existing systems - while continuing to provide the same functional outcome. Due to time limitations however, we weren’t able to actively implement a compiler or interpreter - thus our results have been purely based upon speculative systems, without actually running the code. This has caused difficulties in gathering feedback and results from other parties, as there is only so much that unrunnable code can provide besides syntax and documentation of said syntax. We also saw this as an active oversight while developing the research questions and objectives, and have thus solely focused on proofing that the solution would work regardless of being run/written or not. Due to the prototype nature of the topic, these were within acceptable boundaries, and would be resolved in further re-iterations as we finalise more of the complex inner functionality.
 
-In terms of comparable results, we were able to qualitatively compare the difference in line count between our proposed system and existing systems. This was especially apparent in sections of code that are generally reused and re-implemented for most current systems, which allowed those components to be completely isolated into separate modules that would either be included in the standard library or third party packages. Also, due to the amount of inference that the syntax allows, writing code in this language is significantly less verbose and therefore easier to read by other people. However, we did face some shortfalls with how declarative we could make it compared to what we’d initially hoped. While it does offer a significant advantage over other languages by using mixins, it is still fairly imperative. This can also be seen in the feedback we received regarding complexity, as some reviews stated that the current version of the language - while it offers declarative features to a degree, still does not meet a purely declarative state, compared to other languages such as Terraform. 
+In terms of comparable results, we were able to qualitatively compare the difference in line count between our proposed system and existing systems. This was especially apparent in sections of code that are generally reused and re-implemented for most current systems, which allowed those components to be completely isolated into separate modules that would either be included in the standard library or third party packages. Also, due to the amount of inference that the syntax allows, writing code in this language is significantly less verbose and therefore easier to read by other people. However, we did face some shortfalls with how declarative we could make it compared to what we’d initially hoped. While it does offer a significant advantage over other languages by using mixins, it is still fairly imperative. This can also be seen in the feedback we received regarding complexity, as some reviews stated that the current version of the language - while it offers declarative features to a degree, still does not meet a purely declarative state, compared to other languages such as Terraform.
 
 ### Criticisms
 

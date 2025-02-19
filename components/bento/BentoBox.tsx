@@ -49,7 +49,7 @@ const BentoBox = ({ posts }) => {
         }
 
         document.querySelectorAll('.react-grid-item').forEach((item) => {
-            ; (item as HTMLElement).style.zIndex = '1'
+            ;(item as HTMLElement).style.zIndex = '1'
         })
 
         element.style.zIndex = '10'
@@ -91,9 +91,16 @@ const BentoBox = ({ posts }) => {
             }
         >
             <div key="intro" className="aspect-square">
-                <div className='p-4'>
-                    <h2 className="text-md mb-2 line-clamp-3 font-bold leading-none">Hi I'm Shaan</h2>
-                    <p className="text-sm text-primary">I'm a Software Engineer II at <span className="text-secondary-foreground font-semibold">Nine Entertainment Co.</span> I like to build things and write about them.
+                <div className="p-4">
+                    <h2 className="text-md mb-2 line-clamp-3 font-bold leading-none">
+                        Hi I'm Shaan
+                    </h2>
+                    <p className="text-sm text-primary">
+                        I'm a Software Engineer II at{' '}
+                        <span className="text-secondary-foreground font-semibold">
+                            Nine Entertainment Co.
+                        </span>{' '}
+                        I like to build things and write about them.
                     </p>
                 </div>
             </div>
@@ -149,8 +156,8 @@ const BentoBox = ({ posts }) => {
             </div>
             <div
                 key="about-ctfs"
-                className="group bg-[url('/static/images/bento/bento-about-ctfs-bg.svg')] bg-cover bg-center">
-            </div>
+                className="group bg-[url('/static/images/bento/bento-about-ctfs-bg.svg')] bg-cover bg-center"
+            ></div>
             <div key="twitter" className="group">
                 <div className="relative flex h-full w-full items-center justify-center rounded-lg">
                     <FaTwitter className="absolute z-[1] text-primary w-1/2 h-1/2 bento-md:w-24 bento-md:h-24" />
@@ -178,10 +185,7 @@ const BentoBox = ({ posts }) => {
                     unoptimized
                 />
             </div>
-            <div
-                key="contributions"
-                className="group flex items-center justify-center"
-            >
+            <div key="contributions" className="group flex items-center justify-center">
                 <GithubCalendar
                     username="shaancoding"
                     hideColorLegend

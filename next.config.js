@@ -1,3 +1,4 @@
+const { withPlausibleProxy } = require('next-plausible')
 const { withContentlayer } = require('next-contentlayer')
 const redirects = require('./data/redirects.js')
 
@@ -60,50 +61,52 @@ const securityHeaders = [
  **/
 module.exports = () => {
     const plugins = [withContentlayer, withBundleAnalyzer]
-    return plugins.reduce((acc, next) => next(acc), {
-        reactStrictMode: true,
-        pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-        eslint: {
-            dirs: ['app', 'components', 'layouts', 'scripts'],
-        },
-        images: {
-            domains: [
-                'www.gravatar.com', // Gravatar
-                'avatars.githubusercontent.com', // GitHub
-                'pbs.twimg.com', // Twitter
-                'i.scdn.co', // Spotify
-                'api.lanyard.rest', // Discord presence API
-                'cdn.discordapp.com', // Discord CDN
-            ],
-        },
-        experimental: {
-            appDir: true,
-        },
-        async headers() {
-            return [
-                {
-                    source: '/(.*)',
-                    headers: securityHeaders,
-                },
-            ]
-        },
-        async redirects() {
-            // TODO clean up
-            return [
-                // {
-                //     source: '/ctfs/pico22/beginners-compilation',
-                //     destination: '/blog/picoctf-2022/beginners-compilation',
-                //     permanent: true,
-                // },
-            ]
-        },
-        webpack: (config, options) => {
-            config.module.rules.push({
-                test: /\.svg$/,
-                use: ['@svgr/webpack'],
-            })
+    return withPlausibleProxy()(
+        plugins.reduce((acc, next) => next(acc), {
+            reactStrictMode: true,
+            pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+            eslint: {
+                dirs: ['app', 'components', 'layouts', 'scripts'],
+            },
+            images: {
+                domains: [
+                    'www.gravatar.com', // Gravatar
+                    'avatars.githubusercontent.com', // GitHub
+                    'pbs.twimg.com', // Twitter
+                    'i.scdn.co', // Spotify
+                    'api.lanyard.rest', // Discord presence API
+                    'cdn.discordapp.com', // Discord CDN
+                ],
+            },
+            experimental: {
+                appDir: true,
+            },
+            async headers() {
+                return [
+                    {
+                        source: '/(.*)',
+                        headers: securityHeaders,
+                    },
+                ]
+            },
+            async redirects() {
+                // TODO clean up
+                return [
+                    // {
+                    //     source: '/ctfs/pico22/beginners-compilation',
+                    //     destination: '/blog/picoctf-2022/beginners-compilation',
+                    //     permanent: true,
+                    // },
+                ]
+            },
+            webpack: (config, options) => {
+                config.module.rules.push({
+                    test: /\.svg$/,
+                    use: ['@svgr/webpack'],
+                })
 
-            return config
-        },
-    })
+                return config
+            },
+        })
+    )
 }

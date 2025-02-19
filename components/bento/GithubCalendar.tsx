@@ -19,7 +19,8 @@ async function fetchCalendarData(username: string): Promise<ApiResponse> {
 
     if (!response.ok) {
         throw Error(
-            `Fetching GitHub contribution data for "${username}" failed: ${(data as ApiErrorResponse).error
+            `Fetching GitHub contribution data for "${username}" failed: ${
+                (data as ApiErrorResponse).error
             }`
         )
     }

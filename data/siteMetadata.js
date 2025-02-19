@@ -27,7 +27,7 @@ const siteMetadata = {
         //     umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
         // },
         plausibleAnalytics: {
-          plausibleDataDomain: 'shaankhan.dev', // e.g. tailwind-nextjs-starter-blog.vercel.app
+            plausibleDataDomain: 'shaankhan.dev', // e.g. tailwind-nextjs-starter-blog.vercel.app
         },
         // simpleAnalytics: {},
         // posthogAnalytics: {

@@ -39,7 +39,7 @@ N will be between 2 and 40
 
 There will be N horizontal lines in total.
 
-The first and Nth lines will have asterisks (*) occupying every odd-numbered position on the line from positions 1 to (2N - 1). All even-numbered positions will be filled with SPACEs.
+The first and Nth lines will have asterisks (\*) occupying every odd-numbered position on the line from positions 1 to (2N - 1). All even-numbered positions will be filled with SPACEs.
 
 For all other lines (if any), only positions $$1$$ and $$2N - 1$$ will have asterisks. All other positions will be filled with SPACEs.
 
@@ -47,7 +47,7 @@ There are no SPACEs nor TABs following the $$(2N - 1)th$$ position on each line.
 
 **Sample Input 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/ascii-squares-input-0"
     language="bash"
     showLineNumbers={false}
@@ -56,7 +56,7 @@ There are no SPACEs nor TABs following the $$(2N - 1)th$$ position on each line.
 
 **Sample Output 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/ascii-squares-output-0"
     language="bash"
     showLineNumbers={false}
@@ -65,18 +65,19 @@ There are no SPACEs nor TABs following the $$(2N - 1)th$$ position on each line.
 
 ### Solution
 
-<CodeBlock language="javascript" 
-fileName="ascii-squares-solution.js"
-src="uts-progsoc-progcomp-2020/ascii-squares-solution"
+<CodeBlock
+    language="javascript"
+    fileName="ascii-squares-solution.js"
+    src="uts-progsoc-progcomp-2020/ascii-squares-solution"
 />
 
 ## Mario's Big Jump
 
 This was the second challenge of the competition and wow! This was a lot more challenging. Whilst the first one was very trivial, boasting a 100% completion rate for all contestants, this one quickly shattered the idea that we could breeze through this competition in 30 or so minutes. In this challenge, which was shockingly similar to some HSC Physics questions I had to do last year, was to calculate how far Mario could jump given a running speed, jump speed and target distance. Whilst I may have been going with a more elegant approach initially, getting my pen and paper out and drafting up a general formula for it, my teammates went for a more "direct" approach, calculating the player's movement each "tick". Whilst I did draft up a formula for it in time, deriving it from some projectile motion equations:
 
-- $$v = u + at$$
-- $$v^2 = u^2 + 2as$$
-- $$s = ut + 1/2 at^2$$
+-   $$v = u + at$$
+-   $$v^2 = u^2 + 2as$$
+-   $$s = ut + 1/2 at^2$$
 
 By the time I derived the equation, my teammates had already solved the problem and moved on to the next challenge. During this challenge, I came to realize, whilst my way would lead to a nicer and albeit faster solution. In a time-based competition, this was not worth doing, and the cheap but dirty solution was the more ideal solution.
 
@@ -84,14 +85,14 @@ By the time I derived the equation, my teammates had already solved the problem 
 
 In the Mushroom Kingdom, Mario is working out how far he can jump. The gravity in the kingdom will make him fall at 5 meters/second, and he will continue to move at a constant rate while he's in the air. For example,if Mario jumps up with a speed of 10 meters/second while running at 30 meters/second, the results are:
 
-|Time   | Distance  | Height   | Speed        |
-|-------|-----------|----------|------------- |
-|0 seconds | 0 meters | 0 meters | up 10 meters/sec |
-|1 second  | 30 meters | 10 meters | up 5 meters/sec |
-|2 seconds | 60 meters | 15 meters | up 0 meters/sec |
-|3 seconds | 90 meters | 15 meters | down 5 meters/sec |
-|4 seconds | 120 meters | 10 meters | down 10 meters/sec |
-|5 seconds | 150 meters | 0 meters | down 15 meters/sec |
+| Time      | Distance   | Height    | Speed              |
+| --------- | ---------- | --------- | ------------------ |
+| 0 seconds | 0 meters   | 0 meters  | up 10 meters/sec   |
+| 1 second  | 30 meters  | 10 meters | up 5 meters/sec    |
+| 2 seconds | 60 meters  | 15 meters | up 0 meters/sec    |
+| 3 seconds | 90 meters  | 15 meters | down 5 meters/sec  |
+| 4 seconds | 120 meters | 10 meters | down 10 meters/sec |
+| 5 seconds | 150 meters | 0 meters  | down 15 meters/sec |
 
 As a result, Mario will jump 150 meters and stay in the air for 5 seconds.
 
@@ -115,7 +116,7 @@ Print the distance and height of Mario's jump after each second as a pair of num
 
 **Sample Input 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/marios-big-jump-input-0"
     language="bash"
     showLineNumbers={false}
@@ -124,7 +125,7 @@ Print the distance and height of Mario's jump after each second as a pair of num
 
 **Sample Output 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/marios-big-jump-output-0"
     language="bash"
     showLineNumbers={false}
@@ -136,7 +137,8 @@ Print the distance and height of Mario's jump after each second as a pair of num
 <CodeBlock
     language="javascript"
     fileName="marios-big-jump-solution.js"
-    src="uts-progsoc-progcomp-2020/marios-big-jump-solution"/>
+    src="uts-progsoc-progcomp-2020/marios-big-jump-solution"
+/>
 
 ## Mark and Toys
 
@@ -154,8 +156,8 @@ Complete the function maximumToys in the editor below. It should return an integ
 
 maximumToys has the following parameter(s):
 
-* prices: an array of integers representing toy prices
-* k: an integer, Mark's budget
+-   prices: an array of integers representing toy prices
+-   k: an integer, Mark's budget
 
 **Input Format**
 
@@ -164,10 +166,10 @@ The next line contains $$n$$ space-separated integers $$prices[i]$$.
 
 **Constraints**
 
-- $$1 \leq n \leq 10^5$$
-- $$1 \leq k \leq 10^9$$
-- $$1 \leq prices[i] \leq 10^9$$
-- A toy can't be bought multiple times.
+-   $$1 \leq n \leq 10^5$$
+-   $$1 \leq k \leq 10^9$$
+-   $$1 \leq prices[i] \leq 10^9$$
+-   A toy can't be bought multiple times.
 
 **Output Format**
 
@@ -175,7 +177,7 @@ An integer that denotes the maximum number of toys Mark can buy for his son.
 
 **Sample Input**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/mark-and-toys-input"
     language="bash"
     showLineNumbers={false}
@@ -184,7 +186,7 @@ An integer that denotes the maximum number of toys Mark can buy for his son.
 
 **Sample Output**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/mark-and-toys-output"
     language="bash"
     showLineNumbers={false}
@@ -200,7 +202,8 @@ He can buy only $$4$$ toys at most. These toys have the following prices: $$[1,1
 <CodeBlock
     language="javascript"
     fileName="mark-and-toys-solution.js"
-    src="uts-progsoc-progcomp-2020/mark-and-toys-solution"/>
+    src="uts-progsoc-progcomp-2020/mark-and-toys-solution"
+/>
 
 ## Extreme FizzBuzz
 
@@ -228,7 +231,7 @@ A list of numbers from the start to the end of the range (inclusive), that follo
 
 **Sample Input 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-input-0"
     language="bash"
     showLineNumbers={false}
@@ -237,7 +240,7 @@ A list of numbers from the start to the end of the range (inclusive), that follo
 
 **Sample Output 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-output-0"
     language="bash"
     showLineNumbers={false}
@@ -246,7 +249,7 @@ A list of numbers from the start to the end of the range (inclusive), that follo
 
 **Sample Input 1**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-input-1"
     language="bash"
     showLineNumbers={false}
@@ -255,7 +258,7 @@ A list of numbers from the start to the end of the range (inclusive), that follo
 
 **Sample Output 1**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-output-1"
     language="bash"
     showLineNumbers={false}
@@ -267,7 +270,8 @@ A list of numbers from the start to the end of the range (inclusive), that follo
 <CodeBlock
     language="javascript"
     fileName="extreme-fizzbuzz-solution.js"
-    src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-solution"/>
+    src="uts-progsoc-progcomp-2020/extreme-fizzbuzz-solution"
+/>
 
 ## Jesse and Cookies
 
@@ -298,9 +302,9 @@ The next line contains $$N$$ integers describing the array $$A$$ where $$A_i$$ i
 
 **Constraints**
 
-- $$1 \leq N \leq 10^6$$
-- $$0 \leq K \leq 10^9$$
-- $$0 \leq A_i \leq 10^6$$
+-   $$1 \leq N \leq 10^6$$
+-   $$0 \leq K \leq 10^9$$
+-   $$0 \leq A_i \leq 10^6$$
 
 **Output Format**
 
@@ -309,7 +313,7 @@ Output $$-1$$ if this isn't possible.
 
 **Sample Input**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/jesse-and-cookies-input"
     language="bash"
     showLineNumbers={false}
@@ -318,7 +322,7 @@ Output $$-1$$ if this isn't possible.
 
 **Sample Output**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/jesse-and-cookies-output"
     language="bash"
     showLineNumbers={false}
@@ -327,7 +331,7 @@ Output $$-1$$ if this isn't possible.
 
 **Explanation**
 
-Combine the first two cookies to create a cookie with sweetness  = $$1 \times 1 + 2 \times 2 = 5$$
+Combine the first two cookies to create a cookie with sweetness = $$1 \times 1 + 2 \times 2 = 5$$
 
 After this operation, the cookies are $$[3,5,9,10,12]$$.
 
@@ -344,7 +348,8 @@ Thus, $$2$$ operations are required to increase the sweetness.
 <CodeBlock
     language="javascript"
     fileName="jesse-and-cookies-solution.js"
-    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-javascript"/>
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-javascript"
+/>
 
 The solution in python goes as follows
 
@@ -353,8 +358,8 @@ The solution in python goes as follows
 <CodeBlock
     language="python"
     fileName="jesse-and-cookies-solution.py"
-    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-python"/>
-
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-python"
+/>
 
 For our final, and more importingly **working** solution, we ended up using C#, with it finally passing this time. A key aspect we learnt though in this competition was the need of good data structures, whilst I don't have the original code we used for the solution on me as it was done by another team mate, our code followed something similar to this, but replaced with priority queues using stacks and heaps.
 
@@ -363,8 +368,8 @@ For our final, and more importingly **working** solution, we ended up using C#, 
 <CodeBlock
     language="csharp"
     fileName="jesse-and-cookies-solution.cs"
-    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-csharp"/>
-
+    src="uts-progsoc-progcomp-2020/jesse-and-cookies-solution-csharp"
+/>
 
 ## Helicopter Crash
 
@@ -408,7 +413,7 @@ For each time step of the simulation, the program should print "Time " (starting
 
 **Sample Input 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/helicopter-crash-input-0"
     language="bash"
     showLineNumbers={false}
@@ -417,7 +422,7 @@ For each time step of the simulation, the program should print "Time " (starting
 
 **Sample Output 0**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/helicopter-crash-output-0"
     language="bash"
     showLineNumbers={false}
@@ -426,7 +431,7 @@ For each time step of the simulation, the program should print "Time " (starting
 
 **Sample Input 1**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/helicopter-crash-input-1"
     language="bash"
     showLineNumbers={false}
@@ -435,7 +440,7 @@ For each time step of the simulation, the program should print "Time " (starting
 
 **Sample Output 1**
 
-<CodeBlock 
+<CodeBlock
     src="uts-progsoc-progcomp-2020/helicopter-crash-output-1"
     language="bash"
     showLineNumbers={false}
@@ -447,7 +452,8 @@ For each time step of the simulation, the program should print "Time " (starting
 <CodeBlock
     language="javascript"
     fileName="helicopter-crash-solution.js"
-    src="uts-progsoc-progcomp-2020/helicopter-crash-solution"/>
+    src="uts-progsoc-progcomp-2020/helicopter-crash-solution"
+/>
 
 ## Conclusions
 

@@ -19,13 +19,13 @@ Recently I built and deployed [YTS (YoutubeAlbumSplitter)](https://youtubealbums
 
 ## The Problem
 
-This application was built from the problem of me finding niche artists/music categories and was unable to either download the individual track or search for the individual track on other platforms such as Spotify. Because of this, when I wanted to play the songs on alternative platforms other than YouTube, I would have to manually download the video, extract the specific song I wanted, and then tag it before adding it to my Spotify custom songs list. 
+This application was built from the problem of me finding niche artists/music categories and was unable to either download the individual track or search for the individual track on other platforms such as Spotify. Because of this, when I wanted to play the songs on alternative platforms other than YouTube, I would have to manually download the video, extract the specific song I wanted, and then tag it before adding it to my Spotify custom songs list.
 
 This process was very tedious and whilst a lot of playlists/compilations labeled their songs, the newly implemented timestamp feature on YouTube even said what song was playing whilst it was playing. There was no easy-to-use tool that would automatically download the song & split it up on demand, as a result, this application was made.
 
 ## The Design Process
 
-To start out, I believed this project solved a real problem in the market. I wanted this project to be; clean, elegant, efficient, and most importantly scalable. 
+To start out, I believed this project solved a real problem in the market. I wanted this project to be; clean, elegant, efficient, and most importantly scalable.
 
 Whilst I've built and temporarily deployed many MERN stack projects, such as [Summarized](https://blog.shaankhan.dev/syncshack2021/). These have usually been local deployments or one-time deployments where the code is manually set up and left there temporarily for 24-48 hours until a demonstration is run. From which the instance would be closed. These projects, whilst fun and demonstrating a great proof of concept are not scalable and indicative of a potentially successful/successful project in the real world. Whilst an application may function well for 1-2 users, when scaled at mass to thousands to hundreds of thousands of users, efficiency and scalability is key. As a result, the planning process for this project took significantly longer than most projects I take on.
 
@@ -55,8 +55,8 @@ After finalizing the code of my Youtube Album Splitter tool, I decided to deploy
 
 Here's a step-by-step guide on how I did it:
 
-<CodeBlock 
-    src="deploying-youtube-album-splitter-2022/deployment-steps" 
+<CodeBlock
+    src="deploying-youtube-album-splitter-2022/deployment-steps"
     title="Deployment Steps"
     language="markdown"
 />
@@ -78,11 +78,12 @@ Here's a step-by-step guide on how I did it:
 <CodeBlock
     language="nginx"
     fileName="nginx.conf"
-    src="deploying-youtube-album-splitter-2022/nginx-conf"/>
+    src="deploying-youtube-album-splitter-2022/nginx-conf"
+/>
 
 6. I then created a new file called .env and added the following code to it:
 
-<CodeBlock 
+<CodeBlock
     src="deploying-youtube-album-splitter-2022/env"
     language="text"
     showLineNumbers={false}
@@ -93,7 +94,7 @@ This helps me export secret keys & sensitive data outside of the codebase avoidi
 
 7. I then ran the following command to build my Docker image:
 
-<CodeBlock 
+<CodeBlock
     src="deploying-youtube-album-splitter-2022/docker-compose-commands"
     language="text"
     showLineNumbers={false}

@@ -1,8 +1,8 @@
 ---
 title: 'Paper 2 - Programmatic Procedural Map Generation Using Wave Collapse Functions (WFC) For Game Development In Top-Down'
 date: '2021-03-21'
-tags: ['Side Project',]
-summary: "In this paper, we will explore the issue of programmatic procedural map generation for video games in the 2D top-down rogue-like genre. Through this paper, we will cover multiple forms of procedural content generation (PCG) in the indie & professional game development community as well as propose & lay out our plans for such a system using the Wave Form Collapse (WFC) function."
+tags: ['Side Project']
+summary: 'In this paper, we will explore the issue of programmatic procedural map generation for video games in the 2D top-down rogue-like genre. Through this paper, we will cover multiple forms of procedural content generation (PCG) in the indie & professional game development community as well as propose & lay out our plans for such a system using the Wave Form Collapse (WFC) function.'
 thumbnail: '/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png'
 images: ['/static/images/wfc-and-bsp-for-procedural-dungeons-2021/banner.png']
 authors: ['shaancoding']
@@ -46,10 +46,12 @@ Cellular Automata is a discrete mathematics-based model of computation based on 
 <figure>
     <img
         className="w-full lg:w-2/3"
-        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-2/figure1.png" 
+        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-2/figure1.png"
         alt="Figure 1: Johnson L, Cellular automata for real-time generation of infinite cave levels"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 1: Johnson L, Cellular automata for real-time generation of infinite cave levels</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 1: Johnson L, Cellular automata for real-time generation of infinite cave levels
+    </figcaption>
 </figure>
 
 ### Binary Space Partitioning (BSP)
@@ -61,10 +63,12 @@ Through binary space partitioning, it allows the algorithm to split a space up i
 <figure>
     <img
         className="w-full lg:w-2/3"
-        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-2/figure2.png" 
+        src="/static/images/wfc-and-bsp-for-procedural-dungeons-2021/paper-2/figure2.png"
         alt="Figure 2: Dungeon Generation using BSP Trees"
     />
-    <figcaption className="text-center text-muted-foreground">Figure 2: Dungeon Generation using BSP Trees</figcaption>
+    <figcaption className="text-center text-muted-foreground">
+        Figure 2: Dungeon Generation using BSP Trees
+    </figcaption>
 </figure>
 
 ### Machine Learning
@@ -81,12 +85,12 @@ This approach, however, alternatively may be useful for other processes in proce
 
 <figure>
 
-| Technique          | Pros                                                                                                      | Cons                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|--------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Markov Chains      | Fast, aesthetically pleasing & varied, output statistically resembles similar things to its given components, reliant on clearly defined statistical properties (not a black box) | Reliant on statistical properties on a small scale, this fails to see long term dependency of the entire map and occasionally causes unsolvable maps, needs active repair function (such as backtracking) to fix unsolvable sections                                                                                                                          |
-| Cellular Automata  | Fast, simple, low cost, creates 'natural' looking cave environments                                       | Unstructured, chaotic, lacks overarching control or long term understanding, cannot create dungeons, can create unsolvable levels & requires an active repair function                                                                                                                                                                                                                             |
-| Machine Learning   | High variety, capable of capturing statistical patterns of real levels, can recognize overarching level design patterns, requires minimal coding, can be reused for many applications with minimal editing  | Requires an active repair function, is highly performance intensive in both CPU, Memory & RAM, often fails to capture underlying rules of a level, is a "black box" where the predicted output has no way of debugging or future understanding - i.e., an input comes in and an input goes out, requires huge data sets & clean training data to set up |
-| BSP Trees          | Good, highly effective, creates iconic cube dungeons, very easy to program, space aware, requires minimal fixing (back-tracking to add to pathways), is simplistic in concepts & very easy to debug & modify   | Variation is limited, cannot create 'real' procedural maps (it is still pre-defined), levels are typically required to be rectangular / non-continuous                                                                                                                                                                                                                         |
+| Technique         | Pros                                                                                                                                                                                                         | Cons                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Markov Chains     | Fast, aesthetically pleasing & varied, output statistically resembles similar things to its given components, reliant on clearly defined statistical properties (not a black box)                            | Reliant on statistical properties on a small scale, this fails to see long term dependency of the entire map and occasionally causes unsolvable maps, needs active repair function (such as backtracking) to fix unsolvable sections                                                                                                                    |
+| Cellular Automata | Fast, simple, low cost, creates 'natural' looking cave environments                                                                                                                                          | Unstructured, chaotic, lacks overarching control or long term understanding, cannot create dungeons, can create unsolvable levels & requires an active repair function                                                                                                                                                                                  |
+| Machine Learning  | High variety, capable of capturing statistical patterns of real levels, can recognize overarching level design patterns, requires minimal coding, can be reused for many applications with minimal editing   | Requires an active repair function, is highly performance intensive in both CPU, Memory & RAM, often fails to capture underlying rules of a level, is a "black box" where the predicted output has no way of debugging or future understanding - i.e., an input comes in and an input goes out, requires huge data sets & clean training data to set up |
+| BSP Trees         | Good, highly effective, creates iconic cube dungeons, very easy to program, space aware, requires minimal fixing (back-tracking to add to pathways), is simplistic in concepts & very easy to debug & modify | Variation is limited, cannot create 'real' procedural maps (it is still pre-defined), levels are typically required to be rectangular / non-continuous                                                                                                                                                                                                  |
 
 <figcaption className="text-center text-muted-foreground">Figure 3: Table with comparisons between algorithms</figcaption>
 </figure>
@@ -117,13 +121,13 @@ The proposed algorithm above is quite a complex & quite intensive algorithm requ
 
 A list of potential issues in this proposed algorithm is as listed below:
 
-- Incompatibility / heavy dependencies on multiple programming languages. E.g. Python for machine learning, C# for WFC & BSP
-- Issues with over-training / introducing biased or incorrect data into the machine learning model
-- Balancing the reward functions & sensitivities for the weight functions
-- Issues with creating a consistent map & debugging this due to it's randomized and procedural nature
-- Allowing this code to be intuitive and flexible for other researchers & game developers to use
-- Ensuring speed, accuracy & fidelity to the proposed algorithm as this requires multiple separate but highly connected systems
-- Issues with logic/domain knowledge outside of the reach of the researcher, which may require consultancy from experts / the research supervisor
+-   Incompatibility / heavy dependencies on multiple programming languages. E.g. Python for machine learning, C# for WFC & BSP
+-   Issues with over-training / introducing biased or incorrect data into the machine learning model
+-   Balancing the reward functions & sensitivities for the weight functions
+-   Issues with creating a consistent map & debugging this due to it's randomized and procedural nature
+-   Allowing this code to be intuitive and flexible for other researchers & game developers to use
+-   Ensuring speed, accuracy & fidelity to the proposed algorithm as this requires multiple separate but highly connected systems
+-   Issues with logic/domain knowledge outside of the reach of the researcher, which may require consultancy from experts / the research supervisor
 
 ## Conclusion
 

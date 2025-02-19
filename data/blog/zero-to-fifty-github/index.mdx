@@ -31,23 +31,20 @@ Selenium, combined with Python, can automate this task. While Python isn't my pr
 
 In under 50 lines of code, we can run a Mozilla Firefox browser headlessly, log into GitHub, access some of the most-followed users' pages, and follow their users back. By following many users who tend to follow people in return, we're able to quickly amass a significant following.
 
-<Box text="Warning: Automated following may result in account restrictions on GitHub. Use this method cautiously and at your own risk." type="warning" />
+<Box
+    text="Warning: Automated following may result in account restrictions on GitHub. Use this method cautiously and at your own risk."
+    type="warning"
+/>
 
 ### Example Code
 
 Here's an example of how you can automate the process using Selenium and Python.
 
-<CodeBlock language="python" 
-fileName="followBot.py"
-src="zero-to-fifty-github/codeblock-one"
-/>
+<CodeBlock language="python" fileName="followBot.py" src="zero-to-fifty-github/codeblock-one" />
 
 Whilst this script works effectively for following users from some of GitHub's most followed and influential developers, it does have a limitation. It can make our profile look a bit suspicious to potential followers when they see that we're following a large number of users but have fewer followers. To counteract this, we can unfollow everyone we've followed after a day or two. This way, we can follow users in bulk, gain followers, and then unfollow everyone to maintain a clean profile. Just make sure to keep a list of users you genuinely want to continue following so they don't get unfollowed.
 
-<CodeBlock language="python"
-fileName="unfollowBot.py"
-src="zero-to-fifty-github/codeblock-two"
-/>
+<CodeBlock language="python" fileName="unfollowBot.py" src="zero-to-fifty-github/codeblock-two" />
 
 ### Results and Observations
 

@@ -33,14 +33,15 @@ We needed a lightweight, reliable, and accurate object-detection model. After be
 
 After comparing both speed and accuracy, and removing models incompatible with the Movidius neural compute stick, two main options remained: YoloV3 and MobileNetSSD.
 
-- **YoloV3**: Fast but less accurate with increased false positives at longer ranges.
-- **MobileNetSSD**: Slower but higher accuracy at increased ranges.
+-   **YoloV3**: Fast but less accurate with increased false positives at longer ranges.
+-   **MobileNetSSD**: Slower but higher accuracy at increased ranges.
 
 ## Implementation
 
 After evaluation, I chose the MobileNetSSD model. I optimized the software and implemented multi-threading to increase speed and streamline processes. By creating three main pipelines (image grabbing, processing, and outputting), I improved performance by about 35%.
 
 Two main bottlenecks were identified:
+
 1. Processing time.
 2. Image capturing time.
 

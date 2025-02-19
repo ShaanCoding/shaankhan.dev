@@ -4,18 +4,18 @@ import {
     SiCplusplus,
     SiCsharp,
     SiCss3,
+    SiDocker,
+    SiGnubash,
     SiHtml5,
     SiJavascript,
     SiJson,
     SiMarkdown,
     SiMdx,
+    SiNginx,
     SiPython,
+    SiRust,
     SiTypescript,
     SiYaml,
-    SiRust,
-    SiDocker,
-    SiNginx,
-    SiGnubash,
 } from 'react-icons/si'
 
 export const languageIcons: { [key: string]: IconType } = {
@@ -35,7 +35,7 @@ export const languageIcons: { [key: string]: IconType } = {
     text: SiMarkdown,
     dockerfile: SiDocker,
     nginx: SiNginx,
-    bash: SiGnubash
+    bash: SiGnubash,
 }
 
 export const getLanguageIcon = (language: string): JSX.Element | null => {

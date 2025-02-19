@@ -1,4 +1,3 @@
-
 <br/>
 <div align="center">
 <a href="https://github.com/ShaanCoding/shaankhan.dev">
@@ -15,7 +14,9 @@ My personal blog & portfolio
 </div>
 
 ## About The Project
+
 <!-- Example screenshot 1920 x 1080 -->
+
 ![Product Screenshot](/images/demo.svg)
 
 ### Built With
@@ -34,19 +35,18 @@ This site was built with the following technologies:
 | Analytics           | [Vercel Analytics](https://vercel.com/docs/analytics)                     |
 | Graphics            | [Figma](https://www.figma.com/)                                           |
 
-
 ## Getting Started
 
 To get started using this project, do the following:
 
 ### Prerequisites
 
-- npm / yarn
-- redis (either local or self-hosted)
+-   npm / yarn
+-   redis (either local or self-hosted)
 
 ### Installation
 
-- To fill in later
+-   To fill in later
 
 ## Contributing
 
@@ -63,16 +63,16 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-- The project itself is also heavily based off the work done by [Jktrn / Enscribe](https://github.com/jktrn/enscribe.dev) repository, which is attributed and licensed under the Apache 2.0 License. To see the license for the original work, see [Apache 2.0 License](https://github.com/ShaanCoding/shaankhan.dev/blob/main/LICENSE.enscribe.md) for more information.
+-   The project itself is also heavily based off the work done by [Jktrn / Enscribe](https://github.com/jktrn/enscribe.dev) repository, which is attributed and licensed under the Apache 2.0 License. To see the license for the original work, see [Apache 2.0 License](https://github.com/ShaanCoding/shaankhan.dev/blob/main/LICENSE.enscribe.md) for more information.
 
 ## Contact
 
-- Shaan - [@shaancoding](https://twitter.com/ShaanCoding)
-- Project Link: [github.com/ShaanCoding/shaankhan.dev](https://github.com/ShaanCoding/shaankhan.dev)
+-   Shaan - [@shaancoding](https://twitter.com/ShaanCoding)
+-   Project Link: [github.com/ShaanCoding/shaankhan.dev](https://github.com/ShaanCoding/shaankhan.dev)
 
 ## Acknowledgments
 
 Credit to the following projects for inspiration and guidance:
 
-- [makeread.me](https://github.com/ShaanCoding/ReadME-Generator) - For the README template
-- [Jktrn / Enscribe](https://github.com/jktrn/enscribe.dev) - For the original project that this is based off of, and for the help given in regards to the creation of this project.
+-   [makeread.me](https://github.com/ShaanCoding/ReadME-Generator) - For the README template
+-   [Jktrn / Enscribe](https://github.com/jktrn/enscribe.dev) - For the original project that this is based off of, and for the help given in regards to the creation of this project.
