@@ -24,6 +24,15 @@ export default function Home({ posts }) {
                     <div>
                         <Link
                             className="text-primary hover:brightness-125 dark:hover:brightness-125"
+                            href={'https://linkscribe.io'}
+                        >
+                            linkscribe.io
+                        </Link>
+                        <span> - 🚧 Under Construction</span>
+                    </div>
+                    <div>
+                        <Link
+                            className="text-primary hover:brightness-125 dark:hover:brightness-125"
                             href={'https://makeread.me'}
                         >
                             makeread.me
