@@ -1,0 +1,70 @@
+---
+title: 'linkscribe.io - Dev Log'
+date: '2025-02-17'
+tags: ['AI', 'Software Development', 'Software as a Service']
+summary: 'A development log for linkscribe.io, a SaaS platform'
+thumbnail: '/static/images/twitter-card.png'
+images: ['/static/images/twitter-card.png']
+authors: ['shaancoding']
+layout: PostSimple
+hidden: true
+---
+
+## linkscribe.io - Dev Log
+
+### 2025-02-17  
+
+Came up with the idea for **linkscribe.io**  
+- Defined the **formal project requirements** and outlined the **MVP scope**  
+- Created a **Linear project** to track development progress  
+- Set up a **GitHub repository** for version control  
+- Finalized the **project name**  
+
+### 2025-02-18  
+
+- Designed a **basic user flow** and mapped out initial **routes**  
+- Created a **rough wireframe** for the core features  
+- Chose a **tech stack** for development  
+- Drafted **landing page copy** and planned its **design direction**  
+
+### 2025-02-19  
+
+- No active development today  
+- **Organized documentation** and moved files into an **ADR (Architecture Decision Record) folder**  
+
+### 2025-02-20
+
+#### 🛠️ Backend Setup
+
+- Initialized the backend repo with:
+    - **Type generation** for API consistency
+    - **MongoDB database** with both production and local instances
+    -**Swagger documentation** + type generation
+
+#### 🎨 Frontend Setup
+
+- Started a **Next.js** frontend with:
+    - **ShadCN** for UI components
+    - **React Query** for efficient data fetching
+    - **Contentlayer** for blog support
+    - **Open Graph metadata** for social previews
+    - **Plausible Analytics** for privacy-friendly tracking
+    - **Server-side type generation** for type safety
+
+#### ⚙️ DevOps & Infrastructure
+
+- **Cloudflare Setup**
+    - Moved nameservers to Cloudflare
+    - Enabled **DNSSEC** for security
+    - Set up **DNS flattening** for an apex domain
+    - Disabled **DMARC/email spoofing**
+
+- **SEO & Analytics**
+    - Google Search Console integrated
+    - Ahrefs setup for SEO tracking
+    - Plausible Analytics configured
+
+- **Deployment & Hosting**
+    - **Vercel environments** set up for frontend
+    - **Railway environments** configured for staging & production
+    - Subdomains mapped for different environments
