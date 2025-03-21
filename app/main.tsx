@@ -119,8 +119,8 @@ export default function Home({ posts }) {
                             {startUps.map((project, index) => {
                                 if (startUps.length % 2 === 1 && index === startUps.length - 1) {
                                     return (
-                                        <div className="lg:col-span-2">
-                                            <ProjectCard key={index} project={project} />
+                                        <div className="lg:col-span-2" key={index}>
+                                            <ProjectCard project={project} />
                                         </div>
                                     )
                                 } else {
@@ -138,8 +138,8 @@ export default function Home({ posts }) {
                             {openSourceProjects.map((project, index) => {
                                 if (openSourceProjects.length % 2 === 1 && index === openSourceProjects.length - 1) {
                                     return (
-                                        <div className="lg:col-span-2">
-                                            <ProjectCard key={index} project={project} />
+                                        <div className="lg:col-span-2" key={index}>
+                                            <ProjectCard project={project} />
                                         </div>
                                     )
                                 } else {
