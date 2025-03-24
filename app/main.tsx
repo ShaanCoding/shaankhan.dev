@@ -95,7 +95,7 @@ export default function Home({ posts }) {
 
     return (
         <div className="divide-y divide-accent-foreground dark:divide-accent">
-            <div className="mx-auto bento-md:-mx-[5vw] bento-lg:-mx-[20vw]">
+            <div className="mx-auto bento-md:-mx-[4vw] bento-lg:-mx-[16vw]">
                 {/* Temp */}
                 <div className="mt-24 text-center">
                     <PageTitle>
@@ -104,12 +104,12 @@ export default function Home({ posts }) {
                 </div>
 
                 <div className="w-full flex flex-col mt-4 gap-y-4 items-center justify-center">
-                    <p className="my-4 max-w-xl text-center">
+                    <p className="my-4 text-center">
                         This site is currently under construction. In the meantime, you can check
                         out my other projects below.
                     </p>
 
-                    <div className="w-full max-w-4xl">
+                    <div className="w-full">
                         <h2 className="text-xl font-bold mb-4 font-mono">
                             <span className="text-primary">$</span> ls ./startups
                         </h2>
