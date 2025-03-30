@@ -5,10 +5,110 @@ import SpotifyPresence from '@/components/integrations/SpotifyPresence'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import { Skeleton } from '@/components/shadcn/skeleton'
-import { useState } from 'react'
+import { Suspense, useRef, useState } from 'react'
 import { useLanyard } from 'react-use-lanyard'
+import { Canvas, useFrame } from "@react-three/fiber"
+import { OrbitControls, Environment, useGLTF, Center } from "@react-three/drei"
+import { Group } from 'three'
 
-const ProjectCard = ({ project }) => {
+interface Project {
+    name: string;
+    description: string;
+    url: string;
+    status: string;
+    modelUrl?: string;
+}
+
+interface ModelProps {
+    url: string;
+    rotation?: number;
+}
+
+// Preload the model
+useGLTF.preload('/models/linkscribe.glb')
+useGLTF.preload('/models/steamprofiles.glb')
+
+function Model({ url, rotation = 0 }: ModelProps) {
+    const { scene } = useGLTF(url)
+    const modelRef = useRef<Group>(null)
+
+    useFrame((state, delta) => {
+        if (modelRef.current) {
+            modelRef.current.rotation.y += delta * 0.5
+        }
+    })
+
+    return (
+        <group ref={modelRef}>
+            <primitive object={scene} scale={1.5} />
+        </group>
+    )
+}
+
+const ProjectCard3D = ({ project }: { project: Project }) => {
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isModelError, setIsModelError] = useState<boolean>(false);
+
+    return (
+        <div className="border border-accent rounded-md bg-muted/30 hover:bg-muted/50 transition-colors duration-200 font-mono"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {/* Header */}
+            <div className="p-2 flex flex-col border-b border-accent">
+                <div className="flex items-center">
+                    <span className="text-primary font-semibold truncate">$ cd ~/{project.name}</span>
+                </div>
+            </div>
+
+            {/* Status Badge */}
+            <div className="p-2">
+                <span className={`self-start text-xs px-2 py-1 rounded ${project.status.includes('🔋') ? 'bg-green-500/20 text-green-500' :
+                    project.status.includes('🚧') ? 'bg-yellow-500/20 text-yellow-500' :
+                        'bg-red-500/20 text-red-500'
+                    }`}>{project.status}</span>
+            </div>
+
+            {/* Description */}
+            <div className="p-2 text-sm opacity-80">
+                # {project.description}
+            </div>
+
+            {/* Model */}
+            {project.modelUrl && !isModelError && (
+                <div className="h-48 w-full relative">
+                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                        <color attach="background" args={["#111"]} />
+                        <ambientLight intensity={0.3} />
+                        <Suspense fallback={null}>
+                            <Center>
+                                <Model url={project.modelUrl} />
+                            </Center>
+                            <Environment preset="night" />
+                        </Suspense>
+                        <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} enableRotate={isHovered} />
+                    </Canvas>
+
+                    {/* Overlay gradient for better text visibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent pointer-events-none" />
+                </div>
+            )}
+
+            {/* Open command */}
+            <div className="p-2 border-t border-accent flex items-center cursor-pointer">
+                <span className="text-muted-foreground mr-2">$</span>
+                <Link
+                    href={project.url}
+                    className="text-primary hover:underline hover:text-primary/80 break-all"
+                >
+                    open {project.url.replace('https://', '')}
+                </Link>
+            </div>
+        </div>
+    );
+};
+
+const ProjectCard = ({ project }: { project: Project }) => {
     return (
         <div className="border border-accent rounded-md p-4 bg-muted/30 hover:bg-muted/50 transition-colors duration-200 font-mono">
             <div className="flex flex-col gap-2 mb-2">
@@ -45,22 +145,24 @@ export default function Home({ posts }) {
     const [isDiscordLoaded, setDiscordLoaded] = useState(false)
     const [isSpotifyLoaded, setIsSpotifyLoaded] = useState(false)
 
-    const startUps = [
+    const startUps: Project[] = [
         {
             name: 'linkscribe.io',
             description: "To be announced soon",
             url: 'https://linkscribe.io',
             status: '🚧 Under Construction',
+            modelUrl: '/models/linkscribe.glb',
         },
         {
             name: 'steamprofiles.design',
             description: "A programmatic way to generate animated steam artworks for your profile",
             url: 'https://steamprofiles.design',
             status: '⛔ Decommissioned & Read Only',
+            modelUrl: '/models/steamprofiles.glb',
         },
     ]
 
-    const openSourceProjects = [
+    const openSourceProjects: Project[] = [
         {
             name: 'CodeGrind Bot',
             description: 'A simple discord bot to encourage leetcode problem solving',
@@ -120,12 +222,12 @@ export default function Home({ posts }) {
                                 if (startUps.length % 2 === 1 && index === startUps.length - 1) {
                                     return (
                                         <div className="lg:col-span-2" key={index}>
-                                            <ProjectCard project={project} />
+                                            <ProjectCard3D project={project} />
                                         </div>
                                     )
                                 } else {
                                     return (
-                                        <ProjectCard key={index} project={project} />
+                                        <ProjectCard3D key={index} project={project} />
                                     )
                                 }
                             })}
